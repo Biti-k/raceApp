@@ -24,7 +24,7 @@ return new class extends Migration
             //fks
             $table->foreign('ins_par_id')->references('par_id')->on('participants');
             $table->foreign('ins_bea_id')->references('bea_id')->on('beacons');
-/*             $table->foreign('ccc_id')->references('')->on('beacons'); */
+            $table->foreign('ccc_id')->references('ccc_id')->on('circuits_categories');
             $table->timestamps();
         });
     }
