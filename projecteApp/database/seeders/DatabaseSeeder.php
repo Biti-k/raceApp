@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         EstatsCursaSeeder::class;
         EsportsSeeder::class;
+        CategoriasSeeder::class;
     }
 }

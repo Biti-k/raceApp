@@ -16,10 +16,12 @@ class EsportsSeeder extends Seeder
     public function run()
     {
         EsportsModel::create([
-            "esp_nom" => "Ciclismo" 
+            "esp_nom" => "Ciclismo" ,
+            "esp_id" => 1,
         ]);
         EsportsModel::create([
-            "esp_nom" => "Running" 
+            "esp_nom" => "Running",
+            "esp_id" => 2,
         ]);
         
     }
