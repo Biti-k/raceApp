@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BeaconModel extends Model
+class BeaconsModel extends Model
 {
     use HasFactory;
 
