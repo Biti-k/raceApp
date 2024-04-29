@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("reg_ins_id");
             $table->unsignedBigInteger("reg_chk_id");
             $table->dateTime("reg_temps");
-            $table->foreign('reg_ins_id')->references('ins_id')->on('inscripcio');
+            $table->foreign('reg_ins_id')->references('ins_id')->on('inscripcions');
             $table->foreign('reg_chk_id')->references('chk_id')->on('checkpoints');
             $table->timestamps();
         });
