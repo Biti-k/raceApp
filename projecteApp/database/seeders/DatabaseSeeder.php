@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         EstatsCursaSeeder::class;
+        EsportsSeeder::class;
     }
 }

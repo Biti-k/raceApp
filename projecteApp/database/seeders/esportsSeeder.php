@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\EsportsModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class esportsSeeder extends Seeder
+class EsportsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,12 @@ class esportsSeeder extends Seeder
      */
     public function run()
     {
+        EsportsModel::create([
+            "esp_nom" => "Ciclismo" 
+        ]);
+        EsportsModel::create([
+            "esp_nom" => "Running" 
+        ]);
         
     }
 }
