@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('cur_foto', 256)->nullable();
             $table->string('cur_web', 256)->nullable();
             $table->timestamps();
-
+            
             $table->foreign('cur_esp_id')->references('esp_id')->on('esports');
             $table->foreign('cur_est_id')->references('est_id')->on('estats_cursa');
         });
