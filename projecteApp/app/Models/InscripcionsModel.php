@@ -18,6 +18,10 @@ class InscripcionsModel extends Model
         return $this->belongsTo(ParticipantsModel::class, 'ins_par_id');
     }
     
+    public function beacons(){
+        return $this->belongsTo(BeaconsModel::class, 'ins_bea_id');
+    }
+
     public function getWithRelations($params = null)
     {
 
@@ -30,7 +34,5 @@ class InscripcionsModel extends Model
             'inscripcions' => $inscripcions,
         ]);
     }
-    public function beacons(){
-        return $this->belongsTo(BeaconsModel::class, 'ins_bea_id');
-    }
+
 }
