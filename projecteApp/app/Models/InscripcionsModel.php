@@ -18,4 +18,16 @@ class InscripcionsModel extends Model
         return $this->belongsTo(ParticipantsModel::class, 'ins_par_id');
     }
     
+    public function getWithRelations($params = null)
+    {
+
+        $inscripcions = self::all();
+        
+        //self::find($id);
+        //self::where('ins_par_id', $par_id)->where()...->get();
+
+        return response()->json([
+            'inscripcions' => $inscripcions,
+        ]);
+    }
 }
