@@ -18,4 +18,15 @@ class ParticipantsModel extends Model
         return $this->hasMany(InscripcionsModel::class, 'ins_id');
     }
 
+    public static function getWithRelations($params = null)
+    {
+
+        $participants = self::with(['inscripcions'])->get();
+        
+
+        return response()->json([
+            'participants' => $participants,
+        ]);
+    }
+
 }

@@ -19,4 +19,13 @@ class CircuitsModel extends Model
     public function checkpoints(){
         return $this->hasMany(CheckpointsModel::class, "chk_id");
     }
+
+    public static function getWithRelations($params = null)
+    {
+        $circuits = self::with(['curses', 'checkpoints'])->get();
+        
+        return response()->json([
+            'circuits' => $circuits,
+        ]);
+    }
 }

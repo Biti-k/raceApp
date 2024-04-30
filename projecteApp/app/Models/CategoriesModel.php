@@ -18,11 +18,7 @@ class CategoriesModel extends Model
 
     public static function getWithRelations($params = null)
     {
-
         $categories = self::with(["esports"])->get();
-        
-        //self::find($id);
-        //self::where('ins_par_id', $par_id)->where()...->get();
 
         return response()->json([
             'categories' => $categories,
