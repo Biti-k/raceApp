@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CategoriaModel;
+use App\Models\CategoriesModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,25 +15,25 @@ class CategoriasSeeder extends Seeder
      */
     public function run()
     {
-        CategoriaModel::create([
+        CategoriesModel::create([
             "cat_id" => 1 ,
             "cat_esp_id" => 1,
             "cat_nom" => "Obert"
         ]);
 
-        CategoriaModel::create([
+        CategoriesModel::create([
             "cat_id" => 2 ,
             "cat_esp_id" => 1,
             "cat_nom" => "Federat"
         ]);
 
-        CategoriaModel::create([
+        CategoriesModel::create([
             "cat_id" => 3 ,
             "cat_esp_id" => 2,
             "cat_nom" => "Obert"
         ]);
         
-        CategoriaModel::create([
+        CategoriesModel::create([
             "cat_id" => 4 ,
             "cat_esp_id" => 2,
             "cat_nom" => "Federat"
