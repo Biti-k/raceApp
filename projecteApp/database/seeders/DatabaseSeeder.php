@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->Call(CursesSeeder::class);
         $this->Call(CircuitsSeeder::class);
         $this->Call(CircuitsCategoriesSeeder::class);
+        $this->Call(CheckpointsSeeder::class);
     }
 }

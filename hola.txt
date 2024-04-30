@@ -11,8 +11,6 @@ circuits_categoria
 checkpoints
 
 SEEDERS: 
-    faltan: 
-        checkpoints
+    faltan:
         registres
-        circuits_categoria
         inscrpcions
