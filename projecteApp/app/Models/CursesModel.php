@@ -22,10 +22,15 @@ class CursesModel extends Model
         return $this->belongsTo(EstatsCursaModel::class, 'cur_est_id');
     }
 
+    public function circuits()
+    {
+        return $this->hasMany(CircuitsModel::class, 'cir_cur_id');
+    }
+
     public static function getWithRelations($params = null)
     {
 
-        $curses = self::with(['esport', 'estat'])->get();
+        $curses = self::with(['esport', 'estat', 'circuits'])->get();
         
         return response()->json([
             'curses' => $curses,
