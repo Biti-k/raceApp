@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->Call(BeaconSeeder::class);
         $this->Call(EsportsSeeder::class);
         $this->Call(CategoriasSeeder::class);
+        $this->Call(ParticipantsSeeder::class);
     }
 }
