@@ -14,5 +14,7 @@ class BeaconsModel extends Model
     protected $fillable = ['bea_id','bea_code'];
 
     
-
+    public function inscripcions(){
+        return $this->hasMany(InscripcionsModel::class, 'ins_bea_id');
+    }
 }
