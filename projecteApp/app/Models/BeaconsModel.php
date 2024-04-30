@@ -17,4 +17,14 @@ class BeaconsModel extends Model
     public function inscripcions(){
         return $this->hasMany(InscripcionsModel::class, 'ins_bea_id');
     }
+
+    public static function getWithRelations($params = null)
+    {
+
+        $beacons = self::with(['inscripcions'])->get();
+        
+        return response()->json([
+            'beacons' => $beacons,
+        ]);
+    }
 }

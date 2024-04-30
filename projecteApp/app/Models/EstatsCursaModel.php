@@ -11,4 +11,20 @@ class EstatsCursaModel extends Model
     protected $table= 'estats_cursa';
     protected $fillable = ['est_id','est_nom'];
     protected $primaryKey = 'est_id';
+
+    public function curses ()
+    {
+        return $this->hasMany(CursesModel::class, 'cur_est_id');
+    }
+
+    public static function getWithRelations($params = null)
+    {
+        //$estats = self::with(['curses'])->get();
+        $estats = self::all();
+        
+        return response()->json([
+            'estats_cursa' => $estats,
+        ]);
+    }
+
 }
