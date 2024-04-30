@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cur_est_id');
             $table->text('cur_desc')->nullable();
             $table->integer('cur_limit_inscr');
-            $table->string('cur_foto', 255);
+            $table->string('cur_foto', 255)->nullable();
             $table->string('cur_web', 255)->nullable();
             $table->timestamps();
             
