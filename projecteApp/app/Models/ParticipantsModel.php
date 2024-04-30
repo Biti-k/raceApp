@@ -15,7 +15,7 @@ class ParticipantsModel extends Model
 
     public function inscripcions()
     {
-        return $this->hasMany(InscrpcionsModel::class, 'ins_id');
+        return $this->hasMany(InscripcionsModel::class, 'ins_id');
     }
 
 }
