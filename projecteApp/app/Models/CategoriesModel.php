@@ -13,7 +13,7 @@ class CategoriesModel extends Model
     protected $fillable = ['cat_id', 'cat_esp_id', "cat_nom"];
 
     public function esports(){
-        $this->belongsTo(EsportsModel::class, "cat_esp_id");
+        return $this->belongsTo(EsportsModel::class, "cat_esp_id");
     }
 
     public static function getWithRelations($params = null)

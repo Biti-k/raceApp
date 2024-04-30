@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('curses', function (Blueprint $table) {
             $table->unsignedBigInteger('cur_id')->autoIncrement();
             $table->string('cur_nom');
-            $table->date('cur_data_inici');
-            $table->date('cur_data_fi');
+            $table->dateTime('cur_data_inici');
+            $table->dateTime('cur_data_fi');
             $table->string('cur_lloc', 20);
             $table->unsignedBigInteger('cur_esp_id');
             $table->unsignedBigInteger('cur_est_id');
-            $table->string('cur_desc', 190)->nullable();
+            $table->text('cur_desc')->nullable();
             $table->integer('cur_limit_inscr');
-            $table->string('cur_foto', 256);
+            $table->string('cur_foto', 256)->nullable();
             $table->string('cur_web', 256)->nullable();
             $table->timestamps();
 
