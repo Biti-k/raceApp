@@ -10,3 +10,9 @@ circuits
 circuits_categoria
 checkpoints
 
+SEEDERS: 
+    faltan: 
+        checkpoints
+        registres
+        circuits_categoria
+        inscrpcions
