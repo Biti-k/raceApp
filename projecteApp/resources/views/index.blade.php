@@ -11,7 +11,9 @@
     @vite('resources/react/app.jsx')
     <script>
         const get_all_categories = "{{route("categories.get_all_categories")}}";
-        
+        const get_all_esports = "{{route("esports.get_all_esports")}}";
+        const store_cursa = "{{route("curses.store_cursa")}}";
+
     </script>
 </head>
 <body>
