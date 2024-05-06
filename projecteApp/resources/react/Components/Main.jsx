@@ -13,7 +13,7 @@ function Main() {
     return (
         <>
         <MainProvider>
-					<div className="container-fluid mt-2">
+					<div className="container-fluid mt-2 bg-grey">
 						<NavBar></NavBar>
 						<div className='mt-3'></div>
 						<Routes>

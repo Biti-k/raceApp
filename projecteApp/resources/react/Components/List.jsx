@@ -1,15 +1,16 @@
 import {useEffect} from 'react';
-
-function Main() {
-    useEffect(() => {
-        console.log(get_all_categories);
-    }, [])
-
+import Card from './Card';
+export const List = ({curses}) => {
+    console.log(curses);
     return (
-        <div>
-            <h2 className="bg-grey">React App</h2>
+        <div className='flex flex-wrap justify-center gap-4'>
+            {
+                curses.map(cursa =>
+                    <Card cursa={cursa}/>
+                )
+            }
         </div>
     );
 }
 
-export default Main;
+export default List;
