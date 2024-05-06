@@ -15,9 +15,8 @@ function Main() {
     return (
         <>
         <MainProvider>
-					<div className="container-fluid mt-2 bg-grey">
+					<div>
 						<NavBar></NavBar>
-						<div className='mt-3'></div>
 						<Routes>
 							<Route path="/" element={<MainScreen></MainScreen>} />
 							<Route path="/curses" element={<CursesScreen></CursesScreen>} />

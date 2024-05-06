@@ -18,7 +18,7 @@ export const MainProvider = ({children})=>
 	// useEffect( ()=>{
 	// 	fetchProductes()
 	// }, [])
-
+	
 
     return(
         <MainContext.Provider value={{isLoad}}>

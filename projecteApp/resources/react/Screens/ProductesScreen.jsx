@@ -1,6 +1,6 @@
 import { useContext,useEffect,useState } from 'react'
 import { ProductesContext } from '../context/ProductesContext'
-import { Card } from '../components/Card'
+import Card from '../Components/Card'
 import { CarroContext } from '../context/CarroContext'
 import { Icon } from '@iconify/react'
 
@@ -88,7 +88,7 @@ export const ProductesScreen = () =>
 			:
 				<div>
 					<div className="d-flex">
-						<select value={selectedOption} onChange={handleSelectChange} className="m-3 form-select w-auto bg-secondary text-white ">
+						<select value={selectedOption} onChange={handleSelectChange} className="w-auto m-3 text-white form-select bg-secondary ">
 							<option value="-1">Selecciona categoria</option>
 							{	options.map((op, i) => 
 									<option key={op} value={op}>{op}</option>
@@ -99,7 +99,7 @@ export const ProductesScreen = () =>
 					<div className="container-fluid">
 						<div className='row'>
 							{	productesShow.map((p,i)=>
-								<div key={i} className="col-12 col-md-6 col-lg-4 my-2">
+								<div key={i} className="my-2 col-12 col-md-6 col-lg-4">
 									<Card 
 										imatge={p.image}
 										titol={p.title}

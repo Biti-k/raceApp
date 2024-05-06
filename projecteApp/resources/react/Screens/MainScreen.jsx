@@ -4,14 +4,13 @@ import { List } from '../Components/List'
 
 export const MainScreen = () =>
 {
-    const curses = 
-
-    return(
-    <>
+    return (
+        <>
         <h2>Main Screen</h2>
 
             
             
-    </>
+        </>
     )
+
 }
