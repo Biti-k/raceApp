@@ -13,4 +13,13 @@ class CursesController extends Controller
     {
         return CursesModel::getWithRelations();
     }
+
+    public function storeCursa(Request $request)
+    {
+        
+        dd($request->all());
+
+
+        
+    }
 }

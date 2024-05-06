@@ -12,4 +12,8 @@ class RegistresController extends Controller
     {
         return RegistresModel::getWithRelations();
     }
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 }

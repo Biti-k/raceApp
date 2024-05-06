@@ -1,14 +1,29 @@
 import {useEffect} from 'react';
+import NavBar from './NavBar';
+import { MainProvider } from '../context/MainProvider';
+import { MainScreen } from '../Screens/MainScreen';
+import { Routes, Route , Navigate} from 'react-router-dom'
 
 function Main() {
+
     useEffect(() => {
-        console.log(get_all_categories);
+      console.log(get_all_categories);
     }, [])
 
     return (
-        <div>
-            <h2 className="bg-slate-500">React App</h2>
-        </div>
+        <>
+        <MainProvider>
+					<div className="container-fluid mt-2">
+						<NavBar></NavBar>
+						<div className='mt-3'></div>
+						<Routes>
+							<Route path="/" element={<MainScreen></MainScreen>} />
+							{/* <Route path="/curses" element={<CursesScreen></CursesScreen>} /> */}
+							<Route path="/*" element={<Navigate to="/"></Navigate>} />
+						</Routes>
+					</div>
+        </MainProvider>
+        </>
     );
 }
 
