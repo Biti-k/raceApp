@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const CursaScreen = () =>
 {
+
     const { id } = useParams();
 
     const cursaData = {
@@ -33,15 +34,12 @@ export const CursaScreen = () =>
 
     const getSelects = async()=>{
         const response = await axios.get(get_all_esports);
-        console.log(response.data);
         
         let select = []
 
         response.data.esports.forEach((ele)=>{
             select.push({title: ele.esp_nom, value: ele.esp_id});
         });
-        
-        console.log(select);
         
         setEsports(select);
     }
@@ -58,21 +56,18 @@ export const CursaScreen = () =>
 
     const handleSubmit = (evt) =>{
         evt.preventDefault();
-        console.log(cursa);
 
-        const fileInput = document.getElementById('fileInput');
+        const fileInput = document.getElementById('cur_foto');
+        console.log(fileInput);
         const file = fileInput.files[0];
         
         const formData = new FormData();
         formData.append('cur_foto', file);
+        formData.append('cursa', JSON.stringify(cursa));
         
-        axios.post(store_cursa, formData, {
-            headers: {
-            'Content-Type': 'multipart/form-data'
-            }
-        })
+        axios.post(store_cursa, formData , {headers: {'Content-Type': 'multipart/form-data'}})
         .then(response => {
-            console.log('Archivo subido exitosamente:', response.data);
+            console.log(response);
         })
         .catch(error => {
             console.error('Error al subir el archivo:', error);
@@ -94,8 +89,14 @@ export const CursaScreen = () =>
             <br/><label>Lloc: </label>
             <br/><input type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
 
+            <br/><label>Data Inici: </label>
+            <br/><input type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+
+            <br/><label>Data fi: </label>
+            <br/><input type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+
             <br/><label>Esport: </label>
-            <br/><select  name="cur_lloc" value={cursa.cur_esp_id} onChange={handleEsportChange}>
+            <br/><select  name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleEsportChange}>
                 <option value="-1">Selecciona un esport</option>
                 {esports.map((ele)=>
                     <option key={ele.value} value={ele.value} > {ele.title} </option>
@@ -110,7 +111,7 @@ export const CursaScreen = () =>
             
             
             <br/><label>Foto: </label>
-            <br/><input type="file" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
+            <br/><input type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
             
             <br/>
             <br/>
