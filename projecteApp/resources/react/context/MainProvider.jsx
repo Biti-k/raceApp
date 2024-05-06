@@ -7,7 +7,10 @@ export const MainProvider = ({children})=>
     const [isLoad, setIsLoad] = useState(true);
 
 	// const [productes, setProductes] = useState([]);
-
+	const [curses, setCurses] = useState([]);
+	useEffect(() => {
+		axios.get()
+	});
 	// const fetchProductes = async () =>{
 	// 	const response = await fetch('https://fakestoreapi.com/products')
 	// 	const data = await response.json()
@@ -18,7 +21,7 @@ export const MainProvider = ({children})=>
 	// useEffect( ()=>{
 	// 	fetchProductes()
 	// }, [])
-	
+
 
     return(
         <MainContext.Provider value={{isLoad}}>
