@@ -7,7 +7,7 @@ function Main() {
 
     return (
         <div>
-            <h2 className="test-class">React App</h2>
+            <h2 className="bg-slate-500">React App</h2>
         </div>
     );
 }

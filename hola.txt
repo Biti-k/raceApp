@@ -14,3 +14,7 @@ SEEDERS:
     faltan:
         registres
         inscrpcions
+
+comandos:
+npx tailwindcss init -p
+npm install -D tailwindcss postcss autoprefixer
