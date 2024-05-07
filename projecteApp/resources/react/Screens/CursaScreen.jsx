@@ -115,7 +115,7 @@ export const CursaScreen = () =>
             
             <br/>
             <br/>
-            <input className='rounded p-3 bg-blue1 hover:bg-cyan-600' type="submit"/>
+            <input className='p-3 rounded bg-blue1 hover:bg-cyan-600' type="submit"/>
         </form>
     </>
     )

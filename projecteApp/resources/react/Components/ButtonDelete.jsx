@@ -10,7 +10,7 @@ export const ButtonDelete = ({handleClick})=> {
             data-ripple-light="true"
             onClick={handleClick}
             >
-            <p class="inline transition duration-500">Eliminar</p> <Icon icon="material-symbols:delete-forever-rounded" className="inline text-2xl align-middle transition duration-500 text-blue2 group-hover:text-red-500"/>    
+            <p className="inline transition duration-500">Eliminar</p> <Icon icon="material-symbols:delete-forever-rounded" className="inline text-2xl align-middle transition duration-500 text-blue2 group-hover:text-red-500"/>    
             </button>
         </>
     );

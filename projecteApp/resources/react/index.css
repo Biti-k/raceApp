@@ -15,3 +15,7 @@ body{
 #app > div {
     height: 100%;
 }
+
+*{
+    font-family: "Rubik", sans-serif;
+}

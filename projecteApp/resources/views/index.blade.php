@@ -7,6 +7,10 @@
     <link rel="shortcut icon" href="{{ asset('icon.svg') }}" /> {{-- https://yesicon.app/maki/racetrack --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     @viteReactRefresh
     @vite('resources/react/app.jsx')
     <script>
@@ -14,7 +18,6 @@
         const get_all_esports = "{{route("esports.get_all_esports")}}";
         const get_all_curses = "{{route("curses.get_all_curses")}}";
         const store_cursa = "{{route("curses.store_cursa")}}";
-
     </script>
     <style>
         html{
