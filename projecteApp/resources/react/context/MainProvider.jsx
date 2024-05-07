@@ -10,7 +10,6 @@ export const MainProvider = ({children})=>
 	const [curses, setCurses] = useState([]);
 	const getCurses = async() => {
 		let response = await axios.get(get_all_curses)
-		console.log(response);
 		setCurses(response.data.curses);
 	}
 

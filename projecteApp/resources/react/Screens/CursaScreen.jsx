@@ -58,7 +58,6 @@ export const CursaScreen = () =>
         evt.preventDefault();
 
         const fileInput = document.getElementById('cur_foto');
-        console.log(fileInput);
         const file = fileInput.files[0];
         
         const formData = new FormData();
@@ -67,7 +66,7 @@ export const CursaScreen = () =>
         
         axios.post(store_cursa, formData , {headers: {'Content-Type': 'multipart/form-data'}})
         .then(response => {
-            console.log(response);
+            //console.log(response);
         })
         .catch(error => {
             console.error('Error al subir el archivo:', error);

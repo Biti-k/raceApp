@@ -8,6 +8,7 @@ use App\Http\Controllers\CircuitsController;
 use App\Http\Controllers\CursesController;
 use App\Http\Controllers\EsportsController;
 use App\Http\Controllers\EstatsCursaController;
+use App\Http\Controllers\ImgController;
 use App\Http\Controllers\InscripcionsController;
 use App\Http\Controllers\ParticipantsController;
 use App\Http\Controllers\RegistresController;
@@ -52,6 +53,8 @@ Route::post('store_cursa', [CursesController::class, 'storeCursa'])->name('curse
 
 Route::post('store_registre', [RegistresController::class, 'store'])->name('registres.store:registre');
 //Route::post('store_inscrit', [])
+
+Route::get('img/{nom?}', [ImgController::class, 'showImg'])->name('img.show');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

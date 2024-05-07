@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CursesModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CursesController extends Controller
 {
@@ -25,9 +26,12 @@ class CursesController extends Controller
             //$foto['cur_foto']->getClientOriginalName()
             $file = $request->file('cur_foto');
             $path = $file->store('curses');
-            $cursa->cur_foto = $path;
-        }
+            $parts = explode('/', $path);
+            $lastPart = end($parts);
+            $cursa->cur_foto = $lastPart;
 
+        }
+        
         $cursa = CursesModel::create([
             'cur_nom' => $cursa->cur_nom,
             'cur_data_inici' => $cursa->cur_data_inici,
@@ -40,7 +44,6 @@ class CursesController extends Controller
             'cur_foto' => $cursa->cur_foto,
             'cur_web' => $cursa->cur_web,
         ]);
-
 
         return response()->json([
             'cursa' => $cursa

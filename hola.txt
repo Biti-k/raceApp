@@ -24,3 +24,6 @@ npm install react-router-dom
 
 
 npm install axios
+
+
+composer require guzzlehttp/guzzle

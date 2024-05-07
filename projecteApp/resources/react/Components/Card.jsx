@@ -1,21 +1,36 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ButtonDelete } from "./ButtonDelete";
 import { Button } from "./Button";
+import { useEffect, useState } from 'react'
+import axios from 'axios';
+
 export const Card = ({cursa})=> {
 
+    const [img , setImg] = useState();
+    
+    const fetchImg = async ()=>{
+        // const response = await axios.get(window.location.origin+'/img/'+cursa.cur_foto);
+        // console.log(response);
+        // setImg(response.data);
 
+    }
+
+    useEffect(()=>{
+        if(cursa.cur_foto != null && cursa.cur_foto != '' ){
+            //fetchImg();
+            //setImg(get_img+'&nom='+cursa.cur_foto);
+            setImg(window.location.origin+'/api/img/'+cursa.cur_foto);
+            console.log(window.location.origin+'/api/img/'+cursa.cur_foto);
+        }
+    }, [])
 
     return (
         <>
             <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                 <div className="relative mx-4 mt-4 overflow-hidden shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border text-darkmetal shadow-blue-gray-500/40">
-                    <img
-                    src={cursa.cur_foto}
-                    alt="cursa imatge"
-                    />
+                        <img src={img} alt={cursa.cur_foto}></img>
                     <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60">
-                    
-                </div>
+                    </div>
                 </div>
                 <div className="p-6" >
                     <div className="flex items-center justify-between mb-3">
