@@ -1,7 +1,9 @@
 import { useState, useContext, useEffect } from 'react'
+import { MainContext } from '../context/MainContext'
+import List from '../Components/List'
 export const CursesScreen = () =>
 {
-
+    const {curses} = useContext(MainContext)
     return(
     <>
         <div className='min-w-full min-h-full bg-grey'>

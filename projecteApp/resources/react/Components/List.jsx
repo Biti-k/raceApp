@@ -6,7 +6,7 @@ export const List = ({curses}) => {
         <div className='flex flex-wrap justify-center gap-4'>
             {
                 curses.map(cursa =>
-                    <Card cursa={cursa}/>
+                    <Card cursa={cursa} key={cursa.cur_id}/>
                 )
             }
         </div>
