@@ -79,24 +79,24 @@ export const CursaScreen = () =>
         <span>{JSON.stringify(cursa)}</span><br/>
         <h2>Cursa Screen</h2>
 
-        <form onSubmit={handleSubmit}>
-            <br/><label>Nom: </label>
-            <br/><input type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
+        <form className="m-5" onSubmit={handleSubmit}>
+            <br/><label >Nom: </label>
+            <br/><input className='border' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
             
             <br/><label>Desc: </label>
-            <br/><textarea name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
+            <br/><textarea className='border' name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
             
             <br/><label>Lloc: </label>
-            <br/><input type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
+            <br/><input className='border' type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
 
             <br/><label>Data Inici: </label>
-            <br/><input type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+            <br/><input className='border' type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
 
             <br/><label>Data fi: </label>
-            <br/><input type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+            <br/><input className='border' type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
 
             <br/><label>Esport: </label>
-            <br/><select  name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleEsportChange}>
+            <br/><select className='border' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleEsportChange}>
                 <option value="-1">Selecciona un esport</option>
                 {esports.map((ele)=>
                     <option key={ele.value} value={ele.value} > {ele.title} </option>
@@ -104,18 +104,18 @@ export const CursaScreen = () =>
             </select>
 
             <br/><label>Limit inscrits: </label>
-            <br/><input type="number" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
+            <br/><input className='border' type="number" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
 
             <br/><label>Web: </label>
-            <br/><input type="text" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
+            <br/><input className='border' type="text" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
             
             
             <br/><label>Foto: </label>
-            <br/><input type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
+            <br/><input className='border' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
             
             <br/>
             <br/>
-            <input type="submit"/>
+            <input className='rounded p-3 bg-blue1 hover:bg-cyan-600' type="submit"/>
         </form>
     </>
     )
