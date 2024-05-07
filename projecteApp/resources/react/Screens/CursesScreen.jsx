@@ -13,9 +13,7 @@ export const CursesScreen = () =>
                 <div>
                     <h1 className='mb-6 text-5xl text-center text-blue2'>Curses <Icon icon="whh:raceflag" className='inline' /></h1>
                     <Filter></Filter>
-                    <List curses={curses}>
-
-                    </List>
+                    <List curses={curses}></List>
                 </div>
             </div>
         </div>

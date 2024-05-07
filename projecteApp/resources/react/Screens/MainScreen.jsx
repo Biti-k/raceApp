@@ -4,10 +4,11 @@ export const MainScreen = () =>
 {
     return(
         <>
-            <h2>Main Screen</h2>
+            <div className=' min-w-full min-h-full bg-grey text-white'>
+                <h2>Main Screen</h2>
 
                 
-                
+            </div>
         </>
     )
 

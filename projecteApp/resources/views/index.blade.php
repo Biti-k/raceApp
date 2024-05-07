@@ -17,8 +17,12 @@
         const get_all_categories = "{{route("categories.get_all_categories")}}";
         const get_all_esports = "{{route("esports.get_all_esports")}}";
         const get_all_curses = "{{route("curses.get_all_curses")}}";
-        const store_cursa = "{{route("curses.store_cursa")}}";
+
         
+        const get_cursa = "{{route("curses.get_cursa")}}";
+        const store_cursa = "{{route("curses.store_cursa")}}";
+        const update_cursa = "{{route("curses.update_cursa")}}";
+
     </script>
     <style>
         html{

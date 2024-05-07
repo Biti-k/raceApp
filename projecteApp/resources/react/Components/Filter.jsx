@@ -51,7 +51,7 @@ export const Filter = ()=> {
                     <p className="cursor-pointer" onClick={mostrarLugar}>
                     Buscar por lugar <Icon icon={iconLugar} className="inline-block text-2xl text-blue2" id="icono-lugar" />
                     </p>
-                    <div class="hidden" id="buscar-lugar">
+                    <div className="hidden" id="buscar-lugar">
                         <div className="flex w-full">
                             <InputSearch placeholder={'Buscar... 🔎'}></InputSearch>
                         </div>

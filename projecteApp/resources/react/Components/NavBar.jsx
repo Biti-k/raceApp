@@ -26,11 +26,11 @@ export const NavBar = () =>
 						</nav>
 					</div>
 					
-					<div className="flex flex-wrap items-center justify-end order-2 mr-0 md:order-3 md:mr-4" id="nav-content">
+					{/* <div className="flex flex-wrap items-center justify-end order-2 mr-0 md:order-3 md:mr-4" id="nav-content">
 						<div className="flex items-center w-full auth md:w-full">
 						<Button contenido="Cerrar sesión"></Button>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</nav>
         </>

@@ -47,9 +47,9 @@ Route::get('get_all_circuits', [CircuitsController::class, 'getAll'])->name('cir
 Route::get('get_all_circuits_categoria', [CircuitsCategoriesController::class, 'getAll'])->name('circuits_categoria.get_all_circuits_categoria');
 Route::get('get_all_checkpoints', [CheckpointsController::class, 'getAll'])->name('checkpoints.get_all_checkpoints');
 
-//Route::post('get_cursa', [CursesController::class, 'getCursa'])
+Route::post('get_cursa', [CursesController::class, 'getCursa'])->name('curses.get_cursa');
 Route::post('store_cursa', [CursesController::class, 'storeCursa'])->name('curses.store_cursa');
-//Route::post('update_cursa', [CursesController::class, 'updateCursa'])->name('curses.update_cursa');
+Route::post('update_cursa', [CursesController::class, 'updateCursa'])->name('curses.update_cursa');
 
 Route::post('store_registre', [RegistresController::class, 'store'])->name('registres.store:registre');
 //Route::post('store_inscrit', [])

@@ -3,32 +3,26 @@ import { ButtonDelete } from "./ButtonDelete";
 import { Button } from "./Button";
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 export const Card = ({cursa})=> {
 
     const [img , setImg] = useState();
+    const [mod , setMod] = useState();
     
-    const fetchImg = async ()=>{
-        // const response = await axios.get(window.location.origin+'/img/'+cursa.cur_foto);
-        // console.log(response);
-        // setImg(response.data);
-
-    }
 
     useEffect(()=>{
         if(cursa.cur_foto != null && cursa.cur_foto != '' ){
-            //fetchImg();
-            //setImg(get_img+'&nom='+cursa.cur_foto);
             setImg(window.location.origin+'/api/img/'+cursa.cur_foto);
-            console.log(window.location.origin+'/api/img/'+cursa.cur_foto);
         }
+        setMod('/curses/cursa/'+cursa.cur_id);
     }, [])
 
     return (
         <>
-            <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+            <div className="relative flex w-full max-w-[32%] max-h-[700px] flex-col justify-between rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                 <div className="relative mx-4 mt-4 overflow-hidden shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border text-darkmetal shadow-blue-gray-500/40">
-                        <img src={img} alt={cursa.cur_foto}></img>
+                        <img className="w-[100%] h-[500px] object-cover object-center" src={img} alt={cursa.cur_foto}></img>
                     <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60">
                     </div>
                 </div>
@@ -60,7 +54,9 @@ export const Card = ({cursa})=> {
                     }
                     </p>
                 <div className="gap-1 p-6 pt-3 columns-2" id="botones">
-                    <Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                    <NavLink to={mod}>
+                        <Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                    </NavLink>
                     <ButtonDelete></ButtonDelete>
                 </div>
                 </div>

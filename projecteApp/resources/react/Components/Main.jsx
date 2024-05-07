@@ -15,15 +15,15 @@ function Main() {
     return (
         <>
         <MainProvider>
-					<div>
-						<NavBar></NavBar>
-						<Routes>
-							<Route path="/" element={<MainScreen></MainScreen>} />
-							<Route path="/curses" element={<CursesScreen></CursesScreen>} />
-							<Route path="/curses/cursa/:id" element={<CursaScreen></CursaScreen>} />
-							<Route path="/*" element={<Navigate to="/"></Navigate>} />
-						</Routes>
-					</div>
+            <div>
+                <NavBar></NavBar>
+                <Routes>
+                    <Route path="/" element={<MainScreen></MainScreen>} />
+                    <Route path="/curses" element={<CursesScreen></CursesScreen>} />
+                    <Route path="/curses/cursa/:id" element={<CursaScreen></CursaScreen>} />
+                    <Route path="/*" element={<Navigate to="/"></Navigate>} />
+                </Routes>
+            </div>
         </MainProvider>
         </>
     );
