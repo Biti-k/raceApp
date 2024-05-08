@@ -96,4 +96,20 @@ class CursesController extends Controller
         ]);
         
     }
+
+    public function deleteCursa(Request $request)
+    {
+        //Comprovar que no tenga elementos asociados!!!!!
+        // return response()->json([
+        //     'delete' => 0
+        // ]);
+
+        $data = $request->all();
+        
+        CursesModel::where('cur_id', $data['id'])->delete();
+
+        return response()->json([
+            'delete' => 1
+        ]);
+    }
 }

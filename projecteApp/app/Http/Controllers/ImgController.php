@@ -16,7 +16,6 @@ class ImgController extends Controller
             $path = storage_path('app/curses/'.$nom);
             
             if (!file_exists($path)) {
-                dd('no encontrado');
                 abort(404);
             }
             

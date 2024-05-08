@@ -19,9 +19,11 @@
         const get_all_curses = "{{route("curses.get_all_curses")}}";
 
         
+        //Cursa
         const get_cursa = "{{route("curses.get_cursa")}}";
         const store_cursa = "{{route("curses.store_cursa")}}";
         const update_cursa = "{{route("curses.update_cursa")}}";
+        const delete_cursa = "{{ route("curses.delete_cursa") }}";
 
     </script>
     <style>

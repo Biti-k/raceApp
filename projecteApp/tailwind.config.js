@@ -15,6 +15,7 @@ module.exports = {
         'mint' : "#C0E0DE",
         'darkmetal' : "#162521",
         'grey' : "#3C474B",
+        'delete-red' : "#ff6363",
       }
 
 

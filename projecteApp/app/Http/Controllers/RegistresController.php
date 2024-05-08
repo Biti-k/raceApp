@@ -14,6 +14,6 @@ class RegistresController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request->all());
+        return response()->json(['registre' => $request->all()]);
     }
 }

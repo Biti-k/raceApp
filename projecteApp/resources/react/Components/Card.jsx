@@ -4,8 +4,23 @@ import { Button } from "./Button";
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import ModalDelete from "./ModalDelete";
+
+import '../css/main.css';
 
 export const Card = ({cursa})=> {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        document.body.style.overflow = 'auto';
+    };
 
     const [img , setImg] = useState();
     const [mod , setMod] = useState();
@@ -57,7 +72,8 @@ export const Card = ({cursa})=> {
                     <NavLink to={mod}>
                         <Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
                     </NavLink>
-                    <ButtonDelete></ButtonDelete>
+                    <ButtonDelete  handleClick={openModal} ></ButtonDelete>
+                    <ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>                    
                 </div>
                 </div>
             </div>
