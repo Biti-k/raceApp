@@ -7,7 +7,7 @@ export const MainProvider = ({children})=>
     const [isLoad, setIsLoad] = useState(true);
 
 	// const [productes, setProductes] = useState([]);
-	const [curses, setCurses] = useState([]);
+/* 	const [curses, setCurses] = useState([]);
 	const getCurses = async() => {
 		let response = await axios.get(get_all_curses)
 		setCurses(response.data.curses);
@@ -15,7 +15,7 @@ export const MainProvider = ({children})=>
 
 	useEffect(() => {
 		getCurses();
-	},[]);
+	},[]); */
 	// const fetchProductes = async () =>{
 	// 	const response = await fetch('https://fakestoreapi.com/products')
 	// 	const data = await response.json()
@@ -29,7 +29,7 @@ export const MainProvider = ({children})=>
 
 
     return(
-        <MainContext.Provider value={{isLoad,curses}}>
+        <MainContext.Provider value={{isLoad}}>
             {children}
         </MainContext.Provider>
     )

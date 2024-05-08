@@ -1,9 +1,15 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { InputSearch } from "./InputSearch";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-export const Filter = ()=> {
+export const Filter = ({props_filtros, setFiltros})=> {
     const [iconLugar,setIconLugar] = useState('material-symbols-light:arrow-drop-down');
+    const [iconFecha, setIconFecha] = useState("material-symbols-light:arrow-drop-down");
+    
+
+    useEffect(() => {
+        console.log(props_filtros);
+    }, [])
 
     const mostrarFiltros = () => {
         if($("#filtros").is(":hidden")){
@@ -11,11 +17,10 @@ export const Filter = ()=> {
             
         }else{
             $("#filtros").hide();
-            
         }
         
     }
-
+    
     const mostrarLugar = () => {
         if($("#buscar-lugar").is(":hidden")){
             $("#buscar-lugar").show(100);
@@ -27,7 +32,31 @@ export const Filter = ()=> {
         }    
     }
 
+    const mostrarFecha = () => {
+        if($("#buscar-fecha").is(":hidden")){
+            $("#buscar-fecha").show(100);
+            $("#icono-fecha").prop("icon")
+            setIconFecha("material-symbols-light:arrow-drop-up")
+        }else{
+            $("#buscar-fecha").hide(100);
+            setIconFecha("material-symbols-light:arrow-drop-down")
+        }    
+    }
 
+    const aplicarFiltros = () => {
+        
+    }
+
+    const handleInput = (value, name) => {
+        let copiedObject = JSON.parse(JSON.stringify(props_filtros));
+        copiedObject[name] = value;
+        setFiltros(copiedObject);
+    }
+
+    const limpiarFiltros = () => {
+        setFiltros({"cur_lloc" : '', "cur_nom" : ''});
+    }
+    
     return (
         <>
         <div className="relative p-1 mx-auto mb-6 rounded-md shadow-lg select-none w-52 bg-blue1 border-grey">
@@ -38,28 +67,26 @@ export const Filter = ()=> {
                 <div className="flex justify-between mb-2">
                     Filtros
                     <div className="flex gap-3 text-blue2">
-                        <p className="underline cursor-pointer">Aplicar</p>
-                        <p className="underline cursor-pointer">Limpiar</p>
+                        <p className="underline cursor-pointer" onClick={limpiarFiltros}>Netejar</p>
                     </div>
                 </div>
-                Buscar por nombre
+                Cercar per nom
                 <div className="flex w-full">
-                    <InputSearch placeholder={'Buscar... 🔎'}></InputSearch>
+                    <InputSearch placeholder={'Buscar... 🔎'} handleChange={handleInput} value={props_filtros.cur_nom} name="cur_nom" ></InputSearch>
                 </div>
                 <hr className="my-2 shadow-sm border-darkmetal/50"></hr>
                 <div>
                     <p className="cursor-pointer" onClick={mostrarLugar}>
-                    Buscar por lugar <Icon icon={iconLugar} className="inline-block text-2xl text-blue2" id="icono-lugar" />
+                    Cercar per lloc <Icon icon={iconLugar} className="inline-block text-2xl text-blue2" id="icono-lugar" />
                     </p>
                     <div className="hidden" id="buscar-lugar">
                         <div className="flex w-full">
-                            <InputSearch placeholder={'Buscar... 🔎'}></InputSearch>
+                            <InputSearch placeholder={'Buscar... 🔎'} handleChange={handleInput} value={props_filtros.cur_lloc} name="cur_lloc"></InputSearch>
                         </div>
-                        <hr className="my-2 shadow-sm border-darkmetal/50"></hr>
                     </div>
 
                 </div>
-
+                <hr className="my-2 shadow-sm border-darkmetal/50"></hr>
             </div>
         </div>
         </>
