@@ -100,64 +100,106 @@ export const CursaScreen = () =>
 
     return(
         <>
-        <div className=' min-w-full min-h-full bg-grey text-white'>
-            <div className='flex justify-center min-w-full'>
-                <div className="relative my-6 flex w-full max-w-[50%] flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-                    <div className="relative mx-4 mt-4 overflow-hidden shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border text-darkmetal shadow-blue-gray-500/40">
-                    </div>
-                    <h1 className=' text-2xl text-center text-blue1'>Nova Cursa</h1>
-                    <div className=' flex w-[100%]'>
-                    
-                        <form className="mx-5 mb-5 w-[100%] " onSubmit={handleSubmit}>
-                            <br/><label >Nom: </label>
-                            <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
+        <form onSubmit={handleSubmit}>
+            <div className=' min-w-full min-h-full bg-grey text-white'>
+                <div className='flex flex-col items-center min-w-full'>
+
+                    <div className='flex justify-center min-w-full'>
                         
+                        <div className="relative my-6 ml-6 flex w-full max-w-[50%] flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                             
-                            <br/><label>Desc: </label>
-                            <br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
+                            <h1 className=' text-2xl text-center text-blue1 mt-4'>Nova Cursa</h1>
+                            <div className=' flex w-[100%]'>
                             
-                            <br/><label>Lloc: </label>
-                            <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
+                                <div className="mx-5 mb-5 w-[100%] ">
+                                    <br/><label >Nom: </label>
+                                    <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
+                                
+                                    
+                                    <br/><label>Desc: </label>
+                                    <br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
+                                    
+                                    <br/><label>Lloc: </label>
+                                    <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
 
-                            <br/><label>Data Inici: </label>
-                            <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+                                    <br/><label>Data Inici: </label>
+                                    <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
 
-                            <br/><label>Data fi: </label>
-                            <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+                                    <br/><label>Data fi: </label>
+                                    <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
 
-                            <br/><label>Esport: </label>
-                            <br/><select className='border rounded-xl p-3 text-black w-[100%]' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChange}>
-                                <option value="-1">Selecciona un esport</option>
-                                {esports.map((ele)=>
-                                    <option key={ele.value} value={ele.value} > {ele.title} </option>
-                                )}
-                            </select>
+                                    <br/><label>Limit inscrits: </label>
+                                    <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
 
-                            <br/><label>Limit inscrits: </label>
-                            <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
+                                    <br/><label>Web: </label>
+                                    <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
+                                    
+                                    
+                                    
+                                    <br/>
+                                    
+                                    
+                                </div>
 
-                            <br/><label>Web: </label>
-                            <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
+                                
+                            </div>
+                        </div>
+                        <div className="w-[50%]">
                             
-                            
-                            <br/><label>Foto: </label>
-                            <br/><input className='border rounded-xl p-3 text-black bg-white w-[100%] cursor-pointer' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
-                            
-                            <br/>
-                            <br/>
-                            <input className='p-3 rounded cursor-pointer bg-blue1 hover:bg-cyan-600' type="submit"/>
-                        </form>
 
-                        
+                                <div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+                                    <div className=' flex w-auto h-fit flex-col items-center'>
+                                        {img != '' ?
+                                            <div className='my-6'><img className=' shadow-xl rounded-xl mx-4 w-[500px]' src={img} /></div>
+                                            :
+                                            null
+                                        }
+                                        <div className='mb-5 px-5 mt-0 w-full'>
+                                            <br/><label>Foto: </label>
+                                            <br/><input className='border rounded-xl p-3 text-black bg-white w-[100%] cursor-pointer' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                
+                            <div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+                            <h1 className=' text-2xl text-center text-blue1 mt-4'>Esport-categoria</h1>
+                                <div className=' flex w-auto h-fit p-5'>
+                                    <div className="mx-5 mb-5 w-[100%] ">
+                                        <br/><label>Esport: </label>
+                                        <br/><select className='border rounded-xl p-3 text-black w-[100%]' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChange}>
+                                            <option value="-1">Selecciona un esport</option>
+                                            {esports.map((ele)=>
+                                                <option key={ele.value} value={ele.value} > {ele.title} </option>
+                                            )}
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            
+                        </div>
+
                     </div>
+
+                    <div className='flex justify-start min-w-full'>
+                        <div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+                            <div className=' flex w-[100%] h-fit p-5'>
+                                <div className="mx-5 w-[100%] ">    
+                                    <input className='p-3 rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:w-[110%]' type="submit"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
-                {img != '' ?
-                    <div className='my-6'><img className=' shadow-xl rounded-xl mx-4 w-[500px]' src={img} /></div>
-                    :
-                    null
-                }
             </div>
-        </div>
+        </form>
     </>
     )
 }
