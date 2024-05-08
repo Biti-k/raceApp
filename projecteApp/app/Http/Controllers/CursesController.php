@@ -65,18 +65,19 @@ class CursesController extends Controller
         $foto = $request->files->all();
         
         $cursa = json_decode($data['cursa']);
-        
+        $foto_name = null;
         if(count($foto) > 0){
             //$foto['cur_foto']->getClientOriginalName()
             $file = $request->file('cur_foto');
             $path = $file->store('curses');
             $parts = explode('/', $path);
             $lastPart = end($parts);
-            $cursa->cur_foto = $lastPart;
+            $foto_name = $lastPart;
 
         }
-
+        
         $cursa_update = CursesModel::find($cursa->cur_id);
+
 
         $cursa_update->update([
             'cur_nom' => $cursa->cur_nom,
@@ -87,7 +88,7 @@ class CursesController extends Controller
             'cur_est_id' => 1,//En preparacio
             'cur_desc' => $cursa->cur_desc,
             'cur_limit_inscr' => $cursa->cur_limit_inscr,
-            'cur_foto' => $cursa->cur_foto,
+            'cur_foto' => $foto_name != null ? $foto_name : $cursa_update->cur_foto,
             'cur_web' => $cursa->cur_web,
         ]);
         
