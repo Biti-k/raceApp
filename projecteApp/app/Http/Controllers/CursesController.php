@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriesModel;
 use App\Models\CursesModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -112,5 +113,13 @@ class CursesController extends Controller
         return response()->json([
             'delete' => 1
         ]);
+    }
+
+    public function getCursaFormCategories(Request $request){
+        $response = CategoriesModel::where("cat_esp_id", $request->get("esp_id"))->get();
+        return response()->json([
+            "categories" => $response
+        ]
+        );
     }
 }

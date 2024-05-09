@@ -52,6 +52,7 @@ Route::post('get_cursa', [CursesController::class, 'getCursa'])->name('curses.ge
 Route::post('store_cursa', [CursesController::class, 'storeCursa'])->name('curses.store_cursa');
 Route::post('update_cursa', [CursesController::class, 'updateCursa'])->name('curses.update_cursa');
 Route::post('delete_cursa', [CursesController::class, 'deleteCursa'])->name('curses.delete_cursa');
+Route::post('get_cursa_form_categories', [CursesController::class, 'getCursaFormCategories'])->name('curses.get_cursa_form_categories');
 
 //Registre
 Route::post('store_registre', [RegistresController::class, 'store'])->name('registres.store:registre');

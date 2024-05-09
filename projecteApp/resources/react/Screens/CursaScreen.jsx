@@ -25,7 +25,7 @@ export const CursaScreen = () =>
     const [cursa, setCursa] = useState(cursaData);
     const [esports, setEsports] = useState([]);
     const [img, setImg] = useState('');
-
+    const [categories, setCategories] = useState([]);
 
     const getCursa = async ()=>{
     
@@ -78,6 +78,23 @@ export const CursaScreen = () =>
         setCursa({ ...cursa, [name]: value });
     }
 
+    const handleChangeCategoria = (evt) => {
+        const { name, value } = evt.target;
+        setCursa({ ...cursa, [name]: value });
+
+        getCategoriesEsport(value);
+    }
+
+    const getCategoriesEsport = async(cur_esp_id) => {
+        if(cur_esp_id != -1){
+            let response = await axios.post(get_cursa_form_categories, {esp_id : cur_esp_id});
+            console.log(response);
+            setCategories(response.data.categories);
+        }else{
+            setCategories([]);
+        }
+    }
+
     const handleSubmit = (evt) =>{
         evt.preventDefault();
         
@@ -97,18 +114,18 @@ export const CursaScreen = () =>
             console.error('Error al subir el archivo:', error);
         });
     }
-
+    
     return(
         <>
         <form onSubmit={handleSubmit}>
-            <div className=' min-w-full min-h-full bg-grey text-white'>
+            <div className='min-w-full min-h-full text-white bg-grey'>
                 <div className='flex flex-col items-center min-w-full'>
 
                     <div className='flex justify-center min-w-full'>
                         
                         <div className="relative my-6 ml-6 flex w-full max-w-[50%] flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                             
-                            <h1 className=' text-2xl text-center text-blue1 mt-4'>Nova Cursa</h1>
+                            <h1 className='mt-4 text-2xl text-center text-blue1'>Nova Cursa</h1>
                             <div className=' flex w-[100%]'>
                             
                                 <div className="mx-5 mb-5 w-[100%] ">
@@ -148,13 +165,13 @@ export const CursaScreen = () =>
                             
 
                                 <div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-                                    <div className=' flex w-auto h-fit flex-col items-center'>
+                                    <div className='flex flex-col items-center w-auto h-fit'>
                                         {img != '' ?
                                             <div className='my-6'><img className=' shadow-xl rounded-xl mx-4 w-[500px]' src={img} /></div>
                                             :
                                             null
                                         }
-                                        <div className='mb-5 px-5 mt-0 w-full'>
+                                        <div className='w-full px-5 mt-0 mb-5'>
                                             <br/><label>Foto: </label>
                                             <br/><input className='border rounded-xl p-3 text-black bg-white w-[100%] cursor-pointer' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
                                         </div>
@@ -163,17 +180,26 @@ export const CursaScreen = () =>
                             
                                 
                             <div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-                            <h1 className=' text-2xl text-center text-blue1 mt-4'>Esport-categoria</h1>
-                                <div className=' flex w-auto h-fit p-5'>
+                            <h1 className='mt-4 text-2xl text-center text-blue1'>Esport-categoria</h1>
+                                <div className='flex w-auto p-5 h-fit'>
                                     <div className="mx-5 mb-5 w-[100%] ">
                                         <br/><label>Esport: </label>
-                                        <br/><select className='border rounded-xl p-3 text-black w-[100%]' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChange}>
+                                        <br/><select className='border rounded-xl p-3 text-black w-[100%]' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChangeCategoria}>
                                             <option value="-1">Selecciona un esport</option>
                                             {esports.map((ele)=>
                                                 <option key={ele.value} value={ele.value} > {ele.title} </option>
                                             )}
                                         </select>
-
+                                        <div className='flex flex-col gap-2 mt-3 w-[100%]'>
+                                            {
+                                                categories.map((e) => 
+                                                    <div key={e.cat_id} className='flex gap-2'>
+                                                    <input type="checkbox" name="categories[]" value={e.cat_id}/>
+                                                    <label>{e.cat_nom}</label>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>

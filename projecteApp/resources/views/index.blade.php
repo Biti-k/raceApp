@@ -24,7 +24,7 @@
         const store_cursa = "{{route("curses.store_cursa")}}";
         const update_cursa = "{{route("curses.update_cursa")}}";
         const delete_cursa = "{{ route("curses.delete_cursa") }}";
-
+        const get_cursa_form_categories = "{{route("curses.get_cursa_form_categories")}}";
     </script>
     <style>
         html{
