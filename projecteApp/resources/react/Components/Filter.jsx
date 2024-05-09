@@ -1,24 +1,32 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { InputSearch } from "./InputSearch";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 
 export const Filter = ({props_filtros, setFiltros})=> {
+    const filtrosRef = useRef(null);
     const [iconLugar,setIconLugar] = useState('material-symbols-light:arrow-drop-down');
     const [iconFecha, setIconFecha] = useState("material-symbols-light:arrow-drop-down");
-    
 
     useEffect(() => {
-        console.log(props_filtros);
-    }, [])
+        const handleClickOutside = (event) => {
+            if (filtrosRef.current && !filtrosRef.current.contains(event.target)) {
+              // Clicked outside the filtros, so hide it
+              $("#filtros").hide();
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+
+        return () => {
+          document.removeEventListener("click", handleClickOutside);
+        };
+    }, [filtrosRef]);
 
     const mostrarFiltros = () => {
         if($("#filtros").is(":hidden")){
             $("#filtros").show();
-            
         }else{
             $("#filtros").hide();
         }
-        
     }
     
     const mostrarLugar = () => {
@@ -43,10 +51,6 @@ export const Filter = ({props_filtros, setFiltros})=> {
         }    
     }
 
-    const aplicarFiltros = () => {
-        
-    }
-
     const handleInput = (value, name) => {
         let copiedObject = JSON.parse(JSON.stringify(props_filtros));
         copiedObject[name] = value;
@@ -59,7 +63,7 @@ export const Filter = ({props_filtros, setFiltros})=> {
     
     return (
         <>
-        <div className="relative p-1 mx-auto mb-6 rounded-md shadow-lg select-none w-52 bg-blue1 border-grey">
+        <div ref={filtrosRef} className="relative p-1 mx-auto mb-6 rounded-md shadow-lg select-none w-52 bg-blue1 border-grey">
             <p className="flex items-center justify-between text-2xl cursor-pointer text-blue2" id="filtrar" onClick={mostrarFiltros}>
                 Filtrar <Icon icon="material-symbols-light:arrow-drop-down" className="inline-block text-2xl text-blue2"/>
             </p>
