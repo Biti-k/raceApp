@@ -36,7 +36,8 @@ export const CursaScreen = () =>
     const [img, setImg] = useState('');
     const [categories, setCategories] = useState([]);
     const [categories_cir, setCategoriesCir] = useState([]);
-
+    
+    
     const getCursa = async ()=>{
     
         const response = await axios.post(get_cursa, {id : id});
@@ -87,7 +88,7 @@ export const CursaScreen = () =>
 
 
     useEffect(()=>{
-        loadPage()
+      loadPage()
     },[id]);
 
     const getSelects = async()=>{
@@ -183,6 +184,8 @@ export const CursaScreen = () =>
         });
     }
     
+
+
     return(
         <>
         <form onSubmit={handleSubmit}>

@@ -36,7 +36,7 @@ export const Card = ({cursa})=> {
     return (
         <>
             <div className="relative mx-3 md:mx-0 flex w-full lg:max-w-[32%] md:max-w-[45%] max-h-[700px] flex-col justify-between rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-                <div className="relative mx-4 mt-4 overflow-hidden shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border text-darkmetal shadow-blue-gray-500/40 w-auto h-[500px] ">    
+                <div className="relative mx-4 mt-4 overflow-hidden shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border text-darkmetal shadow-blue-gray-500/40 w-auto h-[300px] min-h-[150px] max-h-[300px]">    
                     <img className="w-[100%] h-[100%] object-cover object-center" src={img} alt={cursa.cur_foto}></img>
                     <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60">
                 </div>

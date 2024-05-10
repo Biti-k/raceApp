@@ -1,8 +1,10 @@
-import { useState, useContext } from 'react'
+import { useEffect } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 export const MainScreen = () =>
 {
-
+/*     useEffect(() => {
+        document.title = 'MaxxisRace|Administrador';
+    }, []) */
 
 
     return(
