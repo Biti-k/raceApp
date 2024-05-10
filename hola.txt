@@ -21,7 +21,7 @@ npm install -D tailwindcss postcss autoprefixer
 
 npm install @iconify/react
 npm install react-router-dom
-
+npm install moment
 
 npm install axios
 
