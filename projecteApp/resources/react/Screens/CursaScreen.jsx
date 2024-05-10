@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
 
 
@@ -239,9 +240,10 @@ export const CursaScreen = () =>
 									<div className="mx-5 w-[100%] ">    
 										{ circuits.map((cir, index) =>
 										<div key={cir.cir_num}>
-											<br/><label >Numero de circuit: {cir.cir_num}</label>
+											<br/>
+                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
 
-											<br/><label >Nom: </label>
+	                    <label >Nom: </label>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
 											
 											<br/><label className='mt-1' >Categoires: </label>
@@ -281,6 +283,10 @@ export const CursaScreen = () =>
 
 											<br/><label>Preu: </label>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      {index == circuits.length - 1 ?
+                        '' : <hr className='mt-2 text-darkmetal/80'></hr>
+                      }
+                      
 										</div>
 										)}
 
