@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('checkpoints', function (Blueprint $table) {
             $table->unsignedBigInteger('chk_id')->autoIncrement();
             $table->float("chk_pk", 10,2)->nullable();
-            $table->unsignedBigInteger("cir_id");
-            $table->foreign('cir_id')->references('cir_id')->on('circuits');
+            $table->unsignedBigInteger("chk_cir_id");
+            $table->foreign('chk_cir_id')->references('cir_id')->on('circuits');
             $table->timestamps();
         });
     }

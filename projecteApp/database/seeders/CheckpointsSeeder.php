@@ -16,14 +16,14 @@ class CheckpointsSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i < 6; $i++){
-            CheckpointsModel::creat([
+            CheckpointsModel::create([
                 "chk_id" => $i+1,
                 "chk_pk" => $i+1,
                 "chk_cir_id" => 1
             ]);
         }
         for($i = 0; $i < 6; $i++){
-            CheckpointsModel::creat([
+            CheckpointsModel::create([
                 "chk_id" => ($i+7),
                 "chk_pk" => $i+1,
                 "chk_cir_id" => 2

@@ -10,8 +10,6 @@ export const ModalDelete = ({ isOpen, closeModal, object , id, url}) => {
     const handleDelete = async ()=>{
       try{
 
-      
-        console.log(object[id]);
         const response = await axios.post(url, {id: object[id]});
 
         if(response.data.delete != 1){

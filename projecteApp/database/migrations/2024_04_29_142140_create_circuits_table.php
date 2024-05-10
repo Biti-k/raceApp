@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cir_cur_id');
             $table->unsignedBigInteger('cir_num');
             $table->float('cir_distancia', 10,2);
-            $table->string('nom', 200);
-            $table->float('preu', 19,4);
+            $table->string('cir_nom', 200);
+            $table->float('cir_preu', 19,4);
             $table->integer('cir_temps_estimat')->nullable();
             $table->timestamps();
 

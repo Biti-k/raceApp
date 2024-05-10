@@ -13,10 +13,6 @@ export const CursesScreen = () =>
 		let response = await axios.get(get_all_curses)
 		setCurses(response.data.curses);
 	}
-    
-	useEffect(() => {
-		console.log(filtros);
-	},[filtros]);
 
 	useEffect(() => {
 		getCurses();

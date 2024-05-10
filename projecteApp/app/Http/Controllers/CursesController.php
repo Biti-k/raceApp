@@ -26,6 +26,7 @@ class CursesController extends Controller
     public function storeCursa(Request $request)
     {
         $data = $request->all();
+        dd($data);
         $foto = $request->files->all();
         
         $cursa = json_decode($data['cursa']);

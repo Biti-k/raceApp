@@ -20,8 +20,8 @@ class CircuitsSeeder extends Seeder
             "cir_cur_id" => 1,
             "cir_num" => 1,
             "cir_distancia" => 30,
-            "nom" => "Tiger Circuito",
-            "preu" => 20,
+            "cir_nom" => "Tiger Circuito",
+            "cir_preu" => 20,
             "cir_temps_estimat" => 220,
         ]);
         CircuitsModel::create([
@@ -29,8 +29,8 @@ class CircuitsSeeder extends Seeder
             "cir_cur_id" => 2,
             "cir_num" => 2,
             "cir_distancia" => 30,
-            "nom" => "Steel Man Circuito",
-            "preu" => 19,
+            "cir_nom" => "Steel Man Circuito",
+            "cir_preu" => 19,
             "cir_temps_estimat" => 225,
         ]);
     }
