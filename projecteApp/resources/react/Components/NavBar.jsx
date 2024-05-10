@@ -19,7 +19,7 @@ export const NavBar = () =>
 					<div className="order-3 hidden w-full md:flex md:items-center md:w-auto md:order-1" id="menu">
 						<nav>
 						<ul className="items-center justify-between pt-4 text-base md:flex md:pt-0 text-blue1">
-							<li className="mr-3 text-2xl font-bold transition hover:text-darkmetal"><NavLink to="/">Maxxis</NavLink></li>
+							<li className="mr-3 text-2xl font-bold transition hover:text-darkmetal"><NavLink to="/">Maxxis<Icon icon="maki:racetrack" className='inline-block'/></NavLink></li>
 							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/curses">Curses</NavLink></li>
 							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/curses/cursa/new">New Cursa</NavLink></li>
 						</ul>

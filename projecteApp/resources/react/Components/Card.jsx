@@ -43,7 +43,7 @@ export const Card = ({cursa})=> {
 
                 </div>
                 <div className="p-6" >
-                    <div className="relative z-50 flex items-center justify-end w-full h-auto gap-1 text-darkmetal">
+                    <div className="relative z-1 flex items-center justify-end w-full h-auto gap-1 text-darkmetal">
                         <Icon icon="material-symbols:date-range" className="text-blue1"/>
                         <span className="text-sm w-fit">{moment(new Date(cursa.cur_data_inici.substring(0,10))).format("DD/MM/YYYY")} - {moment(new Date(cursa.cur_data_fi.substring(0,10))).format("DD/MM/YYYY")}</span>
                     </div>

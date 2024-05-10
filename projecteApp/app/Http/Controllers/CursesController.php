@@ -86,10 +86,73 @@ class CursesController extends Controller
     public function updateCursa(Request $request)
     {
         $data = $request->all();
-    
-        $foto = $request->files->all();
         
+        $foto = $request->files->all();
         $cursa = json_decode($data['cursa']);
+        $circuits_new = json_decode($data['circuits']);
+        
+        $circuits_old = CircuitsModel::where('cir_cur_id', $cursa->cur_id)->get();
+
+        foreach($circuits_old as $cir_old){
+            $delete = true;
+            foreach($circuits_new as $cir_new){
+                if($cir_old->cir_id == $cir_new->cir_id){
+                    $delete = false;
+                }
+            }
+            if($delete){
+                CircuitsModel::where('cir_id', $cir_old->cir_id)->delete();
+            }
+        }
+
+        foreach($circuits_new as $cir){
+            
+            if($cir->cir_id == null){
+                $circu = CircuitsModel::create([
+                    'cir_num'=> $cir->cir_num,
+                    'cir_nom'=> $cir->cir_nom,
+                    'cir_distancia'=> $cir->cir_distancia,
+                    'cir_temps_estimat'=> $cir->cir_temps_estimat,
+                    'cir_preu'=> $cir->cir_preu,
+                    'cir_cur_id' => $cursa->cur_id,
+                ]);
+
+                //categories del circuit
+                foreach($cir->cir_categories as $cat){
+                    
+                    CircuitsCategoriesModel::create([
+                        'ccc_cat_id' => $cat->cat_id,
+                        'ccc_cir_id' =>  $circu->cir_id,
+                    ]);
+                }
+
+
+            }else{
+                
+                CircuitsModel::where('cir_id', $cir->cir_id)->update([
+                    'cir_num'=> $cir->cir_num,
+                    'cir_nom'=> $cir->cir_nom,
+                    'cir_distancia'=> $cir->cir_distancia,
+                    'cir_temps_estimat'=> $cir->cir_temps_estimat,
+                    'cir_preu'=> $cir->cir_preu,
+                    'cir_cur_id' => $cursa->cur_id,
+                ]);
+                
+                CircuitsCategoriesModel::where('ccc_cir_id',$cir->cir_id)->delete();
+                foreach($cir->cir_categories as $cat){
+                    
+
+                    CircuitsCategoriesModel::create([
+                        'ccc_cat_id' => $cat->cat_id,
+                        'ccc_cir_id' =>  $cir->cir_id,
+                    ]);
+                }
+            }
+        }
+
+
+        
+
         $foto_name = null;
         if(count($foto) > 0){
             //$foto['cur_foto']->getClientOriginalName()
