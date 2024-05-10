@@ -12,7 +12,21 @@ export const CursesScreen = () =>
 	const getCurses = async() => {
 		let response = await axios.get(get_all_curses)
 		setCurses(response.data.curses);
+    inscripcions(response.data.curses);
 	}
+
+    const inscripcions = (curses) => {
+      curses.forEach((c,i)=>{
+        let inscrits = 0;
+        c.circuits.forEach((cir,cir_i)=>{
+          cir.categories.forEach((ccc, ccc_i) => {
+            inscrits = inscrits + ccc.inscripcions.length;
+          })
+        })
+        c.inscrits = inscrits;
+      });
+      setCurses(curses);
+    }
 
 	useEffect(() => {
 		getCurses();
