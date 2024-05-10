@@ -49,12 +49,26 @@ export const CursaScreen = () =>
         }
         
         cur.cur_foto = '';
-        
         setCursa(cur);
+        returnCircuits(cur);
     }
     
-    const returnCircuits = () => {
-      
+    const returnCircuits = (cursa) => {
+      let circuitsTemp = [];
+      console.log(cursa);
+      cursa.circuits.forEach((e,i) => {
+        let obj = e;
+        let cats = [];
+        e.categories.forEach((c,ci) =>{
+          let cat = {};
+          cat.value = c.ccc_cat_id;
+          cat.name = c.categoria.cat_nom;
+          cats.push(cat);
+        });
+        obj.cir_categories = cats;
+        circuitsTemp.push(obj);
+      })
+      setCircuits([...circuitsTemp]);
     }
 
     const loadPage = ()=>{
