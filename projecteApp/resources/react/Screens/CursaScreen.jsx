@@ -154,6 +154,12 @@ export const CursaScreen = () =>
 			}
     }
 
+		const handleDeleteCircuit = (index)=>{
+			let data = circuits;
+			data.splice(index, 1);
+			setCircuits([...data]);
+		}
+
     const handleSubmit = (evt) =>{
 			evt.preventDefault();
 			
@@ -241,7 +247,7 @@ export const CursaScreen = () =>
 										{ circuits.map((cir, index) =>
 										<div key={cir.cir_num}>
 											<br/>
-                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
+                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
 
 	                    <label >Nom: </label>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
