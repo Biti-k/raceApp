@@ -6,7 +6,7 @@ export const NavBar = () =>
 
     return (
         <>
-			<nav id="header" className="z-30 w-full py-1 border-b shadow-lg border-blue1 bg-mint b top-10">
+			<nav id="header" className="z-30 w-full py-1 border-b shadow-lg border-blue1 bg-mint b top-10 h-[60px]">
 				<div className="flex items-center justify-between w-full px-6 py-2 mt-0">
 					<label htmlFor="menu-toggle" className="block cursor-pointer md:hidden">
 						<svg className="text-blue-600 fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">

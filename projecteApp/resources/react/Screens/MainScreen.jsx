@@ -7,7 +7,7 @@ export const MainScreen = () =>
 
     return(
         <>
-            <div className='relative z-10 h-[92.2%] min-w-full text-white bg-grey'>
+            <div className='relative z-10 min-w-full text-white main-screen bg-grey'>
                 <div className="absolute z-0 w-full h-full videoBackground">
                     <video autoPlay loop muted className="relative object-cover object-center w-full h-full blur-[3px]">
                         <source src="/media/back.mp4" type="video/mp4" />

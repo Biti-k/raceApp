@@ -42,3 +42,6 @@ html .button-new-cursa {
   top: 10px;
   right: 10px;
 }
+html .main-screen {
+  height: calc(100% - 60px);
+}

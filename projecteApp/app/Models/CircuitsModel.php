@@ -10,7 +10,7 @@ class CircuitsModel extends Model
     use HasFactory;
     protected $primaryKey = "cir_id";
     protected $table = "circuits";
-    protected $fillable = ['cir_id','cir_cur_id','cir_num','cir_distancia','nom','preu','cir_temps_estimat'];
+    protected $fillable = ['cir_id','cir_cur_id','cir_num','cir_distancia','cir_nom','cir_preu','cir_temps_estimat'];
 
     public function curses(){
         return $this->belongsTo(CursesModel::class, "cir_cur_id");
@@ -18,6 +18,10 @@ class CircuitsModel extends Model
 
     public function checkpoints(){
         return $this->hasMany(CheckpointsModel::class, "chk_id");
+    }
+
+    public function categories(){
+        return $this->hasMany(CircuitsCategoriesModel::class, "ccc_cir_id");
     }
 
     public static function getWithRelations($params = null)

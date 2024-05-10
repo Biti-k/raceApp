@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoriesModel;
+use App\Models\CircuitsCategoriesModel;
+use App\Models\CircuitsModel;
 use App\Models\CursesModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -26,9 +28,7 @@ class CursesController extends Controller
     public function storeCursa(Request $request)
     {
         $data = $request->all();
-        dd($data);
         $foto = $request->files->all();
-        
         $cursa = json_decode($data['cursa']);
         
         if(count($foto) > 0){
@@ -54,8 +54,31 @@ class CursesController extends Controller
             'cur_web' => $cursa->cur_web,
         ]);
 
+        $circuits = json_decode($data["circuits"]);
+        $circuitsFinals = array();
+        foreach($circuits as $c){
+          $cCreado = CircuitsModel::create([
+            "cir_cur_id" => $cursa->cur_id,
+            "cir_num" =>  $c->cir_num,
+            "cir_distancia" => $c->cir_distancia,
+            "cir_nom" => $c->cir_nom,
+            "cir_preu" => $c->cir_preu,
+            "cir_temps_estimat" => $c->cir_temps_estimat,
+          ]);
+          foreach($c->cir_categories as $ccc){
+            $cccCreado = CircuitsCategoriesModel::create([
+              "ccc_cat_id" => $ccc->value,
+              "ccc_cir_id" => $cCreado->cir_id,
+            ]);
+          }
+          $circuitsFinals[] = $cCreado;
+        }
+
+
+        
         return response()->json([
-            'cursa' => $cursa
+            'cursa' => $cursa,
+            "circuits" => $circuitsFinals,
         ]);
         
     }

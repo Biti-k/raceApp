@@ -52,6 +52,10 @@ export const CursaScreen = () =>
         
         setCursa(cur);
     }
+    
+    const returnCircuits = () => {
+      
+    }
 
     const loadPage = ()=>{
         setCircuits([]);
@@ -300,14 +304,11 @@ export const CursaScreen = () =>
                         <div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                             <div className=' flex w-[100%] h-fit p-5'>
                                 <div className="mx-5 w-[100%] ">    
-                                    <input className='p-3 rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 text-white' type="submit"/>
+                                    <input className='p-3 text-white cursor-pointer rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
 
                 </div>
             </div>
