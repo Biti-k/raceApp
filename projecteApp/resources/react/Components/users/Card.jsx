@@ -1,12 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { ButtonDelete } from "./ButtonDelete";
-import { Button } from "./Button";
+import { Button } from "../Button";
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import ModalDelete from "./ModalDelete";
 import moment from "moment";
-import '../css/main.css';
+import '../../css/main.css';
 
 export const Card = ({cursa})=> {
 
@@ -30,7 +27,7 @@ export const Card = ({cursa})=> {
         if(cursa.cur_foto != null && cursa.cur_foto != '' ){
             setImg(window.location.origin+'/api/img/'+cursa.cur_foto);
         }
-        setMod('/admin/curses/cursa/'+cursa.cur_id);
+        setMod('/curses/cursa/'+cursa.cur_id);
     }, [])
 
     return (
@@ -76,10 +73,8 @@ export const Card = ({cursa})=> {
 
                 <div className="gap-1 p-6 pt-3 columns-2" id="botones">
                     <NavLink to={mod}>
-                        <Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
-                    </NavLink>
-                    <ButtonDelete  handleClick={openModal} ></ButtonDelete>
-                    <ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>                    
+                        <Button contenido={'Mostrar Detalles'}></Button>
+                    </NavLink>              
                 </div>
                 </div>
             </div>

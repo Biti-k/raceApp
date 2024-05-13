@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
 
 
-export const CursaScreen = () =>
+export const CursaUserScreen = () =>
 {
 
     const { id } = useParams();
@@ -20,6 +20,9 @@ export const CursaScreen = () =>
 			cur_limit_inscr : '',
 			cur_foto : '',
 			cur_web : '',
+			esport : {
+				esp_nom : ''
+			}
     }
     const circuitData = {
 			cir_id : null,
@@ -178,11 +181,10 @@ export const CursaScreen = () =>
 			axios.post(url, formData , {headers: {'Content-Type': 'multipart/form-data'}})
 			.then(response => {
 				//recargar las cursas globales
-        window.history.pushState(null, '', `/admin/curses/cursa/${response.data.cursa.cur_id}`);
 				loadPage()
 			})
 			.catch(error => {
-				console.error('Error al guardar la cursa:', error);
+				console.error('Error al subir el archivo:', error);
 			});
     }
     
@@ -197,39 +199,34 @@ export const CursaScreen = () =>
 						<div className='relative my-6 ml-6 flex-col items-center w-[50%]'>
 							<div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
 									
-								<h1 className='mt-4 text-2xl text-center text-blue1'>Nova Cursa</h1>
+								<h1 className='mt-4 text-2xl text-center text-blue1'>Cursa</h1>
 								<div className=' flex w-[100%]'>
 								
 									<div className="mx-5 mb-5 w-[100%] ">
 										<br/><label >Nom: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
+										<br/><span className='text-black w-[100%]' >{cursa.cur_nom} </span>
 								
 										
 										<br/><label>Desc: </label>
-										<br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
+										<br/><p className='text-black w-[100%]' >{cursa.cur_desc}</p>
 										
 										<br/><label>Lloc: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
+										<br/><span className='text-black w-[100%]'>{cursa.cur_lloc}</span>
 
 										<br/><label>Data Inici: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+										<br/><span className='text-black w-[100%]'>{cursa.cur_data_inici}</span>
 
 										<br/><label>Data fi: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+										<br/><span className='text-black w-[100%]'>{cursa.cur_data_fi}</span>
 
 										<br/><label>Limit inscrits: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
+										<br/><span className='text-black w-[100%]'>{cursa.cur_limit_inscr}</span>
 
 										<br/><label>Web: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
+										<br/><span className='text-black w-[100%]'>{cursa.cur_web}</span>
 										
 										<br/><label>Esport: </label>
-										<br/><select className='border rounded-xl p-3 text-black w-[100%]' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChangeEsport}>
-											<option value="-1">Selecciona un esport</option>
-											{esports.map((ele)=>
-												<option key={ele.value} value={ele.value} > {ele.title} </option>
-											)}
-										</select>
+										<br/><span className='text-black w-[100%]'>{cursa.esport.esp_nom}</span>
 											
 										<br/>
 											
@@ -245,17 +242,15 @@ export const CursaScreen = () =>
 					
 								<h1 className='mt-4 text-2xl text-center text-blue1'>Circuits</h1> 
 								
-								<div onClick={handleAddCir} className='button-new-cursa flex justify-center items-center p-5 w-fit h-[40px] rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 text-white select-none'>Nou circuit</div>
-								
 								<div className=' flex w-[100%] h-fit p-5'>
 									<div className="mx-5 w-[100%] ">    
 										{ circuits.map((cir, index) =>
 										<div key={cir.cir_num}>
 											<br/>
-                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
+                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label></div>
 
 	                    <label >Nom: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
+											<br/><span>{cir.cir_nom}</span>
 											
 											<br/><label className='mt-1' >Categoires: </label>
 											{
@@ -270,6 +265,7 @@ export const CursaScreen = () =>
 																name={e.cat_nom} 
 																onChange={(evt)=> handleCatCirChange(evt, index)} 
 																value={e.cat_id}
+																disabled
 															/> 
 														: 
 															<input 
@@ -279,6 +275,7 @@ export const CursaScreen = () =>
 																name={e.cat_nom} 
 																onChange={(evt)=> handleCatCirChange(evt, index)} 
 																value={e.cat_id}
+																disabled
 															/> 
 														}
 														<label className="cursor-pointer select-none" htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
@@ -287,13 +284,13 @@ export const CursaScreen = () =>
 											}
 											
 											<br/><label>Distancia: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
+											<br/><span>{cir.cir_distancia}</span>
 											
 											<br/><label>Temps estimat (minuts): </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
+											<br/><span>{cir.cir_temps_estimat}</span>
 
 											<br/><label>Preu: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
+											<br/><span>{cir.cir_preu}</span>
                       {index == circuits.length - 1 ?
                         '' : <hr className='mt-2 text-darkmetal/80'></hr>
                       }
@@ -314,24 +311,9 @@ export const CursaScreen = () =>
 										:
 										null
 									}
-									<div className='w-full px-5 mt-0 mb-5'>
-										<br/><label>Foto: </label>
-										<br/><input className='border rounded-xl p-3 text-black bg-white w-[100%] cursor-pointer' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
-									</div>
 								</div>
 							</div>
 
-						</div>
-
-					</div>
-
-					<div className='flex justify-start min-w-full'>
-						<div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-							<div className=' flex w-[100%] h-fit p-5'>
-								<div className="mx-5 w-[100%] ">    
-									<input value="Guardar" className='p-3 text-white cursor-pointer rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit"/>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
