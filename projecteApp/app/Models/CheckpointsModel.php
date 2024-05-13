@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CheckpointsModel extends Model
 {
     use HasFactory;
-    protected $fillable = ['chk_id','chk_pk','cir_id'];
+    protected $fillable = ['chk_id','chk_pk','chk_cir_id'];
     protected $table = "checkpoints";
     protected $primaryKey = "chk_id";
 
