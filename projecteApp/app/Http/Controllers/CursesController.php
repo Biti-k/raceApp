@@ -66,8 +66,9 @@ class CursesController extends Controller
             "cir_temps_estimat" => $c->cir_temps_estimat,
           ]);
           foreach($c->cir_categories as $ccc){
+              
             $cccCreado = CircuitsCategoriesModel::create([
-              "ccc_cat_id" => $ccc->value,
+              "ccc_cat_id" => $ccc->cat_id,
               "ccc_cir_id" => $cCreado->cir_id,
             ]);
           }
@@ -194,6 +195,14 @@ class CursesController extends Controller
         // ]);
 
         $data = $request->all();
+        
+        $cir_ids = CircuitsModel::where('cir_cur_id', $data['id'])->select('cir_id')->get();
+
+        foreach ($cir_ids as $id){
+            CircuitsCategoriesModel::where('ccc_cir_id', $id->cir_id)->delete();
+        }
+        
+        CircuitsModel::where('cir_cur_id', $data['id'])->delete();
         
         CursesModel::where('cur_id', $data['id'])->delete();
 

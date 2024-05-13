@@ -157,6 +157,10 @@ export const CursaScreen = () =>
 		const handleDeleteCircuit = (index)=>{
 			let data = circuits;
 			data.splice(index, 1);
+			data = data.map((ele, i) =>{
+				ele.cir_num = i+1;
+				return ele;
+			});
 			setCircuits([...data]);
 		}
 
@@ -324,7 +328,7 @@ export const CursaScreen = () =>
 						<div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
 							<div className=' flex w-[100%] h-fit p-5'>
 								<div className="mx-5 w-[100%] ">    
-									<input className='p-3 text-white cursor-pointer rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit"/>
+									<input value="Guardar" className='p-3 text-white cursor-pointer rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit"/>
 								</div>
 							</div>
 						</div>
