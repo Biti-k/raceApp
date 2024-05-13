@@ -178,7 +178,6 @@ export const CursaScreen = () =>
 			axios.post(url, formData , {headers: {'Content-Type': 'multipart/form-data'}})
 			.then(response => {
 				//recargar las cursas globales
-        window.history.pushState(null, '', `/admin/curses/cursa/${response.data.cursa.cur_id}`);
 				loadPage()
 			})
 			.catch(error => {
