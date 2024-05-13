@@ -8,7 +8,7 @@ import ModalDelete from "./ModalDelete";
 import moment from "moment";
 import '../css/main.css';
 
-export const Card = ({cursa})=> {
+export const Card = ({cursa, reload})=> {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,13 +24,65 @@ export const Card = ({cursa})=> {
 
     const [img , setImg] = useState();
     const [mod , setMod] = useState();
+    const [show , setShow] = useState();
     
+
+    const handleOpenIns = async () =>{
+        try{
+            const response = await axios.post(change_state_cursa, {cur_id: cursa.cur_id, state : 2});
+            cursa.cur_est_id = response.data.cursa.cur_est_id;
+            reload();
+        }catch(e){
+            console.error('Error open: ', e);
+        }
+    }
+    
+    const handleCloseIns = async () =>{
+        try{
+            const response = await axios.post(change_state_cursa, {cur_id: cursa.cur_id, state : 3});
+            cursa.cur_est_id = response.data.cursa.cur_est_id;
+            reload();
+        }catch(e){
+            console.error('Error Close: ', e);
+        }
+    }
+    
+    const handleStart = async () =>{
+        try{
+            const response = await axios.post(change_state_cursa, {cur_id: cursa.cur_id, state : 4});
+            cursa.cur_est_id = response.data.cursa.cur_est_id;
+            reload();
+        }catch(e){
+            console.error('Error Start: ', e);
+        }
+    }
+    
+    const handleStop = async () =>{
+        try{
+            const response = await axios.post(change_state_cursa, {cur_id: cursa.cur_id, state : 5});
+            cursa.cur_est_id = response.data.cursa.cur_est_id;
+            reload();
+        }catch(e){
+            console.error('Error Stop: ', e);
+        }
+    }
+
+    const handleCancel = async () =>{
+        try{
+            const response = await axios.post(change_state_cursa, {cur_id: cursa.cur_id, state : 6});
+            cursa.cur_est_id = response.data.cursa.cur_est_id;
+            reload();
+        }catch(e){
+            console.error('Error Stop: ', e);
+        }
+    }
 
     useEffect(()=>{
         if(cursa.cur_foto != null && cursa.cur_foto != '' ){
             setImg(window.location.origin+'/api/img/'+cursa.cur_foto);
         }
         setMod('/admin/curses/cursa/'+cursa.cur_id);
+        setShow('/curses/cursa/'+cursa.cur_id);
     }, [])
 
     return (
@@ -74,13 +126,61 @@ export const Card = ({cursa})=> {
                     }
                     </p>
 
-                <div className="gap-1 p-6 pt-3 columns-2" id="botones">
-                    <NavLink to={mod}>
-                        <Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
-                    </NavLink>
-                    <ButtonDelete  handleClick={openModal} ></ButtonDelete>
-                    <ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>                    
-                </div>
+                
+                    
+                    {cursa.cur_est_id == 1 ?
+                    <div className="grid gap-2 grid-cols-2 p-6 pt-3 " id="botones">
+                        <NavLink to={mod} >
+                            <Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        </NavLink>
+                        <Button contenido={'Obrir Ins.'} handleClick={handleOpenIns} icono={<Icon icon="clarity:export-solid" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        <ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>
+                        <ButtonDelete  handleClick={openModal} ></ButtonDelete>
+                    </div>
+                    : null}
+
+
+                    {cursa.cur_est_id == 2 ?
+                    <div className="grid gap-2 grid-cols-2 p-6 pt-3" id="botones">
+                        <NavLink to={show}>
+                            <Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        </NavLink>
+                        <Button contenido={'Tancar Ins.'} handleClick={handleCloseIns} icono={<Icon icon="jam:close-circle-f" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        <Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                    </div>
+                    : null}
+
+                    {cursa.cur_est_id == 3 ?
+                    <div className="grid gap-2 grid-cols-2 p-6 pt-3" id="botones">
+                        <NavLink to={show}>
+                            <Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        </NavLink>
+                        <Button contenido={'Start'} handleClick={handleStart} icono={<Icon icon="ic:outline-play-circle-filled" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        <Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                    </div>
+                    : null}
+
+                    {cursa.cur_est_id == 4 ?
+                    <div className="grid gap-2 grid-cols-2 p-6 pt-3" id="botones">
+                        <NavLink to={show}>
+                            <Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        </NavLink>
+                        <Button contenido={'Stop'} handleClick={handleStop} icono={<Icon icon="fa-regular:stop-circle" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        <Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                    </div>
+                    : null}
+
+                    {cursa.cur_est_id == 5 ?
+                    <div className="grid gap-2 grid-cols-2 p-6 pt-3" id="botones">
+                        <NavLink to={show}>
+                            <Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        </NavLink>
+                    </div>
+                    : null}
+
+
+
+
                 </div>
             </div>
         </>

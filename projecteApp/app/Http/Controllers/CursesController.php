@@ -66,7 +66,7 @@ class CursesController extends Controller
 				"cir_preu" => $c->cir_preu,
 				"cir_temps_estimat" => $c->cir_temps_estimat,
 			]);
-          	$km_chek = $cCreado->cir_distancia / intval($c->cir_checkpoints);
+          	$km_chek = $cCreado->cir_distancia / (intval($c->cir_checkpoints) != 0 ? intval($c->cir_checkpoints) : 1);
 
             //check points del circuit
             for($i = 0; $i < $c->cir_checkpoints; $i++){
@@ -138,7 +138,7 @@ class CursesController extends Controller
                     ]);
                 }
 
-                $km_chek = $circu->cir_distancia / intval($cir->cir_checkpoints);
+                $km_chek = $circu->cir_distancia / (intval($cir->cir_checkpoints) != 0 ? intval($cir->cir_checkpoints) : 1);
 
                 //check points del circuit
                 for($i = 0; $i < $cir->cir_checkpoints; $i++){
@@ -170,7 +170,8 @@ class CursesController extends Controller
                 }
 
                 CheckpointsModel::where('chk_cir_id',$cir->cir_id)->delete();
-                $km_chek = $cir->cir_distancia / intval($cir->cir_checkpoints);
+
+                $km_chek = $cir->cir_distancia / (intval($cir->cir_checkpoints) != 0 ? intval($cir->cir_checkpoints) : 1);
                 //check points del circuit
                 for($i = 0; $i < $cir->cir_checkpoints; $i++){
                     CheckpointsModel::create([
@@ -247,5 +248,13 @@ class CursesController extends Controller
             "categories" => $response
         ]
         );
+    }
+
+    public function ChangeStateCursa (Request $request)
+    {
+        $data = $request->all();
+        CursesModel::where('cur_id', $data['cur_id'])->update(['cur_est_id' => $data['state']]);
+        $cursa = CursesModel::find($data['cur_id']);
+        return response()->json(['cursa' => $cursa]);
     }
 }
