@@ -48,11 +48,19 @@ class InscripcionsController extends Controller
     public function stateInscripcio (Request $request)
     {
         $data = $request->all();
-        dd($data);
+        
         if($data['state'] == 'participa'){
-
+            $insc = InscripcionsModel::find($data['inscripcio']);
+            
+            $insc->fill(['ins_bea_id' => $insc->ins_dorsal]);
+            $insc->save();
+            
         }else if($data['state'] == 'retirat'){
-            //$inscripcio = InscripcionsModel::where('ins_id', )
+            InscripcionsModel::where('ins_id', $data['inscripcio'])->update(['ins_retirat' => 1]);
         }
+
+        return response()->json([
+            'inscripcio' => InscripcionsModel::find($data['inscripcio'])
+        ]);
     }
 }

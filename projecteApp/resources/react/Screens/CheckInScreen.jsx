@@ -80,7 +80,9 @@ export const CheckInScreen = () =>
 		}
 
 		const handleRetirat = async (ins_id)=>{
-			const response = await axios.get(state_inscripcio, {params: {state : 'participa', inscripcio: ins_id}});
+			const response = await axios.get(state_inscripcio, {params: {state : 'retirat', inscripcio: ins_id}});
+			let insc = inscrits;
+			// hacer dinamico !!!!!!!!!!!!!
 		}
 
 
@@ -120,8 +122,13 @@ export const CheckInScreen = () =>
 														<td>{ins.participant.par_cognoms}</td>
 														<td>{ins.participant.par_telefon}</td>
 														<td className='flex'>
-															<div onClick={()=>handleParticipa(ins.ins_id)} className=' w-[50%] text-center bg-blue1 p-1 m-1 rounded-xl text-white hover:bg-cyan-600 active:bg-cyan-800'>Participa</div>
-															<div onClick={()=>handleRetirat(ins.ins_id)} className=' w-[50%] text-center bg-red-500 p-1 m-1 rounded-xl text-white hover:bg-red-600 active:bg-red-800'>Retirat</div>
+														{ ins.ins_retirat == 1 ? 'Retirat' : 
+															ins.ins_bea_id != null ? ins.ins_bea_id+'' : 
+															<>
+																<div onClick={()=>handleParticipa(ins.ins_id)} className='cursor-pointer w-[50%] text-center bg-blue1 p-1 m-1 rounded-xl text-white hover:bg-cyan-600 active:bg-cyan-800'>Participa</div>
+																<div onClick={()=>handleRetirat(ins.ins_id)} className='cursor-pointer w-[50%] text-center bg-red-500 p-1 m-1 rounded-xl text-white hover:bg-red-600 active:bg-red-800'>Retirat</div>
+															</>
+														}
 														</td>
 													</tr>
 												)}
