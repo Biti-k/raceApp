@@ -60,7 +60,7 @@ Route::post('store_registre', [RegistresController::class, 'store'])->name('regi
 
 //Inscripcio
 Route::post('store_inscripcio', [InscripcionsController::class, 'storeInscripcio'])->name('inscripcions.store_inscripcio');
-
+Route::get('state_inscripcio', [InscripcionsController::class, 'stateInscripcio'])->name('inscripcions.state_inscripcio');
 
 //Imgs
 Route::get('img/{nom?}', [ImgController::class, 'showImg'])->name('img.show');

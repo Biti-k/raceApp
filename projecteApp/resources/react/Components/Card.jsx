@@ -25,6 +25,7 @@ export const Card = ({cursa, reload})=> {
     const [img , setImg] = useState();
     const [mod , setMod] = useState();
     const [show , setShow] = useState();
+    const [checkIn , setCheckIn] = useState();
     
 
     const handleOpenIns = async () =>{
@@ -83,6 +84,8 @@ export const Card = ({cursa, reload})=> {
         }
         setMod('/admin/curses/cursa/'+cursa.cur_id);
         setShow('/curses/cursa/'+cursa.cur_id);
+        setCheckIn('/admin/curses/cursa/checkin/'+cursa.cur_id);
+
     }, [])
 
     return (
@@ -164,6 +167,9 @@ export const Card = ({cursa, reload})=> {
                     <div className="grid gap-2 grid-cols-2 p-6 pt-3" id="botones">
                         <NavLink to={show}>
                             <Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
+                        </NavLink>
+                        <NavLink to={checkIn}>
+                            <Button contenido={'Recollida de dorsal '} icono={<Icon icon="mdi:ticket-account" className="inline text-2xl align-middle text-blue2"/>}></Button>
                         </NavLink>
                         <Button contenido={'Stop'} handleClick={handleStop} icono={<Icon icon="fa-regular:stop-circle" className="inline text-2xl align-middle text-blue2"/>}></Button>
                         <Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>

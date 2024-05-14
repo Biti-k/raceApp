@@ -13,7 +13,7 @@ class InscripcionsController extends Controller
     //
     public function getAll(Request $request)
     {
-        return InscripcionsModel::getWithRelations();
+        return InscripcionsModel::getWithRelations($request->all());
     }
 
     public function storeInscripcio(Request $request){
@@ -30,17 +30,12 @@ class InscripcionsController extends Controller
             "par_es_federat" => $participantData['par_es_federat']
         ]);
 
-        $lastInscripcion = InscripcionsModel::where("ins_ccc_id", $inscripcioData["ins_ccc_id"])->orderBy('ins_id', 'desc')->first();
-        if(!$lastInscripcion){
-            $nextBeacon = BeaconsModel::first();
-        }else{
-            $nextBeacon = BeaconsModel::where("bea_id", ">", $lastInscripcion->ins_bea_id)->first();
-        }
-        dd($nextBeacon);
+        $lastInscripcion = InscripcionsModel::where("ins_ccc_id", $inscripcioData["ins_ccc_id"])->orderBy('ins_dorsal', 'desc')->first();
+
         $inscripcio = InscripcionsModel::create([
             'ins_par_id' => $participant->par_id,
             'ins_data' => DB::raw("NOW()"),
-            'ins_dorsal' => $nextBeacon->bea_id,
+            'ins_dorsal' => $lastInscripcion != null ? $lastInscripcion->ins_dorsal + 1 : 1,
             "ins_ccc_id" => $inscripcioData["ins_ccc_id"],
         ]);
         return response()->json(
@@ -48,5 +43,11 @@ class InscripcionsController extends Controller
                 "new_inscripcio" => $inscripcio
             ]
         );
+    }
+
+    public function stateInscripcio (Request $request)
+    {
+        $data = $request->all();
+        dd($data);
     }
 }

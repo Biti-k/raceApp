@@ -45,10 +45,21 @@ html .button-new-cursa {
 html .main-screen {
   height: calc(100% - 60px);
 }
-html .check-table tr {
+html .check-table thead tr {
   border-bottom: 1px solid #4F7CAC;
+}
+html .check-table tbody tr:nth-child(odd) {
+  border-radius: 10px;
+  background-color: #a8d3d0;
 }
 html .modal-content-check {
   width: 70% !important;
   height: 50% !important;
+}
+html .table-inscrits thead tr {
+  border-bottom: 1px solid #4F7CAC;
+}
+html .table-inscrits tbody tr:nth-child(odd) {
+  border-radius: 10px;
+  background-color: #a8d3d0;
 }

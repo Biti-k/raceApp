@@ -8,6 +8,8 @@ import { CursaScreen } from '../Screens/CursaScreen';
 import { CursesUserScreen } from '../Screens/users/CursesUserScreen';
 import { CursaUserScreen } from '../Screens/users/CursaUserScreen';
 import { InscripcionScreen } from '../Screens/users/InscripcionsScreen';
+import { CheckInScreen } from '../Screens/CheckInScreen';
+
 function Main() {
 
     // useEffect(() => {
@@ -25,6 +27,7 @@ function Main() {
                     <Route path="/curses/cursa/:id" element={<CursaUserScreen></CursaUserScreen>} />
                     <Route path="/admin/curses" element={<CursesScreen></CursesScreen>} />
                     <Route path="/admin/curses/cursa/:id" element={<CursaScreen></CursaScreen>} />
+                    <Route path="/admin/curses/cursa/checkin/:id" element={<CheckInScreen></CheckInScreen>} />
                     <Route path="/inscripcio/:id" element={<InscripcionScreen></InscripcionScreen>} />
                     <Route path="/*" element={<Navigate to="/"></Navigate>} />
                 </Routes>

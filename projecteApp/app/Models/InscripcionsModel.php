@@ -24,8 +24,14 @@ class InscripcionsModel extends Model
 
     public static function getWithRelations($params = null)
     {
-
-        $inscripcions = self::with(['participant', 'beacons'])->get();
+        $inscripcions = null;
+        if(isset($params['cur_id'])){
+            $cir_ids = CircuitsModel::where('cir_cur_id', $params['cur_id'])->pluck('cir_id')->toArray();
+            $ccc_ids = CircuitsCategoriesModel::whereIn('ccc_cir_id', $cir_ids)->pluck('ccc_id')->toArray();
+            $inscripcions = InscripcionsModel::with(['participant', 'beacons'])->whereIn('ins_ccc_id', $ccc_ids)->get();
+        }else{
+            $inscripcions = self::with(['participant', 'beacons'])->get();
+        }
         
         return response()->json([
             'inscripcions' => $inscripcions,

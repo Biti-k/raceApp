@@ -124,23 +124,27 @@ export const InscripcionScreen = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+  
     if(validar()){
+      
       let url = store_inscripcio;
       const formData = new FormData();
       let obj = {
         "participant" : participant,
         "inscripcio" : inscripcion
       }
+      axios.post(url, obj)
+      .then(response => {
+        
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
     }
     
     
-    axios.post(url, obj)
-    .then(response => {
-      
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+    
   }
 
   useEffect(() => {

@@ -17,6 +17,7 @@
         const get_all_categories = "{{route("categories.get_all_categories")}}";
         const get_all_esports = "{{route("esports.get_all_esports")}}";
         const get_all_curses = "{{route("curses.get_all_curses")}}";
+        const get_all_inscripcions = "{{ route("inscripcions.get_all_inscripcions") }}";
 
         
         //Cursa
@@ -29,6 +30,8 @@
 
         //Inscripcio
         const store_inscripcio = "{{route("inscripcions.store_inscripcio")}}";
+        const state_inscripcio = "{{ route("inscripcions.state_inscripcio") }}";
+
     </script>
     <style>
         html{
