@@ -40,6 +40,31 @@ icon = $('<i>').addClass('error').text('X');
 
     
 // }
+export function validarEmail(value){
+    let re = /\S+@\S+\.\S+/;
+    if($(value).next().length > 0){
+        if($(value).next().prop('className').includes('error')){
+            $(value).next().remove();
+            $(value).removeClass('border-red')
+        }
+    }
+    
+    if($(value).val().length == 0){
+        
+        $(value).addClass('border-red')
+        $(value).after($(error, {"className" : "error"}).text('Es obligatori').clone() );
+        
+        return 0;
+    }else if(!re.test($(value).val())){
+        $(value).addClass('border-red')
+        $(value).after($(error, {"className" : "error"}).text('Format incorrecte').clone());
+        
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
 
 export function validarTelefon(value){
     if($(value).next().length > 0){
@@ -65,8 +90,11 @@ export function validarTelefon(value){
         $(value).after($(error, {"className" : "error"}).text('Format incorrecte').clone() );
         
         return 0;
+    }else{
+        return 1;
     }
 }
+
 export function validarData(value){
     if($(value).next().length > 0){
         if($(value).next().prop('className').includes('error')){

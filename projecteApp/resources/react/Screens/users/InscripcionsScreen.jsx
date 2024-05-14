@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ButtonChange } from "../../Components/ButtonChange";
-import { validarNif, validarRequired, validarTelefon, validarData } from '../../../validators/script';
+import { validarNif, validarRequired, validarTelefon, validarData, validarEmail } from '../../../validators/script';
 
 export const InscripcionScreen = () => {
   const cursaData = {
@@ -106,7 +106,11 @@ export const InscripcionScreen = () => {
       let bt = botones;
       bt[id] = !botones[id];
       setBotones(bt);
-      setCircuitoEscogido([...circuitoEscogido,id]);
+      if(!circuitoEscogido.includes(id)){
+        setCircuitoEscogido([...circuitoEscogido,id]);
+      }else{
+        setCircuitoEscogido(circuitoEscogido.filter(item => item != id));
+      }
       setInscripcion({...inscripcion , ['ins_ccc_id']:id});
   }
 
@@ -118,7 +122,29 @@ export const InscripcionScreen = () => {
     
   }
 
+  const validarCCC = () => {
+    console.log(ccc[circuitoEscogido[circuitoEscogido.length - 1]]);
+    console.log(circuitoEscogido);
+    if(circuitoEscogido.length == 0 || !ccc[circuitoEscogido[circuitoEscogido.length - 1]]){
+      $("#errorsCCC").text("Has d'escollir un circuit i categoria");
+      return 0;
+    }else if(circuitoEscogido.length > 1){
+      $("#errorsCCC").text("Només et pots inscriure a un circuit i categoria");
+      return 0;
+    }else{
+      $("#errorsCCC").text("");
+      return 1;
+    }
+  }
+
   const validar = ()=>{
+    validarRequired($('#par_nom'))
+    validarRequired($("#par_cognoms"))
+    validarNif($("#par_nif"))
+    validarData($("#par_data_naixement"))
+    validarTelefon($("#par_telefon"))
+    validarEmail($("#par_email"))
+    validarCCC()
     if(
       validarRequired($('#par_nom'))
       && validarRequired($("#par_cognoms"))
@@ -126,6 +152,7 @@ export const InscripcionScreen = () => {
       && validarData($("#par_data_naixement"))
       && validarTelefon($("#par_telefon"))
       && validarEmail($("#par_email"))
+      && validarCCC()
     ){
       return true;
     }else{
@@ -191,7 +218,7 @@ export const InscripcionScreen = () => {
               </div>
               <div className="mt-3">
                 <label>Email del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="par_email" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_email" name="par_email" onChange={handleChange}/>
               </div>
               <div className="flex gap-2 mt-3">
                 <input className='' type="checkbox" name="par_es_federat" id="par_es_federat" onChange={handleFederat}/>
@@ -211,10 +238,10 @@ export const InscripcionScreen = () => {
                       <p className="font-bold text-blue1">Temps estimat: <span className="font-normal text-darkmetal">{e.cir_temps_estimat} minuts</span></p>
                       <p className="my-2">Categories</p>
                       {
-                        e.categories.map(ccc =>
-                          <div key={ccc.ccc_id} className="flex gap-2">
-                            <input type="radio" name={"ccc_"+e.cir_id} id={ccc.ccc_id+"_"+ccc.categoria.cat_nom} onChange={handleChangeCCC}/>
-                            <label htmlFor={ccc.ccc_id+"_"+ccc.categoria.cat_nom}>{ccc.categoria.cat_nom}</label>
+                        e.categories.map(cc =>
+                          <div key={cc.ccc_id} className="flex gap-2">
+                            <input type="radio" name={"ccc_"+e.cir_id} id={cc.ccc_id+"_"+cc.categoria.cat_nom} onChange={handleChangeCCC}/>
+                            <label htmlFor={cc.ccc_id+"_"+cc.categoria.cat_nom}>{cc.categoria.cat_nom}</label>
                           </div>
                         )
                       }
@@ -225,6 +252,9 @@ export const InscripcionScreen = () => {
                   )}
                 </div>
 
+              </div>
+              <div className="text-red-700 errors" id="errorsCCC">
+              
               </div>
             </div>  
           </div>
