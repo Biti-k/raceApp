@@ -18,13 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger("ins_par_id");
             $table->date("ins_data");
             $table->integer("ins_dorsal");
-            $table->boolean("ins_retirat");
+            $table->boolean("ins_retirat")->nullable();
             $table->unsignedBigInteger("ins_bea_id");
-            $table->unsignedBigInteger("ccc_id");
+            $table->unsignedBigInteger("ins_ccc_id");
             //fks
             $table->foreign('ins_par_id')->references('par_id')->on('participants');
             $table->foreign('ins_bea_id')->references('bea_id')->on('beacons');
-            $table->foreign('ccc_id')->references('ccc_id')->on('circuits_categories');
+            $table->foreign('ins_ccc_id')->references('ccc_id')->on('circuits_categories');
             $table->timestamps();
         });
     }

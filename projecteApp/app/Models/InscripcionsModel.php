@@ -11,7 +11,7 @@ class InscripcionsModel extends Model
 
     protected $table = 'inscripcions';
     protected $primaryKey = 'ins_id';
-    protected $fillable = ['ins_id','ins_par_id','ins_data','ins_dorsal','ins_retirat','ins_bea_id','ccc_id'];
+    protected $fillable = ['ins_id','ins_par_id','ins_data','ins_dorsal','ins_retirat','ins_bea_id','ins_ccc_id'];
 
     public function participant()
     {

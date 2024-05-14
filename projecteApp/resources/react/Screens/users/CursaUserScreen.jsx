@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 export const CursaUserScreen = () =>
 {
@@ -33,7 +33,7 @@ export const CursaUserScreen = () =>
 			cir_preu : '',
 			cir_categories : []
     }
-
+	const navigate = useNavigate();
     const [url, setUrl] = useState('');
     const [cursa, setCursa] = useState(cursaData);
     const [circuits, setCircuits] = useState([]);
@@ -41,7 +41,10 @@ export const CursaUserScreen = () =>
     const [img, setImg] = useState('');
     const [categories, setCategories] = useState([]);
     
-    
+    const inscripcio = () => {
+		navigate("/inscripcio/" + cursa.cur_id);
+	}
+
     const getCursa = async ()=>{
     
         const response = await axios.post(get_cursa, {id : id});
@@ -56,7 +59,7 @@ export const CursaUserScreen = () =>
         cur.cur_foto = '';
         setCursa(cur);
         returnCircuits(cur);
-				getCategoriesEsport(cur.cur_esp_id);
+		getCategoriesEsport(cur.cur_esp_id);
     }
     
     const returnCircuits = (cursa) => {
@@ -317,6 +320,9 @@ export const CursaUserScreen = () =>
 						</div>
 					</div>
 				</div>
+				<div className='w-[100%] flex justify-center'>
+					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit" onClick={inscripcio}/>
+        		</div>
 			</div>
 		</form>
     </>

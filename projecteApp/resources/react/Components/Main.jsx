@@ -7,7 +7,7 @@ import { CursesScreen } from '../Screens/CursesScreen';
 import { CursaScreen } from '../Screens/CursaScreen';
 import { CursesUserScreen } from '../Screens/users/CursesUserScreen';
 import { CursaUserScreen } from '../Screens/users/CursaUserScreen';
-
+import { InscripcionScreen } from '../Screens/users/InscripcionsScreen';
 function Main() {
 
     // useEffect(() => {
@@ -25,6 +25,7 @@ function Main() {
                     <Route path="/curses/cursa/:id" element={<CursaUserScreen></CursaUserScreen>} />
                     <Route path="/admin/curses" element={<CursesScreen></CursesScreen>} />
                     <Route path="/admin/curses/cursa/:id" element={<CursaScreen></CursaScreen>} />
+                    <Route path="/inscripcio/:id" element={<InscripcionScreen></InscripcionScreen>} />
                     <Route path="/*" element={<Navigate to="/"></Navigate>} />
                 </Routes>
             </div>

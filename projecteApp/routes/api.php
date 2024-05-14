@@ -57,6 +57,10 @@ Route::post('get_cursa_form_categories', [CursesController::class, 'getCursaForm
 //Registre
 Route::post('store_registre', [RegistresController::class, 'store'])->name('registres.store:registre');
 
+//Inscripcio
+Route::post('store_inscripcio', [InscripcionsController::class, 'storeInscripcio'])->name('inscripcions.store_inscripcio');
+
+
 //Imgs
 Route::get('img/{nom?}', [ImgController::class, 'showImg'])->name('img.show');
 

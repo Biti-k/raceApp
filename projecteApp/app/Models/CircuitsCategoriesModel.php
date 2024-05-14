@@ -10,8 +10,8 @@ class CircuitsCategoriesModel extends Model
     use HasFactory;
 
     protected $table = 'circuits_categories';
-    protected $primaryKey = 'ccc_id';
-    protected $fillable = ['ccc_id','ccc_cat_id','ccc_cir_id'];
+    protected $primaryKey = 'ins_ccc_id';
+    protected $fillable = ['ins_ccc_id','ccc_cat_id','ccc_cir_id'];
 
     public function circuit ()
     {
@@ -25,7 +25,7 @@ class CircuitsCategoriesModel extends Model
 
     public function inscripcions ()
     {
-        return $this->hasMany(InscripcionsModel::class, 'ccc_id');
+        return $this->hasMany(InscripcionsModel::class, 'ins_ccc_id');
     }
 
     public static function getWithRelations($params = null)

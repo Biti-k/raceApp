@@ -53,7 +53,7 @@ export const CursaScreen = () =>
         cur.cur_foto = '';
         setCursa(cur);
         returnCircuits(cur);
-				getCategoriesEsport(cur.cur_esp_id);
+		    getCategoriesEsport(cur.cur_esp_id);
     }
     
     const returnCircuits = (cursa) => {
@@ -202,7 +202,6 @@ export const CursaScreen = () =>
 									<div className="mx-5 mb-5 w-[100%] ">
 										<br/><label >Nom: </label>
 										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
-								
 										
 										<br/><label>Desc: </label>
 										<br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
@@ -334,6 +333,7 @@ export const CursaScreen = () =>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</form>
     </>
