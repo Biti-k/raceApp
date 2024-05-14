@@ -26,7 +26,7 @@ icon = $('<i>').addClass('error').text('X');
 
 //     $('#nom').on('blur', validarName);
 //     $('#cognoms').on('blur', validarCognom);
-//     $('#nif').on('blur', validarNif);
+//     $('#value').on('blur', validarvalue);
 //     $('#data_naix').on('blur', validarDataNaix);
 //     $('#password').on('blur', validarPass);
 //     $('#data_entrada').on('blur', validarDataEntrada);
@@ -41,20 +41,66 @@ icon = $('<i>').addClass('error').text('X');
     
 // }
 
-export function validarRequired(value){
-
-    if($(value).next().prop('class').includes('error')){
-        $(value).next().remove();
-        $(value).removeClass('border-red')
+export function validarTelefon(value){
+    if($(value).next().length > 0){
+        if($(value).next().prop('className').includes('error')){
+            $(value).next().remove();
+            $(value).removeClass('border-red')
+        }
     }
     
     if($(value).val().length == 0){
         
         $(value).addClass('border-red')
-        $(value).after($(error).text('Es obligatori').clone() );
+        $(value).after($(error, {"className" : "error"}).text('Es obligatori').clone() );
         
         return 0;
-    }else{
+    }else if($(value).val().length !== 9){
+        $(value).addClass('border-red')
+        $(value).after($(error, {"className" : "error"}).text('Ha de tenir 9 digits').clone() );
+        
+        return 0;
+    }else if(isNaN($(value).val())){
+        $(value).addClass('border-red')
+        $(value).after($(error, {"className" : "error"}).text('Format incorrecte').clone() );
+        
+        return 0;
+    }
+}
+export function validarData(value){
+    if($(value).next().length > 0){
+        if($(value).next().prop('className').includes('error')){
+            $(value).next().remove();
+            $(value).removeClass('border-red')
+        }
+    }
+
+    
+    if($(value).val() === ""){
+        $(value).addClass('border-red')
+        $(value).after($(error, {"className" : "error"}).text('Es obligatori').clone() );
+        
+        return 0;
+    }else if($(value).val().length){
+        return 1;
+    }
+}
+
+export function validarRequired(value){
+    if($(value).next().length > 0){
+        if($(value).next().prop('className').includes('error')){
+            $(value).next().remove();
+            $(value).removeClass('border-red')
+        }
+    }
+
+    
+    if($(value).val().length == 0){
+        $(value).addClass('border-red')
+        $(value).after($(error, {"className" : "error"}).text('Es obligatori').clone() );
+        
+        return 0;
+    }else if($(value).val().length){
         return 1;
     }
 }
@@ -112,40 +158,41 @@ export function validarCognom(){
     }
 }
 
-export function validarNif(){
+export function validarNif(value){
     
-    let nif = $('#nif');
 
-    if($(nif).next().prop('class').includes('error')){
-        $(nif).next().remove();
-        $(nif).removeClass('border-red')
+    if($(value).next().length > 0){
+        if($(value).next().prop('class').includes('error')){
+            $(value).next().remove();
+            $(value).removeClass('border-red')
+        }
     }
     
     
     let lletres = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
     
     // Abans de fer la operació es comprova que el numero de dni es realment un numero y no es 0 
-    let dniNumber = Number($(nif).val().trim().substr(0, $(nif).val().length-1))
+    let dniNumber = Number($(value).val().trim().substr(0, $(value).val().length-1))
     let lletraCorrecta = !isNaN(dniNumber) && dniNumber != 0 ? lletres[dniNumber % 23] : null ;
 
     
-    if($(nif).val().length == 0){
+    if($(value).val().length == 0){
         
-        $(nif).addClass('border-red')
-        $(nif).after($(error).text('Es obligatori').clone() );
-        
-        return 0;
-    }else if($(nif).val().trim().length != 9){
-
-        $(nif).addClass('border-red')
-        $(nif).after($(error).text('Ha de tenir 9 caracters').clone());
+        $(value).addClass('border-red')
+        $(value).after($(error).text('Es obligatori').clone() );
         
         return 0;
+    }else if($(value).val().trim().length != 9){
 
-    }else if(lletraCorrecta != $(nif).val().substr($(nif).val().length-1)){
+        $(value).addClass('border-red')
+        $(value).after($(error).text('Ha de tenir 9 caracters').clone());
+        
+        return 0;
 
-        $(nif).addClass('border-red')
-        $(nif).after($(error).text('La lletra no correspon amb el numero').clone());
+    }else if(lletraCorrecta != $(value).val().substr($(value).val().length-1)){
+
+        $(value).addClass('border-red')
+        $(value).after($(error).text('La lletra no correspon amb el numero').clone());
 
     }else{
         return 1;
@@ -417,7 +464,7 @@ export function validateForm(event)
     
     validarName();
     validarCognom();
-    validarNif();
+    validarvalue();
     validarDataNaix();
     validarPass();
     validarDataEntrada();
@@ -430,7 +477,7 @@ export function validateForm(event)
 
     if( validarName() &&
         validarCognom() &&
-        validarNif() &&
+        validarvalue() &&
         validarDataNaix() &&
         validarPass() &&
         validarDataEntrada() &&

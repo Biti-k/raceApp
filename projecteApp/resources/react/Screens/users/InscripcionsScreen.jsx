@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ButtonChange } from "../../Components/ButtonChange";
-import { validarRequired } from '../../../validators/script';
+import { validarNif, validarRequired, validarTelefon, validarData } from '../../../validators/script';
 
 export const InscripcionScreen = () => {
   const cursaData = {
@@ -119,7 +119,18 @@ export const InscripcionScreen = () => {
   }
 
   const validar = ()=>{
-    return validarRequired($('#par_nom'));
+    if(
+      validarRequired($('#par_nom'))
+      && validarRequired($("#par_cognoms"))
+      && validarNif($("#par_nif"))
+      && validarData($("#par_data_naixement"))
+      && validarTelefon($("#par_telefon"))
+      && validarEmail($("#par_email"))
+    ){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   const handleSubmit = (evt) => {
@@ -164,19 +175,19 @@ export const InscripcionScreen = () => {
               <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nom" name="par_nom" onChange={handleChange}/>
               <div className="mt-3">
                 <label>Cognoms del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="par_cognoms" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_cognoms" name="par_cognoms" onChange={handleChange}/>
               </div>
               <div className="mt-3">
                 <label>NIF del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="par_nif" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nif" name="par_nif" onChange={handleChange}/>
               </div>
               <div className="mt-3">
                 <label>Data naixement del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="par_data_naixement" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="par_data_naixement" name="par_data_naixement" onChange={handleChange}/>
               </div>
               <div className="mt-3">
                 <label>Telèfon del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="par_telefon" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_telefon" name="par_telefon" onChange={handleChange}/>
               </div>
               <div className="mt-3">
                 <label>Email del participant</label>
