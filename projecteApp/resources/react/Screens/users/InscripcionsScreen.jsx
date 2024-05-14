@@ -48,7 +48,7 @@ export const InscripcionScreen = () => {
   const [inscripcion, setInscripcion] = useState(inscripcioData);
   const [participant, setParticipant] = useState(participantData);
   const [ccc, setCCC] = useState({});
-  const [circuitoEscogido, setCircuitoEscogido] = useState(0);
+  const [circuitoEscogido, setCircuitoEscogido] = useState([]);
   
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -106,7 +106,7 @@ export const InscripcionScreen = () => {
       let bt = botones;
       bt[id] = !botones[id];
       setBotones(bt);
-      setCircuitoEscogido(id);
+      setCircuitoEscogido([...circuitoEscogido,id]);
       setInscripcion({...inscripcion , ['ins_ccc_id']:id});
   }
 
@@ -136,8 +136,7 @@ export const InscripcionScreen = () => {
     
     axios.post(url, obj)
     .then(response => {
-      //recargar las cursas globales
-      loadPage()
+      
     })
     .catch(error => {
       console.error('Error:', error);
@@ -198,9 +197,9 @@ export const InscripcionScreen = () => {
                       <p className="my-2">Categories</p>
                       {
                         e.categories.map(ccc =>
-                          <div key={ccc.ins_ccc_id} className="flex gap-2">
-                            <input type="radio" name={"ccc_"+e.cir_id} id={ccc.ins_ccc_id+"_"+ccc.categoria.cat_nom} onChange={handleChangeCCC}/>
-                            <label htmlFor={ccc.ins_ccc_id+"_"+ccc.categoria.cat_nom}>{ccc.categoria.cat_nom}</label>
+                          <div key={ccc.ccc_id} className="flex gap-2">
+                            <input type="radio" name={"ccc_"+e.cir_id} id={ccc.ccc_id+"_"+ccc.categoria.cat_nom} onChange={handleChangeCCC}/>
+                            <label htmlFor={ccc.ccc_id+"_"+ccc.categoria.cat_nom}>{ccc.categoria.cat_nom}</label>
                           </div>
                         )
                       }

@@ -321,7 +321,7 @@ export const CursaUserScreen = () =>
 					</div>
 				</div>
 				<div className='w-[100%] flex justify-center'>
-					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit" onClick={inscripcio}/>
+					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 w-[50%] my-4' type="submit" onClick={inscripcio}/>
         		</div>
 			</div>
 		</form>

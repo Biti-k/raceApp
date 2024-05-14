@@ -36,14 +36,17 @@ class InscripcionsController extends Controller
         }else{
             $nextBeacon = BeaconsModel::where("bea_id", ">", $lastInscripcion->ins_bea_id)->first();
         }
-        
-        InscripcionsModel::create([
+        dd($nextBeacon);
+        $inscripcio = InscripcionsModel::create([
             'ins_par_id' => $participant->par_id,
             'ins_data' => DB::raw("NOW()"),
             'ins_dorsal' => $nextBeacon->bea_id,
             "ins_ccc_id" => $inscripcioData["ins_ccc_id"],
-            "ins_bea_id" => $nextBeacon->bea_id,
-            "ins_retirat" => null,
         ]);
+        return response()->json(
+            [
+                "new_inscripcio" => $inscripcio
+            ]
+        );
     }
 }

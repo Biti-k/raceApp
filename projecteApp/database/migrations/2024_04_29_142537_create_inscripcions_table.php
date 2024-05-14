@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date("ins_data");
             $table->integer("ins_dorsal");
             $table->boolean("ins_retirat")->nullable();
-            $table->unsignedBigInteger("ins_bea_id");
+            $table->unsignedBigInteger("ins_bea_id")->nullable();
             $table->unsignedBigInteger("ins_ccc_id");
             //fks
             $table->foreign('ins_par_id')->references('par_id')->on('participants');
