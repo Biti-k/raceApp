@@ -40,7 +40,7 @@ class InscripcionsController extends Controller
         ]);
         return response()->json(
             [
-                "new_inscripcio" => $inscripcio
+                "new_inscripcio" => InscripcionsModel::with(['participant'])->find($inscripcio->ins_id)
             ]
         );
     }
@@ -49,5 +49,10 @@ class InscripcionsController extends Controller
     {
         $data = $request->all();
         dd($data);
+        if($data['state'] == 'participa'){
+
+        }else if($data['state'] == 'retirat'){
+            //$inscripcio = InscripcionsModel::where('ins_id', )
+        }
     }
 }
