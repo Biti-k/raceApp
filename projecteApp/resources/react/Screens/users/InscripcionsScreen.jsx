@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ButtonChange } from "../../Components/ButtonChange";
-
+import { validarRequired } from '../../../validators/script';
 
 export const InscripcionScreen = () => {
   const cursaData = {
@@ -118,13 +118,19 @@ export const InscripcionScreen = () => {
     
   }
 
+  const validar = ()=>{
+    return validarRequired($('#par_nom'));
+  }
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    let url = store_inscripcio;
-    const formData = new FormData();
-    let obj = {
-      "participant" : participant,
-      "inscripcio" : inscripcion
+    if(validar()){
+      let url = store_inscripcio;
+      const formData = new FormData();
+      let obj = {
+        "participant" : participant,
+        "inscripcio" : inscripcion
+      }
     }
     
     
@@ -152,7 +158,7 @@ export const InscripcionScreen = () => {
             <div className="relative flex min-h-[90%] p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base w-[50%] mx-6 my-6">
               <p className="mb-3 text-2xl">Inscripció per la cursa: {cursa.cur_nom}</p>
               <label>Nom del participant</label>
-              <input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="par_nom" onChange={handleChange}/>
+              <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nom" name="par_nom" onChange={handleChange}/>
               <div className="mt-3">
                 <label>Cognoms del participant</label>
                 <input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="par_cognoms" onChange={handleChange}/>
