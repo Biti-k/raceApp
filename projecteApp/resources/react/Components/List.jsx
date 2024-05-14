@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import Card from './Card';
-export const List = ({curses, filtros}) => {
+export const List = ({curses, filtros, reload}) => {
     const [cursesFiltrades, setCursesFiltrades] = useState(curses);
     useEffect(() => {
         let mostrarTodos = 0;
@@ -43,7 +43,7 @@ export const List = ({curses, filtros}) => {
         <div className='flex flex-wrap justify-center gap-4'>
             {
                 cursesFiltrades.map(cursa => 
-                    <Card cursa={cursa} key={cursa.cur_id}/>
+                    <Card cursa={cursa} key={cursa.cur_id} reload={reload}/>
                 )
             }
         </div>

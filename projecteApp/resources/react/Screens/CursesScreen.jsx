@@ -27,6 +27,10 @@ export const CursesScreen = () =>
       });
       setCurses(curses);
     }
+  
+  const reload = ()=>{
+    getCurses();
+  }
 
 	useEffect(() => {
 		getCurses();
@@ -38,7 +42,7 @@ export const CursesScreen = () =>
                 <div>
                     <h1 className='mb-6 text-5xl text-center text-blue2'>Curses <Icon icon="whh:raceflag" className='inline' /></h1>
                     <Filter props_filtros={filtros} setFiltros={setFiltros}></Filter>
-                    <List curses={curses} filtros={filtros}></List>
+                    <List curses={curses} reload={reload} filtros={filtros}></List>
                 </div>
             </div>
         </div>

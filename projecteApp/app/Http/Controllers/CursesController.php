@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoriesModel;
+use App\Models\CheckpointsModel;
 use App\Models\CircuitsCategoriesModel;
 use App\Models\CircuitsModel;
 use App\Models\CursesModel;
@@ -57,22 +58,32 @@ class CursesController extends Controller
         $circuits = json_decode($data["circuits"]);
         $circuitsFinals = array();
         foreach($circuits as $c){
-          $cCreado = CircuitsModel::create([
-            "cir_cur_id" => $cursa->cur_id,
-            "cir_num" =>  $c->cir_num,
-            "cir_distancia" => $c->cir_distancia,
-            "cir_nom" => $c->cir_nom,
-            "cir_preu" => $c->cir_preu,
-            "cir_temps_estimat" => $c->cir_temps_estimat,
-          ]);
-          foreach($c->cir_categories as $ccc){
-              
-            $cccCreado = CircuitsCategoriesModel::create([
-              "ccc_cat_id" => $ccc->cat_id,
-              "ccc_cir_id" => $cCreado->cir_id,
-            ]);
-          }
-          $circuitsFinals[] = $cCreado;
+			$cCreado = CircuitsModel::create([
+				"cir_cur_id" => $cursa->cur_id,
+				"cir_num" =>  $c->cir_num,
+				"cir_distancia" => $c->cir_distancia,
+				"cir_nom" => $c->cir_nom,
+				"cir_preu" => $c->cir_preu,
+				"cir_temps_estimat" => $c->cir_temps_estimat,
+			]);
+          	$km_chek = $cCreado->cir_distancia / (intval($c->cir_checkpoints) != 0 ? intval($c->cir_checkpoints) : 1);
+
+            //check points del circuit
+            for($i = 0; $i < $c->cir_checkpoints; $i++){
+				CheckpointsModel::create([
+					'chk_pk' => $km_chek * ($i+1),
+					'chk_cir_id' => $cCreado->cir_id
+				]);
+            }
+
+			foreach($c->cir_categories as $ccc){
+				$cccCreado = CircuitsCategoriesModel::create([
+					"ccc_cat_id" => $ccc->cat_id,
+					"ccc_cir_id" => $cCreado->cir_id,
+				]);	
+			}
+
+			$circuitsFinals[] = $cCreado;
         }
 
 
@@ -91,7 +102,7 @@ class CursesController extends Controller
         $foto = $request->files->all();
         $cursa = json_decode($data['cursa']);
         $circuits_new = json_decode($data['circuits']);
-        
+       
         $circuits_old = CircuitsModel::where('cir_cur_id', $cursa->cur_id)->get();
 
         foreach($circuits_old as $cir_old){
@@ -127,6 +138,16 @@ class CursesController extends Controller
                     ]);
                 }
 
+                $km_chek = $circu->cir_distancia / (intval($cir->cir_checkpoints) != 0 ? intval($cir->cir_checkpoints) : 1);
+
+                //check points del circuit
+                for($i = 0; $i < $cir->cir_checkpoints; $i++){
+                    CheckpointsModel::create([
+                        'chk_pk' => $km_chek * ($i+1),
+                        'chk_cir_id' => $circu->cir_id
+                    ]);
+                }
+
 
             }else{
                 
@@ -141,11 +162,21 @@ class CursesController extends Controller
                 
                 CircuitsCategoriesModel::where('ccc_cir_id',$cir->cir_id)->delete();
                 foreach($cir->cir_categories as $cat){
-                    
-
+                
                     CircuitsCategoriesModel::create([
                         'ccc_cat_id' => $cat->cat_id,
                         'ccc_cir_id' =>  $cir->cir_id,
+                    ]);
+                }
+
+                CheckpointsModel::where('chk_cir_id',$cir->cir_id)->delete();
+
+                $km_chek = $cir->cir_distancia / (intval($cir->cir_checkpoints) != 0 ? intval($cir->cir_checkpoints) : 1);
+                //check points del circuit
+                for($i = 0; $i < $cir->cir_checkpoints; $i++){
+                    CheckpointsModel::create([
+                        'chk_pk' => $km_chek * ($i+1),
+                        'chk_cir_id' => $cir->cir_id
                     ]);
                 }
             }
@@ -217,5 +248,13 @@ class CursesController extends Controller
             "categories" => $response
         ]
         );
+    }
+
+    public function ChangeStateCursa (Request $request)
+    {
+        $data = $request->all();
+        CursesModel::where('cur_id', $data['cur_id'])->update(['cur_est_id' => $data['state']]);
+        $cursa = CursesModel::find($data['cur_id']);
+        return response()->json(['cursa' => $cursa]);
     }
 }

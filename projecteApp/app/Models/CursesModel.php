@@ -30,13 +30,13 @@ class CursesModel extends Model
     public static function getWithRelations($params = null)
     {
         if(isset($params['id'])){
-            $curses = self::where('cur_id', $params['id'])->with(['esport', 'estat', 'circuits.categories.categoria', 'circuits.categories.inscripcions'])->first();
+            $curses = self::where('cur_id', $params['id'])->with(['esport', 'estat', 'circuits.categories.categoria', 'circuits.categories.inscripcions', 'circuits.checkpoints'])->first();
             return response()->json([
                 'cursa' => $curses,
             ]);
             
         }else{
-            $curses = self::with(['esport', 'estat', 'circuits.categories.categoria', 'circuits.categories.inscripcions'])->get();
+            $curses = self::with(['esport', 'estat', 'circuits.categories.categoria', 'circuits.categories.inscripcions', 'circuits.checkpoints'])->get();
             return response()->json([
                 'curses' => $curses,
             ]);

@@ -11,13 +11,19 @@ class CircuitsModel extends Model
     protected $primaryKey = "cir_id";
     protected $table = "circuits";
     protected $fillable = ['cir_id','cir_cur_id','cir_num','cir_distancia','cir_nom','cir_preu','cir_temps_estimat'];
+    protected $appends = ['cir_checkpoints'];
+    
+    public function getCirCheckpointsAttribute()
+    {
+        return $this->checkpoints()->count();
+    }
 
     public function curses(){
         return $this->belongsTo(CursesModel::class, "cir_cur_id");
     }
 
     public function checkpoints(){
-        return $this->hasMany(CheckpointsModel::class, "chk_id");
+        return $this->hasMany(CheckpointsModel::class, "chk_cir_id");
     }
 
     public function categories(){

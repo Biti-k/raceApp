@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
 
+import { CheckPointsList } from '../Components/CheckPointsList';
+
 
 export const CursaScreen = () =>
 {
@@ -28,7 +30,9 @@ export const CursaScreen = () =>
 			cir_distancia : '',
 			cir_temps_estimat : '',
 			cir_preu : '',
-			cir_categories : []
+      cir_checkpoints : '',
+			cir_categories : [],
+			checkpoints : []
     }
 
     const [url, setUrl] = useState('');
@@ -238,70 +242,7 @@ export const CursaScreen = () =>
 								</div>
 
 							</div>
-							
-							<div className="relative mt-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-					
-								<h1 className='mt-4 text-2xl text-center text-blue1'>Circuits</h1> 
-								
-								<div onClick={handleAddCir} className='button-new-cursa flex justify-center items-center p-5 w-fit h-[40px] rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 text-white select-none'>Nou circuit</div>
-								
-								<div className=' flex w-[100%] h-fit p-5'>
-									<div className="mx-5 w-[100%] ">    
-										{ circuits.map((cir, index) =>
-										<div key={cir.cir_num}>
-											<br/>
-                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
-
-	                    <label >Nom: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
-											
-											<br/><label className='mt-1' >Categoires: </label>
-											{
-												categories.map((e) => 
-														
-													<div key={e.cat_id} className='flex gap-2 w-fit'>
-														{ cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
-															<input
-																checked
-																className="cursor-pointer select-none" type="checkbox" 
-																id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
-																name={e.cat_nom} 
-																onChange={(evt)=> handleCatCirChange(evt, index)} 
-																value={e.cat_id}
-															/> 
-														: 
-															<input 
-																className="cursor-pointer select-none" 
-																type="checkbox" 
-																id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
-																name={e.cat_nom} 
-																onChange={(evt)=> handleCatCirChange(evt, index)} 
-																value={e.cat_id}
-															/> 
-														}
-														<label className="cursor-pointer select-none" htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
-													</div>
-												)
-											}
-											
-											<br/><label>Distancia: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
-											
-											<br/><label>Temps estimat (minuts): </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
-
-											<br/><label>Preu: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
-                      {index == circuits.length - 1 ?
-                        '' : <hr className='mt-2 text-darkmetal/80'></hr>
-                      }
-                      
-										</div>
-										)}
-
-									</div>
-								</div>
-							</div>
+			
 						</div>
 						<div className="w-[50%]">
 								
@@ -322,6 +263,78 @@ export const CursaScreen = () =>
 						</div>
 
 					</div>
+
+          <div className='flex justify-start min-w-full'>
+            <div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+            
+              <h1 className='mt-4 mb-3 text-2xl text-center text-blue1'>Circuits</h1> 
+              
+              <div onClick={handleAddCir} className='button-new-cursa flex justify-center items-center p-5 w-fit h-[40px] rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 text-white select-none'>Nou circuit</div>
+              
+              { circuits.map((cir, index) =>
+              <div  key={cir.cir_num}>
+                <div className=' flex w-[100%] h-fit p-5'>
+                  <div className="mx-5 w-[50%] ">    
+                    
+                      <br/>
+                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
+
+                      <label >Nom: </label>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      
+                      <br/><label className='mt-1' >Categoires: </label>
+                      {
+                        categories.map((e) => 
+                            
+                          <div key={e.cat_id} className='flex gap-2 w-fit'>
+                            { cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
+                              <input
+                                checked
+                                className="cursor-pointer select-none" type="checkbox" 
+                                id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
+                                name={e.cat_nom} 
+                                onChange={(evt)=> handleCatCirChange(evt, index)} 
+                                value={e.cat_id}
+                              /> 
+                            : 
+                              <input 
+                                className="cursor-pointer select-none" 
+                                type="checkbox" 
+                                id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
+                                name={e.cat_nom} 
+                                onChange={(evt)=> handleCatCirChange(evt, index)} 
+                                value={e.cat_id}
+                              /> 
+                            }
+                            <label className="cursor-pointer select-none" htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
+                          </div>
+                        )
+                      }
+                      
+                      <br/><label>Distancia (km): </label>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      
+                      <br/><label>Numero de checkpoints: </label>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
+
+                      <br/><label>Temps estimat (minuts): </label>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
+
+                      <br/><label>Preu: </label>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      {index == circuits.length - 1 ?
+                        '' : <hr className='mt-2 text-darkmetal/80'></hr>
+                      }
+
+                  </div>
+                  <div  className=' flex w-[50%] h-fit'>
+                    <CheckPointsList cursa={cursa} circuit={cir}/>
+                  </div>
+                </div>
+              </div>
+              )}
+            </div>
+          </div>
 
 					<div className='flex justify-start min-w-full'>
 						<div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
