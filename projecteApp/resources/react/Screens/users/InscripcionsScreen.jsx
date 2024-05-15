@@ -162,7 +162,7 @@ export const InscripcionScreen = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-  
+    $("#msj").text("");
     if(validar()){
       
       let url = store_inscripcio;
@@ -173,7 +173,12 @@ export const InscripcionScreen = () => {
       }
       axios.post(url, obj)
       .then(response => {
-        
+        $("#msj").text("Inscripció realitzada amb exit.");
+        setInscripcion(inscripcioData);
+        setParticipant(participantData);
+        setCCC({});
+        setCircuitoEscogido([]);
+        setBotones({});
       })
       .catch(error => {
         console.error('Error:', error);
@@ -195,34 +200,37 @@ export const InscripcionScreen = () => {
       <form onSubmit={handleSubmit} className="h-[100%]">
       <div className='flex justify-center min-w-full min-h-full text-white bg-grey'>
         <div className='flex flex-col items-center w-full'>
+          <div id="msj" className="mt-2 text-3xl font-bold text-blue2">
+            
+          </div>
           <div className='flex justify-center min-w-full h-[100%] w-full'>
             <div className="relative flex min-h-[90%] p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base w-[50%] mx-6 my-6">
               <p className="mb-3 text-2xl">Inscripció per la cursa: {cursa.cur_nom}</p>
               <label>Nom del participant</label>
-              <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nom" name="par_nom" onChange={handleChange}/>
+              <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nom" name="par_nom" onChange={handleChange} value={participant.par_nom} />
               <div className="mt-3">
                 <label>Cognoms del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_cognoms" name="par_cognoms" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_cognoms" name="par_cognoms" onChange={handleChange} value={participant.par_cognoms}/>
               </div>
               <div className="mt-3">
                 <label>NIF del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nif" name="par_nif" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nif" name="par_nif" onChange={handleChange} value={participant.par_nif}/>
               </div>
               <div className="mt-3">
                 <label>Data naixement del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="par_data_naixement" name="par_data_naixement" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="par_data_naixement" name="par_data_naixement" onChange={handleChange} value={participant.par_data_naixement}/>
               </div>
               <div className="mt-3">
                 <label>Telèfon del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_telefon" name="par_telefon" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_telefon" name="par_telefon" onChange={handleChange} value={participant.par_telefon}/>
               </div>
               <div className="mt-3">
                 <label>Email del participant</label>
-                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_email" name="par_email" onChange={handleChange}/>
+                <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_email" name="par_email" onChange={handleChange} value={participant.par_email}/>
               </div>
               <div className="flex gap-2 mt-3">
                 <input className='' type="checkbox" name="par_es_federat" id="par_es_federat" onChange={handleFederat}/>
-                <label htmlFor="par_es_federat">Federat</label>
+                <label htmlFor="par_es_federat" value={participant.par_es_federat}>Federat</label>
               </div>
 
             </div>

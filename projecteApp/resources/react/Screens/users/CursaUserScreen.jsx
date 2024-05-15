@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import moment from 'moment';
 export const CursaUserScreen = () =>
 {
 
@@ -214,34 +214,39 @@ export const CursaUserScreen = () =>
                       <label className="text-lg font-bold text-blue1">Descripció: </label>
 										  <p className='text-black w-[100%]' >{cursa.cur_desc}</p>
                     </div>
-										<div className='flex items-center'>
-                      <Icon icon="f7:placemark" className='inline-block text-3xl text-blue1' />
-                      <span className='text-black w-[100%]'>{cursa.cur_lloc}</span>
-                    </div>
-                    <div className='flex gap-5'>
-                      <div className='flex flex-col'>
-                        <label>Data Inici: </label>
-                        <span className='text-black w-[100%]'>{cursa.cur_data_inici}</span>
-                      </div>
-                      <div className='flex flex-col'>
-                        <label>Data fi: </label>
-                        <span className='text-black w-[100%]'>{cursa.cur_data_fi}</span>
-                      </div>
+
+                    <div>
+                      <label className="text-lg font-bold text-blue1">Limit inscrits: </label>
+                      <span className='text-black w-[100%]'>{cursa.cur_limit_inscr}</span>
                     </div>
 
+                    <div>
+                      <label className="text-lg font-bold text-blue1">Web: </label>
+                      <span className='text-black w-[100%]'>{cursa.cur_web}</span>
+                    </div>
 
-										<label>Limit inscrits: </label>
-										<span className='text-black w-[100%]'>{cursa.cur_limit_inscr}</span>
+                    <div>
+                      <label className='text-lg font-bold text-blue1'>Esport: </label>
+                      <span className='text-black w-[100%]'>{cursa.esport.esp_nom}</span>
+                    </div>
 
-										<label>Web: </label>
-										<span className='text-black w-[100%]'>{cursa.cur_web}</span>
-										
-										<label>Esport: </label>
-										<span className='text-black w-[100%]'>{cursa.esport.esp_nom}</span>
-											
-										
-											
-											
+
+                    <div className='flex justify-between w-full gap-2'>
+                      <div className='flex items-center'>
+                        <Icon icon="f7:placemark" className='inline-block text-3xl text-blue1' />
+                        <span className='text-black w-[100%]'>{cursa.cur_lloc}</span>
+                      </div>
+                      <div className='flex items-center justify-center gap-2'>
+                        <Icon icon="material-symbols:date-range" className='text-2xl text-blue1' />
+                        <div className='flex flex-col'>
+                          <span className='text-black w-[100%]'>{moment(new Date(cursa.cur_data_inici.substring(0,10))).format("DD/MM/YYYY")}</span>
+                        </div>
+                        -
+                        <div className='flex flex-col'>
+                          <span className='text-black w-[100%]'>{moment(new Date(cursa.cur_data_fi.substring(0,10))).format("DD/MM/YYYY")}</span>
+                        </div>
+                      </div>
+                    </div>
 									</div>
 
 										
@@ -256,14 +261,17 @@ export const CursaUserScreen = () =>
 								<div className=' flex w-[100%] h-fit p-5'>
 									<div className="mx-5 w-[100%] ">    
 										{ circuits.map((cir, index) =>
-										<div key={cir.cir_num}>
+										<div key={cir.cir_num} className='flex flex-col gap-1'>
 											
-                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label></div>
+                        <div className='flex justify-between w-full'><label  className='text-lg font-bold text-blue1'>Numero de circuit: <span className='font-normal text-darkmetal'>{cir.cir_num}</span></label></div>
+                      
+                      <div>
+                        <label className='text-lg font-bold text-blue1'>Nom: </label>
+                        <span>{cir.cir_nom}</span>
+                      </div>
 
-	                    <label >Nom: </label>
-											<span>{cir.cir_nom}</span>
 											
-											<label className='mt-1' >Categoires: </label>
+											<label className='mt-1 text-lg font-bold text-blue1' >Categories: </label>
 											{
 												categories.map((e) => 
 														
@@ -294,14 +302,21 @@ export const CursaUserScreen = () =>
 												)
 											}
 											
-											<label>Distancia: </label>
-											<span>{cir.cir_distancia}</span>
-											
-											<label>Temps estimat (minuts): </label>
-											<span>{cir.cir_temps_estimat}</span>
+                      <div>
+                        <label className='text-lg font-bold text-blue1'>Distancia: </label>
+                        <span>{cir.cir_distancia}</span>
+                      </div>
 
-											<label>Preu: </label>
-											<span>{cir.cir_preu}</span>
+											<div>
+                        <label className='text-lg font-bold text-blue1'>Temps estimat (minuts): </label>
+                        <span>{cir.cir_temps_estimat}</span>
+                      </div>
+
+                      <div>
+                        <label className='text-lg font-bold text-blue1'>Preu: </label>
+                        <span>{cir.cir_preu}</span>
+                      </div>
+
                       {index == circuits.length - 1 ?
                         '' : <hr className='mt-2 text-darkmetal/80'></hr>
                       }
