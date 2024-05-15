@@ -134,9 +134,9 @@ export const Card = ({cursa, reload})=> {
 									{cursa.cur_est_id == 1 ?
 									<div className="grid gap-2 grid-cols-2 pt-3 " id="botones">
 										<NavLink to={mod} >
-											<Button contenido={'Modificar'} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
+											<Button contenido={'Modificar '} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
-										<Button contenido={'Obrir Ins.'} handleClick={handleOpenIns} icono={<Icon icon="clarity:export-solid" className="inline text-2xl align-middle text-blue2"/>}></Button>
+										<Button contenido={'Obrir Ins. '} handleClick={handleOpenIns} icono={<Icon icon="clarity:export-solid" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										<ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>
 										<ButtonDelete  handleClick={openModal} ></ButtonDelete>
 									</div>
@@ -148,7 +148,7 @@ export const Card = ({cursa, reload})=> {
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
-										<Button contenido={'Tancar Ins.'} handleClick={handleCloseIns} icono={<Icon icon="jam:close-circle-f" className="inline text-2xl align-middle text-blue2"/>}></Button>
+										<Button contenido={'Tancar Ins. '} handleClick={handleCloseIns} icono={<Icon icon="jam:close-circle-f" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										<Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>
 									</div>
 									: null}
@@ -158,7 +158,7 @@ export const Card = ({cursa, reload})=> {
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
-										<Button contenido={'Start'} handleClick={handleStart} icono={<Icon icon="ic:outline-play-circle-filled" className="inline text-2xl align-middle text-blue2"/>}></Button>
+										<Button contenido={'Start '} handleClick={handleStart} icono={<Icon icon="ic:outline-play-circle-filled" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										<Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>
 									</div>
 									: null}
@@ -171,7 +171,7 @@ export const Card = ({cursa, reload})=> {
 										<NavLink to={checkIn}>
 											<Button contenido={'Recollida de dorsal '} icono={<Icon icon="mdi:ticket-account" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
-										<Button contenido={'Stop'} handleClick={handleStop} icono={<Icon icon="fa-regular:stop-circle" className="inline text-2xl align-middle text-blue2"/>}></Button>
+										<Button contenido={'Stop '} handleClick={handleStop} icono={<Icon icon="fa-regular:stop-circle" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										<Button contenido={'Cancel·lar '} handleClick={handleCancel} icono={<Icon icon="mdi:cancel" className="inline text-2xl align-middle text-blue2"/>}></Button>
 									</div>
 									: null}

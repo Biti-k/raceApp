@@ -42,8 +42,8 @@ export const CursaUserScreen = () =>
     const [categories, setCategories] = useState([]);
     
     const inscripcio = () => {
-		navigate("/inscripcio/" + cursa.cur_id);
-	}
+			navigate("/inscripcio/" + cursa.cur_id);
+		}
 
     const getCursa = async ()=>{
     
@@ -169,33 +169,11 @@ export const CursaUserScreen = () =>
 			});
 			setCircuits([...data]);
 		}
-
-    const handleSubmit = (evt) =>{
-			evt.preventDefault();
-			
-			const fileInput = document.getElementById('cur_foto');
-			const file = fileInput.files[0];
-			
-			const formData = new FormData();
-			formData.append('cur_foto', file);
-			formData.append('cursa', JSON.stringify(cursa));
-			formData.append('circuits', JSON.stringify(circuits));
-			
-			axios.post(url, formData , {headers: {'Content-Type': 'multipart/form-data'}})
-			.then(response => {
-				//recargar las cursas globales
-				loadPage()
-			})
-			.catch(error => {
-				console.error('Error al subir el archivo:', error);
-			});
-    }
     
 
 
     return(
 			<>
-			<form onSubmit={handleSubmit}>
 				<div className='min-w-full min-h-full text-white bg-grey'>
 					<div className='flex flex-col items-center min-w-full'>
 					<div className='flex justify-center min-w-full'>
@@ -344,10 +322,9 @@ export const CursaUserScreen = () =>
 					</div>
 				</div>
 				<div className='w-[100%] flex justify-center'>
-					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 w-[50%] my-4' type="submit" onClick={inscripcio}/>
-        		</div>
+					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 w-[50%] mb-4' type="submit" onClick={inscripcio}/>
+        </div>
 			</div>
-		</form>
     </>
     )
 }
