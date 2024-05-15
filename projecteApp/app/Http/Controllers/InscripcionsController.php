@@ -60,7 +60,7 @@ class InscripcionsController extends Controller
         }
 
         return response()->json([
-            'inscripcio' => InscripcionsModel::find($data['inscripcio'])
+            'inscripcio' => InscripcionsModel::with(['participant'])->find($data['inscripcio'])
         ]);
     }
 }
