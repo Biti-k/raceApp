@@ -204,7 +204,7 @@ export const CursaScreen = () =>
 								<div className=' flex w-[100%]'>
 								
 									<div className="mx-5 mb-5 w-[100%] ">
-										<br/><label >Nom: </label>
+										<br/><label>Nom: </label>
 										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
 										
 										<br/><label>Desc: </label>

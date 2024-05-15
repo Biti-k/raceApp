@@ -205,33 +205,41 @@ export const CursaUserScreen = () =>
 								<h1 className='mt-4 text-2xl text-center text-blue1'>Cursa</h1>
 								<div className=' flex w-[100%]'>
 								
-									<div className="mx-5 mb-5 w-[100%] ">
-										<br/><label >Nom: </label>
-										<br/><span className='text-black w-[100%]' >{cursa.cur_nom} </span>
-								
+									<div className="mx-5 mb-5 w-[100%] flex flex-col gap-2">
+                    <div>
+                      <label className="text-lg font-bold text-blue1">Nom: </label>
+                      <span className='text-black w-[100%]' >{cursa.cur_nom} </span>
+                    </div>
+                    <div>
+                      <label className="text-lg font-bold text-blue1">Descripció: </label>
+										  <p className='text-black w-[100%]' >{cursa.cur_desc}</p>
+                    </div>
+										<div className='flex items-center'>
+                      <Icon icon="f7:placemark" className='inline-block text-3xl text-blue1' />
+                      <span className='text-black w-[100%]'>{cursa.cur_lloc}</span>
+                    </div>
+                    <div className='flex gap-5'>
+                      <div className='flex flex-col'>
+                        <label>Data Inici: </label>
+                        <span className='text-black w-[100%]'>{cursa.cur_data_inici}</span>
+                      </div>
+                      <div className='flex flex-col'>
+                        <label>Data fi: </label>
+                        <span className='text-black w-[100%]'>{cursa.cur_data_fi}</span>
+                      </div>
+                    </div>
+
+
+										<label>Limit inscrits: </label>
+										<span className='text-black w-[100%]'>{cursa.cur_limit_inscr}</span>
+
+										<label>Web: </label>
+										<span className='text-black w-[100%]'>{cursa.cur_web}</span>
 										
-										<br/><label>Desc: </label>
-										<br/><p className='text-black w-[100%]' >{cursa.cur_desc}</p>
-										
-										<br/><label>Lloc: </label>
-										<br/><span className='text-black w-[100%]'>{cursa.cur_lloc}</span>
-
-										<br/><label>Data Inici: </label>
-										<br/><span className='text-black w-[100%]'>{cursa.cur_data_inici}</span>
-
-										<br/><label>Data fi: </label>
-										<br/><span className='text-black w-[100%]'>{cursa.cur_data_fi}</span>
-
-										<br/><label>Limit inscrits: </label>
-										<br/><span className='text-black w-[100%]'>{cursa.cur_limit_inscr}</span>
-
-										<br/><label>Web: </label>
-										<br/><span className='text-black w-[100%]'>{cursa.cur_web}</span>
-										
-										<br/><label>Esport: </label>
-										<br/><span className='text-black w-[100%]'>{cursa.esport.esp_nom}</span>
+										<label>Esport: </label>
+										<span className='text-black w-[100%]'>{cursa.esport.esp_nom}</span>
 											
-										<br/>
+										
 											
 											
 									</div>
@@ -249,13 +257,13 @@ export const CursaUserScreen = () =>
 									<div className="mx-5 w-[100%] ">    
 										{ circuits.map((cir, index) =>
 										<div key={cir.cir_num}>
-											<br/>
+											
                         <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label></div>
 
 	                    <label >Nom: </label>
-											<br/><span>{cir.cir_nom}</span>
+											<span>{cir.cir_nom}</span>
 											
-											<br/><label className='mt-1' >Categoires: </label>
+											<label className='mt-1' >Categoires: </label>
 											{
 												categories.map((e) => 
 														
@@ -286,14 +294,14 @@ export const CursaUserScreen = () =>
 												)
 											}
 											
-											<br/><label>Distancia: </label>
-											<br/><span>{cir.cir_distancia}</span>
+											<label>Distancia: </label>
+											<span>{cir.cir_distancia}</span>
 											
-											<br/><label>Temps estimat (minuts): </label>
-											<br/><span>{cir.cir_temps_estimat}</span>
+											<label>Temps estimat (minuts): </label>
+											<span>{cir.cir_temps_estimat}</span>
 
-											<br/><label>Preu: </label>
-											<br/><span>{cir.cir_preu}</span>
+											<label>Preu: </label>
+											<span>{cir.cir_preu}</span>
                       {index == circuits.length - 1 ?
                         '' : <hr className='mt-2 text-darkmetal/80'></hr>
                       }
