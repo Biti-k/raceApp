@@ -63,7 +63,6 @@ export const InscripcionScreen = () => {
   const handleFederat = (evt) => {
     let valor = participant.par_es_federat;
     setParticipant({...participant, ["par_es_federat"] : !valor});
-    console.log(participant);
   }
   
   const returnCircuits = (cursa) => {
@@ -123,8 +122,6 @@ export const InscripcionScreen = () => {
   }
 
   const validarCCC = () => {
-    console.log(ccc[circuitoEscogido[circuitoEscogido.length - 1]]);
-    console.log(circuitoEscogido);
     if(circuitoEscogido.length == 0 || !ccc[circuitoEscogido[circuitoEscogido.length - 1]]){
       $("#errorsCCC").text("Has d'escollir un circuit i categoria");
       return 0;

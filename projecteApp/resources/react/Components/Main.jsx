@@ -20,7 +20,7 @@ function Main() {
     return (
         <>
         <MainProvider>
-            <div>
+            <div className='min-h-full bg-grey'>
                 <NavBar></NavBar>
                 <Routes>
                     <Route path="/" element={<MainScreen></MainScreen>} />

@@ -74,7 +74,11 @@ export const Card = ({cursa})=> {
                 <div className="gap-1 p-6 pt-3 columns-2" id="botones">
                     <NavLink to={mod}>
                         <Button contenido={'Mostrar Detalles'}></Button>
-                    </NavLink>              
+                    </NavLink>
+
+                    <NavLink to={"/inscripcio/" + cursa.cur_id}>
+                        <Button contenido="Fer inscripció" />           
+                    </NavLink>
                 </div>
                 </div>
             </div>
