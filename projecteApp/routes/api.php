@@ -61,6 +61,7 @@ Route::post('store_registre', [RegistresController::class, 'store'])->name('regi
 //Inscripcio
 Route::post('store_inscripcio', [InscripcionsController::class, 'storeInscripcio'])->name('inscripcions.store_inscripcio');
 Route::get('state_inscripcio', [InscripcionsController::class, 'stateInscripcio'])->name('inscripcions.state_inscripcio');
+Route::get('get_inscripcions_ccc', [InscripcionsController::class, 'getInscripcionsCCC'])->name('inscripcions.get_inscripcions_ccc');
 
 //Imgs
 Route::get('img/{nom?}', [ImgController::class, 'showImg'])->name('img.show');

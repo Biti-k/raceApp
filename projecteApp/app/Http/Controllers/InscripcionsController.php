@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeaconsModel;
+use App\Models\CheckpointsModel;
+use App\Models\CircuitsCategoriesModel;
+use App\Models\CircuitsModel;
 use App\Models\InscripcionsModel;
 use App\Models\ParticipantsModel;
 use Illuminate\Http\Request;
@@ -43,6 +46,16 @@ class InscripcionsController extends Controller
                 "new_inscripcio" => InscripcionsModel::with(['participant'])->find($inscripcio->ins_id)
             ]
         );
+    }
+
+    public function getInscripcionsCCC(Request $request){
+        $data = $request->all();
+        $ccc_id = $data["ccc_id"];
+        $inscripcions = InscripcionsModel::where("ins_ccc_id", $ccc_id)->with(["participant","registres"])->get();
+        
+        return response()->json([
+            "inscripcions" => $inscripcions,
+        ]);
     }
 
     public function stateInscripcio (Request $request)

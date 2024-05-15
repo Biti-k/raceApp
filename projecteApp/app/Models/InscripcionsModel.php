@@ -13,11 +13,23 @@ class InscripcionsModel extends Model
     protected $primaryKey = 'ins_id';
     protected $fillable = ['ins_id','ins_par_id','ins_data','ins_dorsal','ins_retirat','ins_bea_id','ins_ccc_id'];
 
+    protected $appends = ['ins_checkpoints'];
+    
+    public function getInsCheckpointsAttribute()
+    {
+        return $this->registres()->count();
+    }
+
     public function participant()
     {
         return $this->belongsTo(ParticipantsModel::class, 'ins_par_id');
     }
     
+    public function registres()
+    {
+        return $this->hasMany(RegistresModel::class, 'reg_ins_id');
+    }
+
     public function beacons(){
         return $this->belongsTo(BeaconsModel::class, 'ins_bea_id');
     }

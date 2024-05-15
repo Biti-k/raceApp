@@ -9,20 +9,30 @@ export const ResultatsScreen = () =>
   const [curses, setCurses] = useState([]);
   const [cursa, setCursa] = useState({circuits : []});
   const [circuito, setCircuito] = useState({categories : []});
+  const [inscripcions, setInscripcions] = useState([]);
   const getCurses = async() => {
     let response = await axios.get(get_all_curses)
-
-    setCurses(response.data.curses);
+    response = response.data.curses
+    response = response.filter(e => e.estat.est_id == 5 || e.estat.est_id ==  4);
+    setCurses(response);
 	}
 
   useEffect(() => {
       getCurses();
   }, [])
 
+  const getResultats = async(ccc_id) => {
+    let response = await axios.get(get_inscripcions_ccc, {params:{ccc_id : ccc_id}});
+    response = response.data.inscripcions;
+    console.log(response);
+    setInscripcions(response);
+  }
+
   const handleEscogerCursa = (cur_id) => {
     let c = curses.find(obj => obj.cur_id == cur_id);
     setCursa(c);
     console.log(c);
+    $("#categories").hide();
     $("#circuitos").show(300);
   }
 
@@ -33,13 +43,20 @@ export const ResultatsScreen = () =>
 
   const handleEscogerCategoria = (cat) => {
     $("#escollir").hide(300);
+    $("#resultats").show(300);
+    getResultats(cat);
+  }
+
+  const tornarEscollir = () => {
+    $("#resultats").hide(300);
+    $("#escollir").show(300);
   }
 
   return(
   <>
       <div className='min-w-full min-h-full bg-grey text-darkmetal'>
           <div className='container h-[100%] py-2 mx-auto'>
-              <h1 className='text-4xl text-center text-blue2'>Resultats en viu</h1>
+              <h1 className='mb-5 text-4xl text-center text-blue2'>Resultats en viu</h1>
               <div className='gap-2 sm:flex-col md:flex md:flex-row' id="escollir">
                 <div className='rounded-lg bg-mint h-[100%] md:w-[50%] sm:w-[100%] p-3 mt-6 '>
                     <p className='text-lg font-bold text-blue1'>Escollir cursa</p>
@@ -84,9 +101,38 @@ export const ResultatsScreen = () =>
                     </div>
                   </div>
                 </div>
-
               </div>
-              
+              <div id="resultats" className='hidden w-full h-full'>
+                <div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+                  <div className=' flex flex-col w-[100%] p-3'>
+                  <Icon icon="mingcute:back-2-fill" className='text-4xl duration-200 cursor-pointer text-blue1 hover:scale-125 hover:-rotate-45' onClick={tornarEscollir}/>
+                    <table className='table-inscrits border-spacinplaceholder-gray-400 w-[100%]'>
+                      <thead>
+                        <tr>
+                          <th>Checkpoints superats</th>
+                          <th>Temps ultim checkpoint</th>
+                          <th>Dorsal</th>
+                          <th>Nom i cognoms</th>
+                          <th>Ver</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          inscripcions.map(i => 
+                            <tr key={i.ins_id} className='transition duration-200 cursor-pointer'>
+                              <td className='text-center'>{i.ins_checkpoints}/{circuito.cir_checkpoints}</td>
+                              <td className='text-center'>{i.registres[i.registres.length - 1] ? i.registres[i.registres.length - 1].reg_temps : ''}</td>
+                              <td className='text-center'>{i.ins_dorsal}</td>
+                              <td className='text-center'>{i.participant.par_nom} {i.participant.par_cognoms}</td>
+                              <td className='text-center'><Icon icon="mdi:eye" className='inline-block text-2xl text-blue1' /></td>
+                            </tr>
+                          )
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
           </div>
       </div>
   </>
