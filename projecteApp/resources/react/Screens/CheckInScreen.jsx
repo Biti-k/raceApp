@@ -76,11 +76,22 @@ export const CheckInScreen = () =>
 
 		const handleParticipa = async (ins_id)=>{
 			const response = await axios.get(state_inscripcio, {params: {state : 'participa', inscripcio: ins_id}});
-
+			let insc = inscrits;
+			let inscripcio_nova = response.data.inscripcio;
+			let index = insc.findIndex((ins)=>{ return inscripcio_nova.ins_id == ins.ins_id});
+			insc[index] = inscripcio_nova;
+			console.log(index, insc);
+			setFilteredInscrits([...insc]);
 		}
 
 		const handleRetirat = async (ins_id)=>{
-			const response = await axios.get(state_inscripcio, {params: {state : 'participa', inscripcio: ins_id}});
+			const response = await axios.get(state_inscripcio, {params: {state : 'retirat', inscripcio: ins_id}});
+			let insc = inscrits;
+			let inscripcio_nova = response.data.inscripcio;
+			let index = insc.findIndex((ins)=>{ return inscripcio_nova.ins_id == ins.ins_id});
+			insc[index] = inscripcio_nova;
+			console.log(index, insc);
+			setFilteredInscrits([...insc]);
 		}
 
 
@@ -97,7 +108,7 @@ export const CheckInScreen = () =>
 										
 									<h1 className='mt-4 text-2xl text-center text-blue1'>Recollida de dorsal</h1>
 									<div className=' flex items-center flex-col w-[100%]'>
-										<div className='m-5 w-[95%]'>
+										<div className='m-5 w-[95%] flex justify-end'>
 												<input onChange={handleChange} type='text' id='filter' className='border rounded-xl p-1 text-black' placeholder='Buscar...'/>	
 										</div>
 										<table className='m-5 w-[95%] table-inscrits'>
@@ -120,8 +131,13 @@ export const CheckInScreen = () =>
 														<td>{ins.participant.par_cognoms}</td>
 														<td>{ins.participant.par_telefon}</td>
 														<td className='flex'>
-															<div onClick={()=>handleParticipa(ins.ins_id)} className=' w-[50%] text-center bg-blue1 p-1 m-1 rounded-xl text-white hover:bg-cyan-600 active:bg-cyan-800'>Participa</div>
-															<div onClick={()=>handleRetirat(ins.ins_id)} className=' w-[50%] text-center bg-red-500 p-1 m-1 rounded-xl text-white hover:bg-red-600 active:bg-red-800'>Retirat</div>
+														{ ins.ins_retirat == 1 ? 'Retirat' : 
+															ins.ins_bea_id != null ? ins.ins_bea_id+'' : 
+															<>
+																<div onClick={()=>handleParticipa(ins.ins_id)} className='cursor-pointer w-[50%] text-center bg-blue1 p-1 m-1 rounded-xl text-white hover:bg-cyan-600 active:bg-cyan-800'>Participa</div>
+																<div onClick={()=>handleRetirat(ins.ins_id)} className='cursor-pointer w-[50%] text-center bg-red-500 p-1 m-1 rounded-xl text-white hover:bg-red-600 active:bg-red-800'>Retirat</div>
+															</>
+														}
 														</td>
 													</tr>
 												)}
