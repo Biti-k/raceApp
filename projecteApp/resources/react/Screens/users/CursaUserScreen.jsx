@@ -9,6 +9,8 @@ export const CursaUserScreen = () =>
 
     const { id } = useParams();
 
+		const [load , setLoad] = useState(false);
+		
     const cursaData = {
 			cur_nom : '',
 			cur_data_inici : '',
@@ -59,7 +61,8 @@ export const CursaUserScreen = () =>
         cur.cur_foto = '';
         setCursa(cur);
         returnCircuits(cur);
-		getCategoriesEsport(cur.cur_esp_id);
+				getCategoriesEsport(cur.cur_esp_id);
+				
     }
     
     const returnCircuits = (cursa) => {
@@ -83,15 +86,8 @@ export const CursaUserScreen = () =>
     const loadPage = ()=>{
 			setCircuits([]);
 			getSelects();
-			if(id != 'new'){
-					//recojer datos para update de cursa
-					getCursa()
-					setUrl(update_cursa)
-			}else{
-					setCursa(cursaData)
-					setImg('')
-					setUrl(store_cursa)
-			}
+			getCursa()
+			
     }
 
 
@@ -111,34 +107,7 @@ export const CursaUserScreen = () =>
 			setEsports(select);
     }
 
-    const handleChange = (evt)=>{
-			const { name, value } = evt.target;
-			setCursa({ ...cursa, [name]: value });
-    }
 
-    const handleAddCir = () =>{
-			//Ordenar ?
-			let num = circuits.length > 0 ? circuits[circuits.length-1].cir_num + 1 : 1;
-			let data = circuitData;
-			data.cir_num = num;
-			setCircuits([...circuits, data]);
-    }
-
-    const handleChangeEsport = (evt) => {
-			const { name, value } = evt.target;
-			setCursa({ ...cursa, [name]: value });
-			
-			getCategoriesEsport(value);
-    }
-
-    const handleChangeCir = (evt, index) =>{
-			const { name, value } = evt.target;
-			
-			let cirs = circuits;
-			cirs[index][name] = value; 
-
-			setCircuits([...cirs]);
-    }
 
     const handleCatCirChange = (evt, index) =>{
 			const { name, value, checked } = evt.target;
@@ -155,8 +124,10 @@ export const CursaUserScreen = () =>
 			if(cur_esp_id != -1){
 				let response = await axios.post(get_cursa_form_categories, {esp_id : cur_esp_id});
 				setCategories(response.data.categories);
+				setLoad(true);
 			}else{
 				setCategories([]);
+				setLoad(true);
 			}
     }
 
@@ -174,6 +145,9 @@ export const CursaUserScreen = () =>
 
     return(
 			<>
+			{!load ?
+      	<div className='flex justify-center'><Icon icon="line-md:loading-twotone-loop" className='w-[100px] h-[100px] text-white'/></div>
+			:           
 				<div className='min-w-full min-h-full text-white bg-grey'>
 					<div className='flex flex-col items-center min-w-full'>
 					<div className='flex justify-center min-w-full'>
@@ -325,6 +299,7 @@ export const CursaUserScreen = () =>
 					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 w-[50%] mb-4' type="submit" onClick={inscripcio}/>
         </div>
 			</div>
+			}
     </>
     )
 }
