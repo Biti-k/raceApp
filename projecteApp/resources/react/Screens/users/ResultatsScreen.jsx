@@ -12,6 +12,7 @@ export const ResultatsScreen = () =>
   const [circuito, setCircuito] = useState({categories : []});
   const [inscripcions, setInscripcions] = useState([]);
   const [modalsOpened, setModalsOpened] = useState({});
+  const [ccc, setCCC] = useState(null);
   const getCurses = async() => {
     let response = await axios.get(get_all_curses)
     response = response.data.curses
@@ -46,6 +47,7 @@ export const ResultatsScreen = () =>
   const handleEscogerCategoria = (cat) => {
     $("#escollir").hide(300);
     $("#resultats").show(300);
+    setCCC(cat);
     getResultats(cat);
     let mopens = {};
     inscripcions.map(i => {
@@ -66,6 +68,17 @@ export const ResultatsScreen = () =>
   const closeModal = (ins_id) => {
     $("#modal" + ins_id).hide(100);
   }
+
+  useEffect(() => {
+    if (ccc) {
+      const interval = setInterval(() => {
+        getResultats(ccc);
+        console.log("a");
+      }, 15000);
+
+      return () => clearInterval(interval);
+    }
+  }, [ccc]);
 
   return(
   <>
@@ -121,7 +134,7 @@ export const ResultatsScreen = () =>
                 <div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                   <div className=' flex flex-col w-[100%] p-3'>
                   <Icon icon="mingcute:back-2-fill" className='text-4xl duration-200 cursor-pointer text-blue1 hover:scale-125 hover:-rotate-45' onClick={tornarEscollir}/>
-                    <table className='table-inscrits border-spacinplaceholder-gray-400 w-[100%]'>
+                    <table className='table-inscrits placeholder-gray-400 w-[100%]'>
                       <thead>
                         <tr>
                           <th>Checkpoints superats</th>

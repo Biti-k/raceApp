@@ -22,8 +22,8 @@ export const ModalShowRegistres = ({ isOpen, closeModal, inscripcio , participan
                     {
                       inscripcio.registres.map(r => 
                         <tr key={r.reg_id}>
-                          <td>{r.checkpoint.chk_pk}</td>
-                          <td>{r.reg_temps}</td>
+                          <td className='text-center'>{r.checkpoint.chk_pk}</td>
+                          <td className='text-center'>{r.reg_temps}</td>
                         </tr>
                       )
                     }
