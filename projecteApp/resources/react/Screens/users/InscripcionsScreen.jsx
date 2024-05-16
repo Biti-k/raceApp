@@ -174,14 +174,17 @@ export const InscripcionScreen = () => {
       }
       axios.post(url, obj)
       .then(response => {
-        $("#msj").text("Inscripció realitzada amb exit.");
-        setInscripcion(inscripcioData);
-        setParticipant(participantData);
+
       })
       .catch(error => {
         console.error('Error:', error);
       });
-
+      $("#msj").text("Inscripció realitzada amb exit.");
+      setTimeout(()=>{
+        $("#msj").text("")
+      },7000);
+      setInscripcion(inscripcioData);
+      setParticipant(participantData);
     }
     
     
