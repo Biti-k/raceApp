@@ -51,7 +51,7 @@ class InscripcionsController extends Controller
     public function getInscripcionsCCC(Request $request){
         $data = $request->all();
         $ccc_id = $data["ccc_id"];
-        $inscripcions = InscripcionsModel::where("ins_ccc_id", $ccc_id)->with(["participant","registres"])->get();
+        $inscripcions = InscripcionsModel::where("ins_ccc_id", $ccc_id)->with(["participant","registres.checkpoint"])->get();
         
         return response()->json([
             "inscripcions" => $inscripcions,

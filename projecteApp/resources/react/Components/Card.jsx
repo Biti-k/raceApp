@@ -98,7 +98,7 @@ export const Card = ({cursa, reload})=> {
 
 						</div>
 						<div className="p-6" >
-								<div className="relative z-1 flex items-center justify-end w-full h-auto gap-1 text-darkmetal">
+								<div className="relative flex items-center justify-end w-full h-auto gap-1 z-1 text-darkmetal">
 									<Icon icon="material-symbols:date-range" className="text-blue1"/>
 									<span className="text-sm w-fit">{moment(new Date(cursa.cur_data_inici.substring(0,10))).format("DD/MM/YYYY")} - {moment(new Date(cursa.cur_data_fi.substring(0,10))).format("DD/MM/YYYY")}</span>
 								</div>
@@ -132,19 +132,19 @@ export const Card = ({cursa, reload})=> {
 						
 								<div>
 									{cursa.cur_est_id == 1 ?
-									<div className="grid gap-2 grid-cols-2 pt-3 " id="botones">
+									<div className="grid grid-cols-2 gap-2 pt-3 " id="botones">
 										<NavLink to={mod} >
 											<Button contenido={'Modificar '} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
 										<Button contenido={'Obrir Ins. '} handleClick={handleOpenIns} icono={<Icon icon="clarity:export-solid" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										<ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>
-										<ButtonDelete  handleClick={openModal} ></ButtonDelete>
+										<ButtonDelete handleClick={openModal} ></ButtonDelete>
 									</div>
 									: null}
 
 
 									{cursa.cur_est_id == 2 ?
-									<div className="grid gap-2 grid-cols-2 pt-3" id="botones">
+									<div className="grid grid-cols-2 gap-2 pt-3" id="botones">
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
@@ -154,7 +154,7 @@ export const Card = ({cursa, reload})=> {
 									: null}
 
 									{cursa.cur_est_id == 3 ?
-									<div className="grid gap-2 grid-cols-2 pt-3" id="botones">
+									<div className="grid grid-cols-2 gap-2 pt-3" id="botones">
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
@@ -164,7 +164,7 @@ export const Card = ({cursa, reload})=> {
 									: null}
 
 									{cursa.cur_est_id == 4 ?
-									<div className="grid gap-2 grid-cols-2 pt-3" id="botones">
+									<div className="grid grid-cols-2 gap-2 pt-3" id="botones">
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
@@ -177,7 +177,7 @@ export const Card = ({cursa, reload})=> {
 									: null}
 
 									{cursa.cur_est_id == 5 ?
-									<div className="grid gap-2 grid-cols-2 pt-3" id="botones">
+									<div className="grid grid-cols-2 gap-2 pt-3" id="botones">
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>

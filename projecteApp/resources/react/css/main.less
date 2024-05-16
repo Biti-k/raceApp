@@ -48,6 +48,54 @@ html{
             }
         }
     }
+    .modal-registres{
+        position: fixed;
+        top: 0;
+        left:0;
+        min-width: 100vw;
+        min-height: 100vh;
+        background-color: rgba(0, 0, 0, 0.638);
+        
+        z-index: 10;
+
+
+        .modal-content-registres{
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 90%;
+            height: 90%;
+            background-color: #C0E0DE;
+            border-radius: 10px;
+            padding: 10px;
+
+            .close{
+                background-color: #4F7CAC;
+                color:#9EEFE5;
+                cursor:pointer;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                position: absolute;
+                left: 88%;
+                top: 3%;
+                width: 40px;
+                height: 40px;
+
+                border-radius: 10px;
+                transition: 200ms;
+
+                 &:active{
+                    width: 30px;
+                    height: 30px;
+
+                 }
+            }
+        }
+    }
     .button-new-cursa{
         position: absolute;
         top: 10px;

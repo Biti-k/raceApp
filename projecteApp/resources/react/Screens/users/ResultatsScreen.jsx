@@ -3,6 +3,7 @@ import { MainContext } from '../../context/MainContext'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { Filter } from '../../Components/Filter'
 import axios from 'axios'
+import { ModalShowRegistres } from '../../Components/ModalShowRegistres'
 
 export const ResultatsScreen = () =>
 {
@@ -10,10 +11,11 @@ export const ResultatsScreen = () =>
   const [cursa, setCursa] = useState({circuits : []});
   const [circuito, setCircuito] = useState({categories : []});
   const [inscripcions, setInscripcions] = useState([]);
+  const [modalsOpened, setModalsOpened] = useState({});
   const getCurses = async() => {
     let response = await axios.get(get_all_curses)
     response = response.data.curses
-    response = response.filter(e => e.estat.est_id == 5 || e.estat.est_id ==  4);
+    response = response.filter(e => e.estat.est_id == 5 || e.estat.est_id == 4);
     setCurses(response);
 	}
 
@@ -24,6 +26,7 @@ export const ResultatsScreen = () =>
   const getResultats = async(ccc_id) => {
     let response = await axios.get(get_inscripcions_ccc, {params:{ccc_id : ccc_id}});
     response = response.data.inscripcions;
+    response.sort((a, b) => b.ins_inscripcions - a.ins_inscripcions);
     console.log(response);
     setInscripcions(response);
   }
@@ -31,7 +34,6 @@ export const ResultatsScreen = () =>
   const handleEscogerCursa = (cur_id) => {
     let c = curses.find(obj => obj.cur_id == cur_id);
     setCursa(c);
-    console.log(c);
     $("#categories").hide();
     $("#circuitos").show(300);
   }
@@ -45,11 +47,24 @@ export const ResultatsScreen = () =>
     $("#escollir").hide(300);
     $("#resultats").show(300);
     getResultats(cat);
+    let mopens = {};
+    inscripcions.map(i => {
+      mopens[i.ins_id] = false;
+    });
+    setModalsOpened(mopens);
   }
 
   const tornarEscollir = () => {
     $("#resultats").hide(300);
     $("#escollir").show(300);
+  }
+
+  const openModal = (ins_id) => {
+    $("#modal" + ins_id).show(100);
+  }
+
+  const closeModal = (ins_id) => {
+    $("#modal" + ins_id).hide(100);
   }
 
   return(
@@ -119,17 +134,22 @@ export const ResultatsScreen = () =>
                       <tbody>
                         {
                           inscripcions.map(i => 
-                            <tr key={i.ins_id} className='transition duration-200 cursor-pointer'>
-                              <td className='text-center'>{i.ins_checkpoints}/{circuito.cir_checkpoints}</td>
-                              <td className='text-center'>{i.registres[i.registres.length - 1] ? i.registres[i.registres.length - 1].reg_temps : ''}</td>
-                              <td className='text-center'>{i.ins_dorsal}</td>
-                              <td className='text-center'>{i.participant.par_nom} {i.participant.par_cognoms}</td>
-                              <td className='text-center'><Icon icon="mdi:eye" className='inline-block text-2xl text-blue1' /></td>
-                            </tr>
+                              <tr key={i.ins_id} className='transition duration-200 cursor-pointer' onClick={() => openModal(i.ins_id)}>
+                                <td className='text-center'>{i.ins_checkpoints}/{circuito.cir_checkpoints}</td>
+                                <td className='text-center'>{i.registres[i.registres.length - 1] ? i.registres[i.registres.length - 1].reg_temps : ''}</td>
+                                <td className='text-center'>{i.ins_dorsal}</td>
+                                <td className='text-center'>{i.participant.par_nom} {i.participant.par_cognoms}</td>
+                                <td className='text-center'><Icon icon="mdi:eye" className='inline-block text-2xl text-blue1' /></td>
+                              </tr>
                           )
                         }
                       </tbody>
                     </table>
+                    {
+                      inscripcions.map(i => 
+                        <ModalShowRegistres key={i.ins_id} isOpen={modalsOpened[i.ins_id]} closeModal={() => closeModal(i.ins_id)} inscripcio={i} participant={i.participant}></ModalShowRegistres>
+                      )
+                    }
                   </div>
                 </div>
               </div>

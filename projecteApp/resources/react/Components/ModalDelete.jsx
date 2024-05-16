@@ -31,8 +31,8 @@ export const ModalDelete = ({ isOpen, closeModal, object , id, url}) => {
           <div className="modal-content">
             {/* <span className="close" onClick={closeModal}>&times;</span> */}
             <div className="flex flex-col justify-evenly w-[100%] h-[100%] ">
-              <div className=" block px-8">
-                <h1 className=' text-2xl text-blue1'>Eliminar</h1>
+              <div className="block px-8 ">
+                <h1 className='text-2xl  text-blue1'>Eliminar</h1>
                 <p>Estas segur que vols elimiar l'element ?</p>
                 {!ok ? <p>Error en la eliminació</p> : null}
               </div>
