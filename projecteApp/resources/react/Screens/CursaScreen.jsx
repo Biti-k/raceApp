@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
-
+import { validarRequired } from '../../validators/script';
 import { CheckPointsList } from '../Components/CheckPointsList';
 
 
@@ -170,24 +170,95 @@ export const CursaScreen = () =>
 
     const handleSubmit = (evt) =>{
 			evt.preventDefault();
+			if(validar()){
+
+				const fileInput = document.getElementById('cur_foto');
+				const file = fileInput.files[0];
+				
+				const formData = new FormData();
+				formData.append('cur_foto', file);
+				formData.append('cursa', JSON.stringify(cursa));
+				formData.append('circuits', JSON.stringify(circuits));
+				
+				axios.post(url, formData , {headers: {'Content-Type': 'multipart/form-data'}})
+				.then(response => {
+					//recargar las cursas globales
+					loadPage()
+				})
+				.catch(error => {
+					console.error('Error al guardar la cursa:', error);
+				});
 			
-			const fileInput = document.getElementById('cur_foto');
-			const file = fileInput.files[0];
-			
-			const formData = new FormData();
-			formData.append('cur_foto', file);
-			formData.append('cursa', JSON.stringify(cursa));
-			formData.append('circuits', JSON.stringify(circuits));
-			
-			axios.post(url, formData , {headers: {'Content-Type': 'multipart/form-data'}})
-			.then(response => {
-				//recargar las cursas globales
-				loadPage()
-			})
-			.catch(error => {
-				console.error('Error al guardar la cursa:', error);
-			});
+			}
     }
+
+		const validarCirCat = ()=>{
+			
+			let valid = true;
+			
+			circuits.forEach((ele) =>{
+				let input = '#cir_cat_'+ele.cir_num;
+				$(input).text('');
+				if(ele.cir_categories.length == 0 ){
+					valid = false;
+					$(input).text("Has d'escollir una categoria");
+				}
+
+			});
+
+			return valid;
+		}
+
+		const validar = ()=>{
+
+			validarRequired($('#cur_nom'))
+			validarRequired($('#cur_lloc'))
+			validarRequired($('#cur_data_inici'))
+			validarRequired($('#cur_data_fi'))
+			validarRequired($('#cur_limit_inscr'))
+			validarRequired($('#cur_esp_id'))			
+			validarCirCat()
+
+
+			//valida tots els circuits
+
+			let valid = true;
+	
+			let cirs_noms = $('input[name="cir_nom"]');
+			$(cirs_noms).each((i, ele)=>{if(!validarRequired($(ele))){valid = false;}});
+			
+			let cir_distancia = $('input[name="cir_distancia"]');
+			$(cir_distancia).each((i, ele)=>{if(!validarRequired($(ele))){valid = false;}});
+
+			let cir_checkpoints = $('input[name="cir_checkpoints"]');
+			$(cir_checkpoints).each((i, ele)=>{if(!validarRequired($(ele))){valid = false;}});
+
+			let cir_temps_estimat = $('input[name="cir_temps_estimat"]');
+			$(cir_temps_estimat).each((i, ele)=>{if(!validarRequired($(ele))){valid = false;}});
+
+			let cir_preu = $('input[name="cir_preu"]');
+			$(cir_preu).each((i, ele)=>{if(!validarRequired($(ele))){valid = false;}});
+
+			
+			if(
+				valid &&
+				validarRequired($('#cur_nom')) &&
+				validarRequired($('#cur_lloc')) &&
+				validarRequired($('#cur_data_inici')) &&
+				validarRequired($('#cur_data_fi')) &&
+				validarRequired($('#cur_limit_inscr')) &&
+				validarRequired($('#cur_esp_id')) &&
+				validarCirCat()
+			){
+				return true;
+			}else{
+
+				return false;
+			}
+			
+			
+			
+		}
     
 
 
@@ -205,35 +276,35 @@ export const CursaScreen = () =>
 								
 									<div className="mx-5 mb-5 w-[100%] ">
 										<br/><label>Nom: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
+										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_nom" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
 										
 										<br/><label>Desc: </label>
-										<br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
+										<br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' id="cur_desc" name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
 										
 										<br/><label>Lloc: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
+										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_lloc" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
 
 										<br/><label>Data Inici: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_inici" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
 
 										<br/><label>Data fi: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_fi" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
 
 										<br/><label>Limit inscrits: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
+										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" id="cur_limit_inscr" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
 
 										<br/><label>Web: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
+										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_web" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
 										
 										<br/><label>Esport: </label>
-										<br/><select className='border rounded-xl p-3 text-black w-[100%]' name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChangeEsport}>
-											<option value="-1">Selecciona un esport</option>
+										<br/><select className='border rounded-xl p-3 text-black w-[100%]' id="cur_esp_id" name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChangeEsport}>
+											<option value="" >Selecciona un esport</option>
 											{esports.map((ele)=>
 												<option key={ele.value} value={ele.value} > {ele.title} </option>
 											)}
 										</select>
-											
 										<br/>
+										<span className="text-red-700 errors" name="errorsCirCat"></span>
 											
 											
 									</div>
@@ -283,45 +354,51 @@ export const CursaScreen = () =>
                       <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
                       
                       <br/><label className='mt-1' >Categoires: </label>
-                      {
-                        categories.map((e) => 
-                            
-                          <div key={e.cat_id} className='flex gap-2 w-fit'>
-                            { cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
-                              <input
-                                checked
-                                className="cursor-pointer select-none" type="checkbox" 
-                                id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
-                                name={e.cat_nom} 
-                                onChange={(evt)=> handleCatCirChange(evt, index)} 
-                                value={e.cat_id}
-                              /> 
-                            : 
-                              <input 
-                                className="cursor-pointer select-none" 
-                                type="checkbox" 
-                                id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
-                                name={e.cat_nom} 
-                                onChange={(evt)=> handleCatCirChange(evt, index)} 
-                                value={e.cat_id}
-                              /> 
-                            }
-                            <label className="cursor-pointer select-none" htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
-                          </div>
-                        )
-                      }
-                      
+											<div>
+												{
+													categories.map((e) => 
+															
+														<div key={e.cat_id} >
+															{ cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
+																<input
+																	checked
+																	
+																	className=" w-fit cursor-pointer select-none" type="checkbox" 
+																	id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
+																	name={e.cat_nom} 
+																	onChange={(evt)=> handleCatCirChange(evt, index)} 
+																	value={e.cat_id}
+																/> 
+															: 
+																<input 
+																	key={e.cat_id}
+																	className=" w-fit cursor-pointer select-none" 
+																	type="checkbox" 
+																	id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
+																	name={e.cat_nom} 
+																	onChange={(evt)=> handleCatCirChange(evt, index)} 
+																	value={e.cat_id}
+																/> 
+															}
+															<label className=" gap-2 cursor-pointer select-none" htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
+															<br/>
+														</div>
+													)
+												}
+												<span id={'cir_cat_'+cir.cir_num} className='text-red-700 errors'></span>
+                      </div>
+
                       <br/><label>Distancia (km): </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
                       
                       <br/><label>Numero de checkpoints: </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
 
                       <br/><label>Temps estimat (minuts): </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
 
                       <br/><label>Preu: </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
+                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
                       {index == circuits.length - 1 ?
                         '' : <hr className='mt-2 text-darkmetal/80'></hr>
                       }
