@@ -27,3 +27,10 @@ npm install axios
 
 
 composer require guzzlehttp/guzzle
+
+
+SELECT count(*) FROM `inscripcions` where `ins_ccc_id` in(
+    (SELECT `ccc_id` FROM `circuits_categories` WHERE `ccc_cir_id` in(
+        (SELECT `cir_id` FROM `circuits` WHERE `cir_cur_id` = 1)
+    ))
+);
