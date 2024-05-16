@@ -46,6 +46,9 @@ export const List = ({curses, filtros}) => {
                     <Card cursa={cursa} key={cursa.cur_id}/>
                 )
             }
+            {
+                cursesFiltrades.length > 0 ? '' : <p className='text-2xl text-blue2'>No hi ha curses disponibles</p>
+            }
         </div>
     );
 }

@@ -13,6 +13,7 @@ export const ResultatsScreen = () =>
   const [inscripcions, setInscripcions] = useState([]);
   const [modalsOpened, setModalsOpened] = useState({});
   const [ccc, setCCC] = useState(null);
+  const [load,setLoad] = useState(false);
   const getCurses = async() => {
     let response = await axios.get(get_all_curses)
     response = response.data.curses
@@ -21,6 +22,7 @@ export const ResultatsScreen = () =>
       $("#seleccion").show();
     }
     setCurses(response);
+    setLoad(true);
 	}
 
   useEffect(() => {
@@ -34,7 +36,6 @@ export const ResultatsScreen = () =>
     let response = await axios.get(get_inscripcions_ccc, {params:{ccc_id : ccc_id}});
     response = response.data.inscripcions;
     response.sort((a, b) => b.ins_inscripcions - a.ins_inscripcions);
-    console.log(response);
     setInscripcions(response);
   }
 
@@ -91,8 +92,12 @@ export const ResultatsScreen = () =>
           <div className='container h-[100%] py-2 mx-auto'>
               <h1 className='mb-5 text-4xl text-center text-blue2'>Resultats en viu</h1>
               {
+                !load ?                       
+                <div className='flex justify-center'><Icon icon="line-md:loading-twotone-loop" className='w-[100px] h-[100px] text-white'/></div>
+                : <>
+                {
                   curses.length > 0 ? '' : <p className='text-3xl text-center text-blue2'>No hi ha cap cursa en curs<Icon icon="grommet-icons:run" className='inline-block ml-2 text-4xl'/> </p>
-              }
+                }
               <div className='gap-2 sm:flex-col md:flex md:flex-row' id="escollir">
                 <div className='rounded-lg bg-mint h-[100%] md:w-[50%] sm:w-[100%] p-3 mt-6 hidden' id="seleccion">
                     <p className='text-lg font-bold text-blue1'>Escollir cursa</p>
@@ -174,6 +179,9 @@ export const ResultatsScreen = () =>
                   </div>
                 </div>
               </div>
+              </>
+              }
+              
           </div>
       </div>
   </>

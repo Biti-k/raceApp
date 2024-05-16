@@ -49,7 +49,8 @@ export const InscripcionScreen = () => {
   const [participant, setParticipant] = useState(participantData);
   const [ccc, setCCC] = useState({});
   const [circuitoEscogido, setCircuitoEscogido] = useState([]);
-  
+  const [load,setLoad] = useState(false);
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     if(name in participant){
@@ -91,6 +92,7 @@ export const InscripcionScreen = () => {
     cur.cur_foto = '';
     setCursa(cur);
     returnCircuits(cur);
+    setLoad(true);
   }
 
   const initialBotones = () => {
@@ -102,13 +104,15 @@ export const InscripcionScreen = () => {
   }
 
   const handleApuntarseButton = (id) => {
+      let circuito = id;
+      id = ccc[id];
       let bt = botones;
-      bt[id] = !botones[id];
+      bt[circuito] = !botones[circuito];
       setBotones(bt);
-      if(!circuitoEscogido.includes(id)){
-        setCircuitoEscogido([...circuitoEscogido,id]);
+      if(!circuitoEscogido.includes(circuito)){
+        setCircuitoEscogido([...circuitoEscogido,circuito]);
       }else{
-        setCircuitoEscogido(circuitoEscogido.filter(item => item != id));
+        setCircuitoEscogido(circuitoEscogido.filter(item => item != circuito));
       }
       setInscripcion({...inscripcion , ['ins_ccc_id']:id});
   }
@@ -196,7 +200,7 @@ export const InscripcionScreen = () => {
     <>
       <form onSubmit={handleSubmit} className="h-[100%]">
       <div className='flex justify-center min-w-full min-h-full text-white bg-grey'>
-        <div className='flex flex-col items-center w-full'>
+        <div className='flex flex-col items-center w-full'> 
           <div id="msj" className="mt-2 text-3xl font-bold text-blue2">
             
           </div>
@@ -250,7 +254,7 @@ export const InscripcionScreen = () => {
                           </div>
                         )
                       }
-                      <ButtonChange handleClick={handleApuntarseButton} agregarContent={"Apuntar-se"} quitarContent={"Desapuntar-se"} id={e.cir_id} agregado={botones[e.cir_id]}></ButtonChange>
+                      <ButtonChange handleClick={() => handleApuntarseButton(e.cir_id)} agregarContent={"Apuntar-se"} quitarContent={"Desapuntar-se"} id={e.cir_id} agregado={botones[e.cir_id]}></ButtonChange>
                       <hr className="my-2"></hr>
 
                     </div>

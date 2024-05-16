@@ -147,7 +147,7 @@ export const CheckInScreen = () =>
 									<h1 className='mt-4 text-2xl text-center text-blue1'>Recollida de dorsal</h1>
 									<div className=' flex items-center flex-col w-[100%]'>
 										<div className='m-5 w-[95%] flex justify-end'>
-												<input onChange={handleChange} type='text' id='filter' className='border rounded-xl p-1 text-black' placeholder='Buscar...'/>	
+												<input onChange={handleChange} type='text' id='filter' className='p-1 text-black border rounded-xl' placeholder='Buscar...'/>	
 										</div>
 										{!load ?
                         <div className='flex justify-center'><Icon icon="line-md:loading-twotone-loop" className='w-[100px] h-[100px] text-blue1'/></div>
@@ -190,7 +190,7 @@ export const CheckInScreen = () =>
 														<span>Page: {page+1}</span>
 														<span>Pages: {maxPages}</span>
 												</div>
-												<div className='flex justify-evenly w-full'>
+												<div className='flex w-full justify-evenly'>
 														<button onClick={handlePrevious} className=' w-[100px] rounded-xl bg-blue1 text-white px-2 py-1 m-2 hover:bg-cyan-600 active:bg-cyan-700'>Previous </button>
 														<button onClick={handleNext} className='w-[100px] rounded-xl bg-blue1 text-white px-2 py-1 m-2 hover:bg-cyan-600 active:bg-cyan-700'>Next</button>
 												</div>

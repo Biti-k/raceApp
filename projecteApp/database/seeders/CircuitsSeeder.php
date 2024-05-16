@@ -27,7 +27,7 @@ class CircuitsSeeder extends Seeder
         CircuitsModel::create([
             'cir_id' => 2,
             "cir_cur_id" => 2,
-            "cir_num" => 2,
+            "cir_num" => 1,
             "cir_distancia" => 30,
             "cir_nom" => "Steel Man Circuito",
             "cir_preu" => 19,
