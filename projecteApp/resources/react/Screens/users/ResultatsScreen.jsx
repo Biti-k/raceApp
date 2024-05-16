@@ -146,7 +146,13 @@ export const ResultatsScreen = () =>
                     {
                       curses.map(c =>
                       <div key={c.cur_id} className='flex items-center gap-2 p-4 transition duration-150 bg-gray-100 rounded-lg cursor-pointer active:scale-90' onClick={() => handleEscogerCursa(c.cur_id)}>
-                        <img src={window.location.origin+'/api/img/'+c.cur_foto} className='w-[50px] h-[50px] object-cover rounded-lg'></img>
+                        {
+                          c.cur_foto != null ?
+                          <img src={window.location.origin+'/api/img/'+c.cur_foto} className='w-[50px] h-[50px] object-cover rounded-lg'></img> 
+                          : 
+                          <Icon icon="whh:raceflag" className='w-[50px] h-[50px] object-cover rounded-lg'/>
+                        }
+
                         {c.cur_nom}
                         <div className='flex items-center w-auto gap-1 p-1 rounded-lg shadow-md'>
                           <Icon icon="mingcute:location-fill" className='text-xl text-blue1'/>
@@ -217,7 +223,7 @@ export const ResultatsScreen = () =>
                           <span>Page: {page+1}</span>
                           <span>Pages: {maxPages}</span>
 												</div>
-												<div className='flex justify-evenly w-full'>
+												<div className='flex w-full justify-evenly'>
                           <button onClick={handlePrevious} className='select-none w-[100px] rounded-xl bg-blue1 text-white px-2 py-1 m-2 hover:bg-cyan-600 active:bg-cyan-700'>Previous </button>
                           <button onClick={handleNext} className='select-none w-[100px] rounded-xl bg-blue1 text-white px-2 py-1 m-2 hover:bg-cyan-600 active:bg-cyan-700'>Next</button>
 												</div>
