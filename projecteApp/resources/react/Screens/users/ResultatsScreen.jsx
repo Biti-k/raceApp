@@ -16,12 +16,18 @@ export const ResultatsScreen = () =>
   const getCurses = async() => {
     let response = await axios.get(get_all_curses)
     response = response.data.curses
-    response = response.filter(e => e.estat.est_id == 5 || e.estat.est_id == 4);
+    response = response.filter(e => e.estat.est_id == 4);
+    if(response.length > 0){
+      $("#seleccion").show();
+    }
     setCurses(response);
 	}
 
   useEffect(() => {
+    getCurses();
+    const interval = setInterval(() => {
       getCurses();
+    }, 15000);
   }, [])
 
   const getResultats = async(ccc_id) => {
@@ -73,7 +79,6 @@ export const ResultatsScreen = () =>
     if (ccc) {
       const interval = setInterval(() => {
         getResultats(ccc);
-        console.log("a");
       }, 15000);
 
       return () => clearInterval(interval);
@@ -82,11 +87,14 @@ export const ResultatsScreen = () =>
 
   return(
   <>
-      <div className='min-w-full min-h-full bg-grey text-darkmetal p-6'>
+      <div className='min-w-full min-h-full p-6 bg-grey text-darkmetal'>
           <div className='container h-[100%] py-2 mx-auto'>
               <h1 className='mb-5 text-4xl text-center text-blue2'>Resultats en viu</h1>
+              {
+                  curses.length > 0 ? '' : <p className='text-3xl text-center text-blue2'>No hi ha cap cursa en curs<Icon icon="grommet-icons:run" className='inline-block ml-2 text-4xl'/> </p>
+              }
               <div className='gap-2 sm:flex-col md:flex md:flex-row' id="escollir">
-                <div className='rounded-lg bg-mint h-[100%] md:w-[50%] sm:w-[100%] p-3 mt-6 '>
+                <div className='rounded-lg bg-mint h-[100%] md:w-[50%] sm:w-[100%] p-3 mt-6 hidden' id="seleccion">
                     <p className='text-lg font-bold text-blue1'>Escollir cursa</p>
                     <div className='flex flex-col gap-3 mt-2'>
                     {
