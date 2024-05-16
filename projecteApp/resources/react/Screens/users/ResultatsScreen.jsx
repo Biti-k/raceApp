@@ -11,6 +11,7 @@ export const ResultatsScreen = () =>
   const [cursa, setCursa] = useState({circuits : []});
   const [circuito, setCircuito] = useState({categories : []});
   const [inscripcions, setInscripcions] = useState([]);
+  const [inscripcionsShow, setInscripcionsShow] = useState([]);
   const [modalsOpened, setModalsOpened] = useState({});
   const [ccc, setCCC] = useState(null);
   const [load,setLoad] = useState(false);
@@ -37,6 +38,7 @@ export const ResultatsScreen = () =>
     response = response.data.inscripcions;
     response.sort((a, b) => b.ins_inscripcions - a.ins_inscripcions);
     setInscripcions(response);
+    setList(response);
   }
 
   const handleEscogerCursa = (cur_id) => {
@@ -85,6 +87,45 @@ export const ResultatsScreen = () =>
       return () => clearInterval(interval);
     }
   }, [ccc]);
+
+
+
+  const [maxPages, setMaxPages] = useState(0); 
+  const [page, setPage] = useState(0);
+  const numberPage = 10;
+  
+
+  const setList = (start_inscrits)=>{
+    setPage(0);
+    setMaxPages(Math.ceil(start_inscrits.length/numberPage));
+    let inscr = start_inscrits.slice(numberPage*page,(numberPage*page) + numberPage);
+
+    setInscripcionsShow([...inscr]);
+  }
+  
+  const handleNext = (evt)=>{
+      evt.preventDefault();
+
+      let new_page = page + 1;
+      if(new_page < maxPages){
+          setPage(new_page);
+          let inscr = inscripcions.slice(numberPage*new_page,(numberPage*new_page) + numberPage);
+          setInscripcionsShow([...inscr]);
+      }
+  }
+  const handlePrevious = (evt)=>{
+      evt.preventDefault();
+
+      let new_page = page - 1;
+      if(new_page >= 0){
+          setPage(new_page);
+          let inscr = inscripcions.slice(numberPage*new_page,(numberPage*new_page) + numberPage);
+          setInscripcionsShow([...inscr]);
+      }
+  }
+
+
+
 
   return(
   <>
@@ -159,7 +200,7 @@ export const ResultatsScreen = () =>
                       </thead>
                       <tbody>
                         {
-                          inscripcions.map(i => 
+                          inscripcionsShow.map(i => 
                               <tr key={i.ins_id} className='transition duration-200 cursor-pointer' onClick={() => openModal(i.ins_id)}>
                                 <td className='text-center'>{i.ins_checkpoints}/{circuito.cir_checkpoints}</td>
                                 <td className='text-center'>{i.registres[i.registres.length - 1] ? i.registres[i.registres.length - 1].reg_temps : ''}</td>
@@ -171,6 +212,16 @@ export const ResultatsScreen = () =>
                         }
                       </tbody>
                     </table>
+                    <div className='w-[95%]'>
+												<div className='flex justify-between w-[100%]'>
+                          <span>Page: {page+1}</span>
+                          <span>Pages: {maxPages}</span>
+												</div>
+												<div className='flex justify-evenly w-full'>
+                          <button onClick={handlePrevious} className='select-none w-[100px] rounded-xl bg-blue1 text-white px-2 py-1 m-2 hover:bg-cyan-600 active:bg-cyan-700'>Previous </button>
+                          <button onClick={handleNext} className='select-none w-[100px] rounded-xl bg-blue1 text-white px-2 py-1 m-2 hover:bg-cyan-600 active:bg-cyan-700'>Next</button>
+												</div>
+											</div>
                     {
                       inscripcions.map(i => 
                         <ModalShowRegistres key={i.ins_id} isOpen={modalsOpened[i.ins_id]} closeModal={() => closeModal(i.ins_id)} inscripcio={i} participant={i.participant}></ModalShowRegistres>

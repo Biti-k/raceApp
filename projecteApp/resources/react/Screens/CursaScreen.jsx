@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams  } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
 import { validarRequired } from '../../validators/script';
@@ -10,6 +10,7 @@ export const CursaScreen = () =>
 {
 
     const { id } = useParams();
+
 
     const cursaData = {
 			cur_nom : '',
@@ -183,7 +184,7 @@ export const CursaScreen = () =>
 				axios.post(url, formData , {headers: {'Content-Type': 'multipart/form-data'}})
 				.then(response => {
 					//recargar las cursas globales
-					loadPage()
+					window.location = '/admin/curses';
 				})
 				.catch(error => {
 					console.error('Error al guardar la cursa:', error);
