@@ -16,13 +16,14 @@ class CursesController extends Controller
 
     public function getAll(Request $request)
     {
-        return CursesModel::getWithRelations();
+        $data = $request->all();
+        
+        return CursesModel::getWithRelations($data);
     }
 
     public function getCursa (Request $request)
     {
-        $data = $request->all();
-        
+        $data = $request->all();       
         return CursesModel::getWithRelations($data);
     }
 

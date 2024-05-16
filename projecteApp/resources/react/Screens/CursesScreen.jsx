@@ -11,7 +11,7 @@ export const CursesScreen = () =>
   
   const [load, setLoad] = useState(false);
 
-	const getCurses = async() => {
+	const getCurses = async () => {
 		let response = await axios.get(get_all_curses)
 		setCurses(response.data.curses);
     inscripcions(response.data.curses);

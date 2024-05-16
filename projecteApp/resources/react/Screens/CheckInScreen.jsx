@@ -82,7 +82,8 @@ export const CheckInScreen = () =>
 			let inscripcio_nova = response.data.inscripcio;
 			let index = insc.findIndex((ins)=>{ return inscripcio_nova.ins_id == ins.ins_id});
 			insc[index] = inscripcio_nova;
-			setFilteredInscrits([...insc]);
+			setInscrits([...insc]);
+			setList(insc);
 		}
 
 		const handleRetirat = async (ins_id)=>{
@@ -91,7 +92,8 @@ export const CheckInScreen = () =>
 			let inscripcio_nova = response.data.inscripcio;
 			let index = insc.findIndex((ins)=>{ return inscripcio_nova.ins_id == ins.ins_id});
 			insc[index] = inscripcio_nova;
-			setFilteredInscrits([...insc]);
+			setInscrits([...insc]);
+			setList(insc);
 		}
 
 
@@ -165,7 +167,7 @@ export const CheckInScreen = () =>
 												<tbody>
 													{filteredinscrits.map((ins, index)=>
 														<tr key={ins.ins_id} >
-															<td>{ins.ins_dorsal}</td>
+															<td className='p-2'>{ins.ins_dorsal}</td>
 															<td>{ins.participant.par_nif}</td>
 															<td>{ins.participant.par_nom}</td>
 															<td>{ins.participant.par_cognoms}</td>

@@ -82,7 +82,7 @@ export const ResultatsScreen = () =>
 
   return(
   <>
-      <div className='min-w-full min-h-full bg-grey text-darkmetal'>
+      <div className='min-w-full min-h-full bg-grey text-darkmetal p-6'>
           <div className='container h-[100%] py-2 mx-auto'>
               <h1 className='mb-5 text-4xl text-center text-blue2'>Resultats en viu</h1>
               <div className='gap-2 sm:flex-col md:flex md:flex-row' id="escollir">
