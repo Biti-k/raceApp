@@ -111,7 +111,7 @@ export const Card = ({cursa, reload})=> {
 								<div className="flex flex-wrap gap-2 mb-2">
 									<p className="flex items-center gap-1.5  text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
 									<Icon icon="fluent:people-queue-20-filled" className="text-2xl text-blue1"/>
-										{cursa.inscrits}/{cursa.cur_limit_inscr}
+										{cursa.cur_inscrits}/{cursa.cur_limit_inscr}
 									</p>
 									<p>
 										<Icon icon="ion:location-sharp" className="inline-block text-2xl text-blue1" />

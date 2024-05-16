@@ -177,9 +177,6 @@ export const InscripcionScreen = () => {
         $("#msj").text("Inscripció realitzada amb exit.");
         setInscripcion(inscripcioData);
         setParticipant(participantData);
-        setCCC({});
-        setCircuitoEscogido([]);
-        setBotones({});
       })
       .catch(error => {
         console.error('Error:', error);
