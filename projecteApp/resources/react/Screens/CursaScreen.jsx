@@ -268,165 +268,165 @@ export const CursaScreen = () =>
 			<form onSubmit={handleSubmit}>
 				<div className='min-w-full min-h-full text-white bg-grey'>
 					<div className='flex flex-col items-center min-w-full'>
-					<div className='flex justify-center min-w-full'>
-						<div className='relative my-6 ml-6 flex-col items-center w-[50%]'>
-							<div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+						<div className='md:flex md:justify-center min-w-full'>
+							<div className='w-[100%] md:w-[50%]'>
+								<div className="relative my-6 ml-6 mr-6 md:mr-0 w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+										
+									<h1 className='mt-4 text-2xl text-center text-blue1'>Nova Cursa</h1>
+									<div className=' flex w-[100%]'>
 									
-								<h1 className='mt-4 text-2xl text-center text-blue1'>Nova Cursa</h1>
-								<div className=' flex w-[100%]'>
-								
-									<div className="mx-5 mb-5 w-[100%] ">
-										<br/><label>Nom: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_nom" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
-										
-										<br/><label>Desc: </label>
-										<br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' id="cur_desc" name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
-										
-										<br/><label>Lloc: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_lloc" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
-
-										<br/><label>Data Inici: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_inici" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
-
-										<br/><label>Data fi: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_fi" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
-
-										<br/><label>Limit inscrits: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" id="cur_limit_inscr" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
-
-										<br/><label>Web: </label>
-										<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_web" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
-										
-										<br/><label>Esport: </label>
-										<br/><select className='border rounded-xl p-3 text-black w-[100%]' id="cur_esp_id" name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChangeEsport}>
-											<option value="" >Selecciona un esport</option>
-											{esports.map((ele)=>
-												<option key={ele.value} value={ele.value} > {ele.title} </option>
-											)}
-										</select>
-										<br/>
-										<span className="text-red-700 errors" name="errorsCirCat"></span>
+										<div className="mx-5 mb-5 w-[100%] ">
+											<br/><label>Nom: </label>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_nom" name="cur_nom" value={cursa.cur_nom} onChange={handleChange}/>
 											
+											<br/><label>Desc: </label>
+											<br/><textarea rows="7" className='border rounded-xl p-3 text-black w-[100%]' id="cur_desc" name="cur_desc" value={cursa.cur_desc} onChange={handleChange}/>
+											
+											<br/><label>Lloc: </label>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_lloc" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
+
+											<br/><label>Data Inici: </label>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_inici" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+
+											<br/><label>Data fi: </label>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_fi" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+
+											<br/><label>Limit inscrits: </label>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" id="cur_limit_inscr" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
+
+											<br/><label>Web: </label>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_web" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
+											
+											<br/><label>Esport: </label>
+											<br/><select className='border rounded-xl p-3 text-black w-[100%]' id="cur_esp_id" name="cur_esp_id" value={cursa.cur_esp_id} onChange={handleChangeEsport}>
+												<option value="" >Selecciona un esport</option>
+												{esports.map((ele)=>
+													<option key={ele.value} value={ele.value} > {ele.title} </option>
+												)}
+											</select>
+											<br/>
+											<span className="text-red-700 errors" name="errorsCirCat"></span>
+												
+												
+										</div>
+
 											
 									</div>
 
-										
 								</div>
-
+				
 							</div>
-			
-						</div>
-						<div className="w-[50%]">
-								
-							<div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-								<div className='flex flex-col items-center w-auto h-fit'>
-									{img != '' ?
-										<div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-[90%]' src={img} /></div>
-										:
-										null
-									}
-									<div className='w-full px-5 mt-0 mb-5'>
-										<br/><label>Foto: </label>
-										<br/><input className='border rounded-xl p-3 text-black bg-white w-[100%] cursor-pointer' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
+							<div className="w-[100%] md:w-[50%]">
+									
+								<div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+									<div className='flex flex-col items-center w-auto h-fit'>
+										{img != '' ?
+											<div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-[90%]' src={img} /></div>
+											:
+											null
+										}
+										<div className='w-full px-5 mt-0 mb-5'>
+											<br/><label>Foto: </label>
+											<br/><input className='border rounded-xl p-3 text-black bg-white w-[100%] cursor-pointer' type="file" id="cur_foto" name="cur_foto" value={cursa.cur_foto} onChange={handleChange}/>
+										</div>
 									</div>
 								</div>
+
 							</div>
 
 						</div>
 
-					</div>
+						<div className='flex justify-start min-w-full'>
+							<div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+							
+								<h1 className='mt-4 mb-3 text-2xl text-center text-blue1'>Circuits</h1> 
+								
+								<div onClick={handleAddCir} className='button-new-cursa flex justify-center items-center p-5 w-fit h-[40px] rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 text-white select-none'>Nou circuit</div>
+								
+								{ circuits.map((cir, index) =>
+								<div  key={cir.cir_num}>
+									<div className=' md:flex w-[100%] h-fit p-5'>
+										<div className="mx-5 md:w-[50%] ">    
+											
+												<br/>
+													<div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
 
-          <div className='flex justify-start min-w-full'>
-            <div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-            
-              <h1 className='mt-4 mb-3 text-2xl text-center text-blue1'>Circuits</h1> 
-              
-              <div onClick={handleAddCir} className='button-new-cursa flex justify-center items-center p-5 w-fit h-[40px] rounded-xl cursor-pointer bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 text-white select-none'>Nou circuit</div>
-              
-              { circuits.map((cir, index) =>
-              <div  key={cir.cir_num}>
-                <div className=' flex w-[100%] h-fit p-5'>
-                  <div className="mx-5 w-[50%] ">    
-                    
-                      <br/>
-                        <div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
+												<label >Nom: </label>
+												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
+												
+												<br/><label className='mt-1' >Categoires: </label>
+												<div>
+													{
+														categories.map((e) => 
+																
+															<div key={e.cat_id} >
+																{ cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
+																	<input
+																		checked
+																		
+																		className="cursor-pointer select-none w-fit" type="checkbox" 
+																		id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
+																		name={e.cat_nom} 
+																		onChange={(evt)=> handleCatCirChange(evt, index)} 
+																		value={e.cat_id}
+																	/> 
+																: 
+																	<input 
+																		key={e.cat_id}
+																		className="cursor-pointer select-none w-fit" 
+																		type="checkbox" 
+																		id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
+																		name={e.cat_nom} 
+																		onChange={(evt)=> handleCatCirChange(evt, index)} 
+																		value={e.cat_id}
+																	/> 
+																}
+																<label className="gap-2 cursor-pointer select-none " htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
+																<br/>
+															</div>
+														)
+													}
+													<span id={'cir_cat_'+cir.cir_num} className='text-red-700 errors'></span>
+												</div>
 
-                      <label >Nom: </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
-                      
-                      <br/><label className='mt-1' >Categoires: </label>
-											<div>
-												{
-													categories.map((e) => 
-															
-														<div key={e.cat_id} >
-															{ cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
-																<input
-																	checked
-																	
-																	className="cursor-pointer select-none w-fit" type="checkbox" 
-																	id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
-																	name={e.cat_nom} 
-																	onChange={(evt)=> handleCatCirChange(evt, index)} 
-																	value={e.cat_id}
-																/> 
-															: 
-																<input 
-																	key={e.cat_id}
-																	className="cursor-pointer select-none w-fit" 
-																	type="checkbox" 
-																	id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
-																	name={e.cat_nom} 
-																	onChange={(evt)=> handleCatCirChange(evt, index)} 
-																	value={e.cat_id}
-																/> 
-															}
-															<label className="gap-2 cursor-pointer select-none " htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
-															<br/>
-														</div>
-													)
+												<br/><label>Distancia (km): </label>
+												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
+												
+												<br/><label>Numero de checkpoints: </label>
+												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
+
+												<br/><label>Temps estimat (minuts): </label>
+												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
+
+												<br/><label>Preu: </label>
+												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
+												{index == circuits.length - 1 ?
+													'' : <hr className='mt-2 text-darkmetal/80'></hr>
 												}
-												<span id={'cir_cat_'+cir.cir_num} className='text-red-700 errors'></span>
-                      </div>
 
-                      <br/><label>Distancia (km): </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
-                      
-                      <br/><label>Numero de checkpoints: </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
+										</div>
+										<div  className=' flex md:w-[50%] h-fit'>
+											<CheckPointsList cursa={cursa} circuit={cir}/>
+										</div>
+									</div>
+								</div>
+								)}
+							</div>
+						</div>
 
-                      <br/><label>Temps estimat (minuts): </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
-
-                      <br/><label>Preu: </label>
-                      <br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_preu" value={cir.cir_preu} onChange={(evt)=> handleChangeCir(evt, index) }/>
-                      {index == circuits.length - 1 ?
-                        '' : <hr className='mt-2 text-darkmetal/80'></hr>
-                      }
-
-                  </div>
-                  <div  className=' flex w-[50%] h-fit'>
-                    <CheckPointsList cursa={cursa} circuit={cir}/>
-                  </div>
-                </div>
-              </div>
-              )}
-            </div>
-          </div>
-
-					<div className='flex justify-start min-w-full'>
-						<div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-							<div className=' flex w-[100%] h-fit p-5'>
-								<div className="mx-5 w-[100%] ">    
-									<input value="Guardar" className='p-3 text-white cursor-pointer rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit"/>
+						<div className='flex justify-start min-w-full'>
+							<div className="relative mb-6 mx-6 flex w-[100%] max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+								<div className=' flex w-[100%] h-fit p-5'>
+									<div className="mx-5 w-[100%] ">    
+										<input value="Guardar" className='p-3 text-white cursor-pointer rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800' type="submit"/>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-			</div>
-		</form>
+				</div>
+			</form>
     </>
     )
 }
