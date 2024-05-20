@@ -220,7 +220,7 @@ export const CursaScreen = () =>
 			validarRequired($('#cur_esp_id'))			
 			validarCirCat()
 
-
+			
 			//valida tots els circuits
 
 			let valid = true;
@@ -364,7 +364,7 @@ export const CursaScreen = () =>
 																	<input
 																		checked
 																		
-																		className=" w-fit cursor-pointer select-none" type="checkbox" 
+																		className="cursor-pointer select-none w-fit" type="checkbox" 
 																		id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
 																		name={e.cat_nom} 
 																		onChange={(evt)=> handleCatCirChange(evt, index)} 
@@ -373,7 +373,7 @@ export const CursaScreen = () =>
 																: 
 																	<input 
 																		key={e.cat_id}
-																		className=" w-fit cursor-pointer select-none" 
+																		className="cursor-pointer select-none w-fit" 
 																		type="checkbox" 
 																		id={'check_cir'+cir.cir_num+'_'+e.cat_id} 
 																		name={e.cat_nom} 
@@ -381,7 +381,7 @@ export const CursaScreen = () =>
 																		value={e.cat_id}
 																	/> 
 																}
-																<label className=" gap-2 cursor-pointer select-none" htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
+																<label className="gap-2 cursor-pointer select-none " htmlFor={'check_cir'+cir.cir_num+'_'+e.cat_id}>{e.cat_nom}</label>
 																<br/>
 															</div>
 														)

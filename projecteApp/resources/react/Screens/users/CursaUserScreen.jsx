@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import CheckPointsList from '../../Components/CheckPointsList';
 export const CursaUserScreen = () =>
 {
 
@@ -45,7 +46,7 @@ export const CursaUserScreen = () =>
     
     const inscripcio = () => {
 			navigate("/inscripcio/" + cursa.cur_id);
-		}
+	}
 
     const getCursa = async ()=>{
     
@@ -131,15 +132,15 @@ export const CursaUserScreen = () =>
 			}
     }
 
-		const handleDeleteCircuit = (index)=>{
-			let data = circuits;
-			data.splice(index, 1);
-			data = data.map((ele, i) =>{
-				ele.cir_num = i+1;
-				return ele;
-			});
-			setCircuits([...data]);
-		}
+	const handleDeleteCircuit = (index)=>{
+		let data = circuits;
+		data.splice(index, 1);
+		data = data.map((ele, i) =>{
+			ele.cir_num = i+1;
+			return ele;
+		});
+		setCircuits([...data]);
+	}
     
 
 
@@ -149,9 +150,9 @@ export const CursaUserScreen = () =>
       	<div className='flex justify-center'><Icon icon="line-md:loading-twotone-loop" className='w-[100px] h-[100px] text-white'/></div>
 			:           
 				<div className='min-w-full min-h-full text-white bg-grey'>
-					<div className='flex flex-col items-center min-w-full'>
-					<div className='flex justify-center min-w-full'>
-						<div className='relative my-6 ml-6 flex-col items-center w-[50%]'>
+					<div className='flex items-center min-w-full'>
+					<div className='flex flex-wrap justify-center w-full'>
+						<div className='relative flex-col items-center lg:w-[50%] sm:w-[100%] p-0 py-4 sm:p-4'>
 							<div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
 									
 								<h1 className='mt-4 text-2xl text-center text-blue1'>Cursa</h1>
@@ -183,7 +184,7 @@ export const CursaUserScreen = () =>
                     </div>
 
 
-                    <div className='flex justify-between w-full gap-2'>
+                    <div className='flex flex-col w-full gap-2 md:justify-between md:flex-row'>
                       <div className='flex items-center'>
                         <Icon icon="f7:placemark" className='inline-block text-3xl text-blue1' />
                         <span className='text-black w-[100%]'>{cursa.cur_lloc}</span>
@@ -211,10 +212,11 @@ export const CursaUserScreen = () =>
 								<h1 className='mt-4 text-2xl text-center text-blue1'>Circuits</h1> 
 								
 								<div className=' flex w-[100%] h-fit p-5'>
-									<div className="mx-5 w-[100%] ">    
+									<div className="mx-5 w-[100%] flex">    
 										{ circuits.map((cir, index) =>
-										<div key={cir.cir_num} className='flex flex-col gap-1'>
-											
+										<div key={cir.cir_num} className='flex flex-col lg:flex-row w-[100%] sm:gap-5 lg:gap-15'>
+											<div className='flex sm:w-[100%] lg:w-[50%]'>
+                        <div className=''>
                         <div className='flex justify-between w-full'><label  className='text-lg font-bold text-blue1'>Numero de circuit: <span className='font-normal text-darkmetal'>{cir.cir_num}</span></label></div>
                       
                       <div>
@@ -227,7 +229,7 @@ export const CursaUserScreen = () =>
 											{
 												categories.map((e) => 
 														
-													<div key={e.cat_id} className='flex gap-2 w-fit'>
+													<div key={e.cat_id} className='flex w-full gap-2'>
 														{ cir.cir_categories.findIndex((cir_cat) => {return cir_cat.cat_id == e.cat_id } ) != -1 ? 
 															<input
 																checked
@@ -253,6 +255,7 @@ export const CursaUserScreen = () =>
 													</div>
 												)
 											}
+
 											
                       <div>
                         <label className='text-lg font-bold text-blue1'>Distancia: </label>
@@ -272,26 +275,31 @@ export const CursaUserScreen = () =>
                       {index == circuits.length - 1 ?
                         '' : <hr className='mt-2 text-darkmetal/80'></hr>
                       }
-                      
+ 
+                      </div>
+                      </div>
+                      <div  className='flex sm:w-[100%] lg:w-[50%] h-fit'>
+                        <CheckPointsList cursa={cursa} circuit={cir}/>
+                      </div>
 										</div>
 										)}
+                    
 
 									</div>
 								</div>
 							</div>
 						</div>
-						<div className="w-[50%]">
+						<div className="sm:w-[100%] lg:w-[50%] p-4">
 								
-							<div className="relative my-6 mx-6 flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
-								<div className='flex flex-col items-center w-auto h-fit'>
+							<div className="relative flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
+								<div className='flex flex-col items-center w-auto p-2 h-fit'>
 									{img != '' ?
-										<div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-[90%]' src={img} /></div>
+										<div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-auto h-[500px] object-cover' src={img} /></div>
 										:
 										null
 									}
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
