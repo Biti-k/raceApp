@@ -210,7 +210,7 @@ export const ResultatsScreen = () =>
                 <div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
                   <div className=' flex flex-col w-[100%] p-3'>
                   <Icon icon="mingcute:back-2-fill" className='text-4xl duration-200 cursor-pointer text-blue1 hover:scale-125 hover:-rotate-45' onClick={tornarEscollir}/>
-                    <table className='table-inscrits placeholder-gray-400 w-[100%]'>
+                    <table className='table-inscrits placeholder-gray-400 w-[100%] lg:text-base text-sm'>
                       <thead>
                         <tr>
                           <th>Checkpoints superats</th>

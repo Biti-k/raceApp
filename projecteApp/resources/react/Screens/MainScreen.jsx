@@ -28,7 +28,7 @@ export const MainScreen = () =>
                             type="button"
                             data-ripple-light="true"
                             >
-                            <p className="inline transition duration-500">Incriu-te!</p>    
+                            <p className="inline transition duration-500">Inscriu-te!</p>    
                         </button>
                     </NavLink>
                     </div>

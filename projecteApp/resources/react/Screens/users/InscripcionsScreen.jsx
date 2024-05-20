@@ -174,7 +174,7 @@ export const InscripcionScreen = () => {
       }
       axios.post(url, obj)
       .then(response => {
-
+        window.location = '/curses';
       })
       .catch(error => {
         console.error('Error:', error);
