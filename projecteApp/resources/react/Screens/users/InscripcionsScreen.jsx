@@ -198,14 +198,14 @@ export const InscripcionScreen = () => {
 
   return(
     <>
-      <form onSubmit={handleSubmit} className="h-[100%]">
+      <form onSubmit={handleSubmit} className="min-h-[100%] flex">
       <div className='flex justify-center min-w-full min-h-full text-white bg-grey'>
         <div className='flex flex-col items-center w-full'> 
           <div id="msj" className="mt-2 text-3xl font-bold text-blue2">
             
           </div>
-          <div className='flex-col flex lg:flex-row justify-center min-w-full h-[100%] w-full'>
-            <div className="relative flex min-h-[90%] p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base w-[50%] mx-6 my-6">
+          <div className='flex-col flex lg:flex-row justify-center min-w-full h-[100%] w-full p-2'>
+            <div className="relative flex  h-auto p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base w-[100%] lg:w-[50%] mx-0 lg:mx-6 my-6">
               <p className="mb-3 text-2xl">Inscripció per la cursa: {cursa.cur_nom}</p>
               <label>Nom del participant</label>
               <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_nom" name="par_nom" onChange={handleChange} value={participant.par_nom} />
@@ -235,7 +235,7 @@ export const InscripcionScreen = () => {
               </div>
 
             </div>
-            <div className="relative flex w-[50%] min-h-[90%] p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base mx-6 my-6">
+            <div className="relative flex w-[100%] lg:w-[50%] h-auto p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base mx-0 lg:mx-6 my-6">
               <div className="flex flex-col gap-2">
                 <p className="text-2xl">Circuits</p>
                 <div className="circuits">
