@@ -25,7 +25,7 @@ export const ResultatsScreen = () =>
     setCurses(response);
     setLoad(true);
 	}
-
+  
   useEffect(() => {
     getCurses();
     const interval = setInterval(() => {
@@ -147,7 +147,7 @@ export const ResultatsScreen = () =>
                       curses.map(c =>
                       <div key={c.cur_id} className='flex items-center gap-2 p-4 transition duration-150 bg-gray-100 rounded-lg cursor-pointer active:scale-90' onClick={() => handleEscogerCursa(c.cur_id)}>
                         {
-                          c.cur_foto != null ?
+                          c.cur_foto != null && c.cur_foto != "" ?
                           <img src={window.location.origin+'/api/img/'+c.cur_foto} className='w-[50px] h-[50px] object-cover rounded-lg'></img> 
                           : 
                           <Icon icon="whh:raceflag" className='w-[50px] h-[50px] object-cover rounded-lg'/>

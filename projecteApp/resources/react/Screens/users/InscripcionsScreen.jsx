@@ -127,7 +127,7 @@ export const InscripcionScreen = () => {
 
   const validarCCC = () => {
     if(circuitoEscogido.length == 0 || !ccc[circuitoEscogido[circuitoEscogido.length - 1]]){
-      $("#errorsCCC").text("Has d'escollir un circuit i categoria");
+      $("#errorsCCC").text("Has d'escollir només un circuit i categoria.");
       return 0;
     }else if(circuitoEscogido.length > 1){
       $("#errorsCCC").text("Només et pots inscriure a un circuit i categoria");
