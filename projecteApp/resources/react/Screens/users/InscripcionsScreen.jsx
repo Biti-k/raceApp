@@ -204,7 +204,7 @@ export const InscripcionScreen = () => {
           <div id="msj" className="mt-2 text-3xl font-bold text-blue2">
             
           </div>
-          <div className='flex justify-center min-w-full h-[100%] w-full'>
+          <div className='flex-col flex lg:flex-row justify-center min-w-full h-[100%] w-full'>
             <div className="relative flex min-h-[90%] p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base w-[50%] mx-6 my-6">
               <p className="mb-3 text-2xl">Inscripció per la cursa: {cursa.cur_nom}</p>
               <label>Nom del participant</label>
