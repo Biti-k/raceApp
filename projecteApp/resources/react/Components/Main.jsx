@@ -10,6 +10,7 @@ import { CursaUserScreen } from '../Screens/users/CursaUserScreen';
 import { InscripcionScreen } from '../Screens/users/InscripcionsScreen';
 import { CheckInScreen } from '../Screens/CheckInScreen';
 import { ResultatsScreen } from '../Screens/users/ResultatsScreen';
+import { ResultatsFinalScreen } from '../Screens/users/ResultatsFinalScreen';
 
 function Main() {
 
@@ -31,6 +32,7 @@ function Main() {
                     <Route path="/admin/curses/cursa/checkin/:id" element={<CheckInScreen></CheckInScreen>} />
                     <Route path="/inscripcio/:id" element={<InscripcionScreen></InscripcionScreen>} />
                     <Route path="/resultats" element={<ResultatsScreen></ResultatsScreen>} />
+                    <Route path="/resultats/final" element={<ResultatsFinalScreen></ResultatsFinalScreen>} />
                     <Route path="/*" element={<Navigate to="/"></Navigate>} />
                 </Routes>
             </div>

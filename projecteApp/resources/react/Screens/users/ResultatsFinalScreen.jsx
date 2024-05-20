@@ -5,7 +5,7 @@ import { Filter } from '../../Components/Filter'
 import axios from 'axios'
 import { ModalShowRegistres } from '../../Components/ModalShowRegistres'
 
-export const ResultatsScreen = () =>
+export const ResultatsFinalScreen = () =>
 {
   const [curses, setCurses] = useState([]);
   const [cursa, setCursa] = useState({circuits : []});
@@ -18,7 +18,7 @@ export const ResultatsScreen = () =>
   const getCurses = async() => {
     let response = await axios.get(get_all_curses)
     response = response.data.curses
-    response = response.filter(e => e.estat.est_id == 4);
+    response = response.filter(e => e.estat.est_id == 5);
     if(response.length > 0){
       $("#seleccion").show();
     }
@@ -27,11 +27,9 @@ export const ResultatsScreen = () =>
 	}
 
   useEffect(() => {
+
     getCurses();
-    const interval = setInterval(() => {
-      getCurses();
-    }, 15000);
-    return () => {clearInterval(interval) };
+
   }, [])
 
   const getResultats = async(ccc_id) => {
@@ -81,11 +79,9 @@ export const ResultatsScreen = () =>
 
   useEffect(() => {
     if (ccc) {
-      const interval = setInterval(() => {
-        getResultats(ccc);
-      }, 15000);
-
-      return () => { clearInterval(interval) };
+      
+      getResultats(ccc);
+    
     }
   }, [ccc]);
 
@@ -138,7 +134,7 @@ export const ResultatsScreen = () =>
                 <div className='flex justify-center'><Icon icon="line-md:loading-twotone-loop" className='w-[100px] h-[100px] text-white'/></div>
                 : <>
                 {
-                  curses.length > 0 ? '' : <p className='text-3xl text-center text-blue2'>No hi ha cap cursa en curs<Icon icon="grommet-icons:run" className='inline-block ml-2 text-4xl'/> </p>
+                  curses.length > 0 ? '' : <p className='text-3xl text-center text-blue2'>No hi ha cap cursa finalitzada<Icon icon="grommet-icons:run" className='inline-block ml-2 text-4xl'/> </p>
                 }
               <div className='gap-2 sm:flex-col md:flex md:flex-row' id="escollir">
                 <div className='rounded-lg bg-mint h-[100%] md:w-[50%] sm:w-[100%] p-3 mt-6 hidden' id="seleccion">

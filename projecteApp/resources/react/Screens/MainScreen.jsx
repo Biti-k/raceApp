@@ -20,7 +20,7 @@ export const MainScreen = () =>
                 </div>
                 <div className='relative z-20 flex flex-col items-center justify-center h-full'>
                     <h2 className='w-auto p-2 text-5xl italic rounded-md bg-opacity-80 drop-shadow-md bg-blue1'>Maxxis Race<Icon icon="maki:racetrack" className='inline-block'/></h2>
-                    <p className='text-xl'>Gestionament de curses, fet fàcil!</p>
+                    <p className='text-xl'>Gestionament de curses per al teu esport !</p>
                     <div className='mt-10'>
                     <NavLink to={'/curses'}>
                         <button
