@@ -1,3 +1,8 @@
+@media (max-width: 375px) {
+  html {
+    font-size: 12px;
+  }
+}
 html .modal {
   position: fixed;
   top: 0;
