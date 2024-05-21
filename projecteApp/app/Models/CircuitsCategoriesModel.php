@@ -43,7 +43,6 @@ class CircuitsCategoriesModel extends Model
                     'inscripcions' => [],
                 ]);
             }
-            $circuit_categoria = self::with(['circuit','categoria','inscripcions'])->get();
         }else{
             $circuit_categoria = self::with(['circuit','categoria','inscripcions'])->get();
         }
