@@ -1,0 +1,13 @@
+PARA API
+
+poner el xampp con php 8.2.xxx el la carpeta xampp/php en el PATH
+entrar en la carpeta projecteApp y ejecutar:
+>> composer install
+
+
+en el arxivo .env (si no esta crearlo a partir del .env.exemple) cambiar el DB_DATABASE=nombre_base_datos
+>> php artisan migrate --seed        (se supone que crea la base de datos del .env si no existe)
+
+Para usar la API todas las urls estan en el archivo api.php
+http://localhost/ruta_hasta_xampp_htdocs_app/public/api/urls_para_de_la_api
+

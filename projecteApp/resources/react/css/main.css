@@ -1,3 +1,18 @@
+@media (max-width: 375px) {
+  html {
+    font-size: 12px;
+  }
+  html .check-active {
+    width: 10px !important;
+    height: 10px !important;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5), inset -2px -2px 2px rgba(23, 74, 59, 0.5) !important;
+  }
+  html .check-inactive {
+    width: 10px !important;
+    height: 10px !important;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5), inset -2px -2px 2px rgba(98, 98, 98, 0.5) !important;
+  }
+}
 html .modal {
   position: fixed;
   top: 0;
@@ -104,4 +119,18 @@ html .table-inscrits tbody tr:nth-child(odd) {
 }
 html .error {
   color: #cc2020;
+}
+html .check-active {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #3ebc96;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5), inset -5px -5px 4px rgba(23, 74, 59, 0.5);
+}
+html .check-inactive {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #c3c3c3;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5), inset -5px -5px 4px rgba(98, 98, 98, 0.5);
 }

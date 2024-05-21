@@ -53,6 +53,10 @@ class InscripcionsController extends Controller
         $ccc_id = $data["ccc_id"];
         $inscripcions = InscripcionsModel::where("ins_ccc_id", $ccc_id)->where("ins_bea_id", "!=", null)->with(["participant","registres.checkpoint"])->get();
         
+        $inscripcions = $inscripcions->sortByDesc(function($inscripcio) {
+            return $inscripcio->ins_checkpoints;
+        })->values()->all();  // Ensure the result is reindexed
+
         return response()->json([
             "inscripcions" => $inscripcions,
         ]);
