@@ -10,6 +10,7 @@ class CircuitsCategoriesController extends Controller
     //
     public function getAll(Request $request)
     {
-        return CircuitsCategoriesModel::getWithRelations();
+        $params = $request->all();
+        return CircuitsCategoriesModel::getWithRelations($params);
     }
 }
