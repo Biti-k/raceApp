@@ -26,7 +26,11 @@ class RegistresModel extends Model
     public static function getWithRelations($params = null)
     {
 
-        $registres = self::with(['inscripcio', 'checkpoint'])->get();
+        if(isset($params['reg_ins_id'])){
+            $registres = self::where('reg_ins_id', $params['reg_ins_id'])->with(['inscripcio', 'checkpoint'])->get();
+        }else{
+            $registres = self::with(['inscripcio', 'checkpoint'])->get();
+        }
         
         return response()->json([
             'registres' => $registres,
