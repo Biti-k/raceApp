@@ -4,7 +4,7 @@ import axios from "axios";
 export const MainProvider = ({children})=>
 {
 
-    const [token,setToken] = useState(null);
+    const [token,setToken] = useState();
 
     return(
         <MainContext.Provider value={{token, setToken}}>
