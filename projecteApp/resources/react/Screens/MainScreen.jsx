@@ -8,7 +8,6 @@ export const MainScreen = () =>
     useEffect(() => {
         console.log(token);
         setToken("aaaa");
-        console.log("?")
     }, [])
 
 
