@@ -128,7 +128,7 @@ export const ResultatsFinalScreen = () =>
   <>
       <div className='min-w-full min-h-full p-6 bg-grey text-darkmetal'>
           <div className='container h-[100%] py-2 mx-auto'>
-              <h1 className='mb-5 text-4xl text-center text-blue2'>Resultats en viu</h1>
+              <h1 className='mb-5 text-4xl text-center text-blue2'>Resultats finals</h1>
               {
                 !load ?                       
                 <div className='flex justify-center'><Icon icon="line-md:loading-twotone-loop" className='w-[100px] h-[100px] text-white'/></div>

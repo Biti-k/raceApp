@@ -7,7 +7,6 @@ export const MainScreen = () =>
     const {token, setToken} = useContext(MainContext)
     useEffect(() => {
         console.log(token);
-        setToken("aaaa");
     }, [])
 
 

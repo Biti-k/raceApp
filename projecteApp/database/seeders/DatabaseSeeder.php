@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->Call(CircuitsSeeder::class);
         $this->Call(CircuitsCategoriesSeeder::class);
         $this->Call(CheckpointsSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }
