@@ -36,7 +36,7 @@ class CircuitsCategoriesModel extends Model
             $ccc_id = self::where('ccc_cat_id', $params['cat_id'])->where('ccc_cir_id', $params['cir_id'])->first();
             if($ccc_id != null){
                 return response()->json([
-                    'inscripcions' => InscripcionsModel::with(['participant', 'registres'])->where('ins_ccc_id', $ccc_id->ccc_id)->get(),
+                    'inscripcions' => InscripcionsModel::with(['participant', 'registres.checkpoint'])->where('ins_ccc_id', $ccc_id->ccc_id)->get(),
                 ]);
             }else{
                 return response()->json([
