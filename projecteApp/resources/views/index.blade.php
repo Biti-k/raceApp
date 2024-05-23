@@ -32,6 +32,9 @@
         const store_inscripcio = "{{route("inscripcions.store_inscripcio")}}";
         const state_inscripcio = "{{ route("inscripcions.state_inscripcio") }}";
         const get_inscripcions_ccc = "{{ route("inscripcions.get_inscripcions_ccc")}}";
+
+        //Login
+        const check_login = "{{route("login")}}";
     </script>
     <style>
         html{
