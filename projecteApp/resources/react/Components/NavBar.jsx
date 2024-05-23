@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { Button } from './Button';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import { useContext } from 'react'
+import { MainContext } from '../context/MainContext';
 
 export const NavBar = () => 
 {
@@ -12,6 +14,8 @@ export const NavBar = () =>
 			$('#menu').removeClass('hidden');
 		}
 	}
+
+	const {token, setToken} = useContext(MainContext)
 
     return (
         <>
@@ -32,17 +36,28 @@ export const NavBar = () =>
 							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/curses">Curses</NavLink></li>
 							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/resultats">Resultats en viu</NavLink></li>
 							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/resultats/final">Resultats Final</NavLink></li>
-							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/admin/curses">Admin Curses</NavLink></li>
-							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/admin/curses/cursa/new">New Cursa</NavLink></li>
+							{token != null ?
+								<>
+									<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/admin/curses">Admin Curses</NavLink></li>
+									<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/admin/curses/cursa/new">New Cursa</NavLink></li>
+								</>
+								:
+								<></>
+							}
+
 						</ul>
 						</nav>
 					</div>
 					
-					{/* <div className="flex flex-wrap items-center justify-end order-2 mr-0 md:order-3 md:mr-4" id="nav-content">
+					<div className="flex flex-wrap items-center justify-end order-2 mr-0 md:order-3 md:mr-4" id="nav-content">
 						<div className="flex items-center w-full auth md:w-full">
-						<Button contenido="Cerrar sesión"></Button>
+							{ token != null ? 
+								<NavLink to="/login"><Button contenido="Tancar sesió"></Button></NavLink>
+							:
+								<NavLink to="/login"><Button contenido="Iniciar Sessió"></Button></NavLink>
+							}
 						</div>
-					</div> */}
+					</div>
 				</div>
 			</nav>
         </>
