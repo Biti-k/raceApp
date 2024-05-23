@@ -17,10 +17,6 @@ function MainRoutes() {
 
     const {token, setToken} = useContext(MainContext)
 
-    useEffect(() => {
-        console.log(token);
-    }, [])
-
     return (
         <>
           <div className='min-h-full bg-grey'>

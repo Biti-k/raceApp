@@ -1,13 +1,45 @@
 import { MainContext } from "./MainContext"
-import { useState, useContext, useEffect } from 'react'
+import { useReducer } from 'react'
 import axios from "axios";
-export const MainProvider = ({children})=>
-{
 
-    const [token,setToken] = useState();
+const initialState = localStorage.getItem('sessiontoken');
+
+export const MainProvider = ({children})=>{
+
+        const tokenReducer = (state = initialState, action = {}) =>{
+            switch(action.type){                
+                case 'changeToken':
+                    return action.payload;
+                break;  
+
+                default:
+    
+                break;
+            }
+        }
+
+        const [token, dispatch] = useReducer(tokenReducer, initialState)        
+    
+        const changeToken = (state)=>{
+            const action = {
+                type: 'changeToken', 
+                payload: state
+            }
+
+            if(state == null){
+                console.log('changeToken', state);
+                localStorage.removeItem('sessiontoken');
+            }else{
+                localStorage.setItem('sessiontoken', state);
+            }
+            
+            dispatch(action)
+            console.log('token: ', token);
+        }
+
 
     return(
-        <MainContext.Provider value={{token, setToken}}>
+        <MainContext.Provider value={{token, changeToken}}>
             {children}
         </MainContext.Provider>
     )

@@ -6,7 +6,7 @@ import axios from "axios";
 export const LoginScreen = () =>
 {
   const [ loginValues, setLoginValues ] = useState({email: "" , password : ""});
-  const { token, setToken} = useContext(MainContext);
+  const { token, changeToken} = useContext(MainContext);
   const [mensajeError, setMensajeError ] = useState("");
 
   const login = async(evt) => {
@@ -19,12 +19,17 @@ export const LoginScreen = () =>
     evt.preventDefault();
     let response = await axios.post(check_login, {email : loginValues.email, password : loginValues.password});
     if(response.data.resultado == 1){
-      setToken(true);
+      changeToken(true);
       window.location.href = "/";
     }else{
       setMensajeError(response.data.mensaje);
     }
   }
+
+  useEffect(()=>{
+    localStorage.removeItem('sessiontoken');
+    changeToken(null);
+  },[]);
   
   const handleChange = (evt) => {
     const { name, value } = evt.target;
