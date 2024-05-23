@@ -29,13 +29,13 @@ export const NavBar = () =>
 					</label>
 					<input className="hidden" type="checkbox" id="menu-toggle" onClick={handleMenuToggle}/>
 					
-					<div className="order-3 hidden flex-row sm:flex w-full md:flex md:items-center md:w-auto md:order-1" id="menu">
+					<div className="flex-row hidden w-full sm:flex md:flex md:items-center md:w-auto" id="menu">
 						<nav>
-						<ul className="items-center justify-between pt-4 text-base sm:flex md:flex md:pt-0 text-blue1">
-							<li className="mr-3 text-2xl font-bold transition hover:text-darkmetal"><NavLink to="/">Maxxis<Icon icon="maki:racetrack" className='inline-block'/></NavLink></li>
-							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/curses">Curses</NavLink></li>
-							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/resultats">Resultats en viu</NavLink></li>
-							<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/resultats/final">Resultats Final</NavLink></li>
+						<ul className="items-center justify-between pt-4 ml-4 text-base md:text-lg lg:text-xl sm:flex md:flex md:pt-0 text-blue1 lg:ml-0">
+							<li className="mr-3 font-bold transition hover:text-darkmetal"><NavLink to="/">Maxxis<Icon icon="maki:racetrack" className='inline-block'/></NavLink></li>
+							<li className="mr-3 font-bold transition hover:text-darkmetal"><NavLink to="/curses">Curses</NavLink></li>
+							<li className="mr-3 font-bold transition hover:text-darkmetal"><NavLink to="/resultats">Resultats en viu</NavLink></li>
+							<li className="mr-3 font-bold transition hover:text-darkmetal"><NavLink to="/resultats/final">Resultats Final</NavLink></li>
 							{token != null ?
 								<>
 									<li className="mr-3 text-xl font-bold transition hover:text-darkmetal"><NavLink to="/admin/curses">Admin Curses</NavLink></li>
@@ -49,7 +49,7 @@ export const NavBar = () =>
 						</nav>
 					</div>
 					
-					<div className="flex flex-wrap items-center justify-end order-2 mr-0 md:order-3 md:mr-4" id="nav-content">
+					<div className="flex flex-wrap items-center justify-end order-2 mr-0 md:mr-4" id="nav-content">
 						<div className="flex items-center w-full auth md:w-full">
 							{ token != null ? 
 								<NavLink to="/login"><Button contenido="Tancar sesió"></Button></NavLink>
