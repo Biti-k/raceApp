@@ -4,6 +4,11 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import { MainContext } from '../context/MainContext'
 export const MainScreen = () =>
 {
+    const {token, setToken} = useContext(MainContext)
+    useEffect(() => {
+        console.log(token);
+    }, [])
+
 
     return(
         <>
