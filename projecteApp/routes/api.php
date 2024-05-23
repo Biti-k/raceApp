@@ -10,6 +10,7 @@ use App\Http\Controllers\EsportsController;
 use App\Http\Controllers\EstatsCursaController;
 use App\Http\Controllers\ImgController;
 use App\Http\Controllers\InscripcionsController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ParticipantsController;
 use App\Http\Controllers\RegistresController;
 use App\Models\BeaconsModel;
@@ -65,6 +66,9 @@ Route::get('get_inscripcions_ccc', [InscripcionsController::class, 'getInscripci
 
 //Imgs
 Route::get('img/{nom?}', [ImgController::class, 'showImg'])->name('img.show');
+
+//Login
+Route::post("login", [LoginController::class, "checkLogin"])->name("login");
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
