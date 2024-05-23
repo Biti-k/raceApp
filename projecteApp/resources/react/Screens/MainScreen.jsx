@@ -1,11 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
+import { MainContext } from '../context/MainContext'
 export const MainScreen = () =>
 {
-/*     useEffect(() => {
-        document.title = 'MaxxisRace|Administrador';
-    }, []) */
+    const {token, setToken} = useContext(MainContext)
+    useEffect(() => {
+        console.log(token);
+        setToken("aaaa");
+    }, [])
 
 
     return(
