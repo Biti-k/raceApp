@@ -393,7 +393,7 @@ export const CursaScreen = () =>
 												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_distancia" value={cir.cir_distancia} onChange={(evt)=> handleChangeCir(evt, index) }/>
 												
 												<br/><label>Numero de checkpoints: </label>
-												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
+												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" max="6" name="cir_checkpoints" value={cir.cir_checkpoints} onChange={(evt)=> handleChangeCir(evt, index) }/>
 
 												<br/><label>Temps estimat (minuts): </label>
 												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" name="cir_temps_estimat" value={cir.cir_temps_estimat} onChange={(evt)=> handleChangeCir(evt, index) }/>
