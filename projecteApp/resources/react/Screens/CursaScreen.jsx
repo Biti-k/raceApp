@@ -42,8 +42,25 @@ export const CursaScreen = () =>
     const [esports, setEsports] = useState([]);
     const [img, setImg] = useState('');
     const [categories, setCategories] = useState([]);
+    const [data_fi_disabled, set_data_fi_disabled] = useState(true);
+    const [data_fi_min, set_data_fi_min] = useState('');
     
-    
+    const getFormattedDate = () => {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    };
+
+    const getFormattedDateFi = (value) => {
+      const today = new Date(value);
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
     const getCursa = async ()=>{
     
         const response = await axios.post(get_cursa, {id : id});
@@ -110,9 +127,17 @@ export const CursaScreen = () =>
 			setEsports(select);
     }
 
+    const checkDate = (name, value) => {
+      if(name == 'cur_data_inici'){
+        set_data_fi_disabled(false);
+        set_data_fi_min(value);
+      }
+    }
+
     const handleChange = (evt)=>{
 			const { name, value } = evt.target;
 			setCursa({ ...cursa, [name]: value });
+      checkDate(name, value);
     }
 
     const handleAddCir = () =>{
@@ -286,10 +311,10 @@ export const CursaScreen = () =>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_lloc" name="cur_lloc" value={cursa.cur_lloc} onChange={handleChange}/>
 
 											<br/><label>Data Inici: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_inici" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange}/>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_inici" name="cur_data_inici" value={cursa.cur_data_inici} onChange={handleChange} min={getFormattedDate()}/>
 
 											<br/><label>Data fi: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_fi" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange}/>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_fi" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange} disabled={data_fi_disabled} min={data_fi_min}/>
 
 											<br/><label>Limit inscrits: </label>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" id="cur_limit_inscr" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
