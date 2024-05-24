@@ -268,7 +268,7 @@ export const CursaScreen = () =>
 			<form onSubmit={handleSubmit}>
 				<div className='min-w-full min-h-full text-white bg-grey'>
 					<div className='flex flex-col items-center min-w-full'>
-						<div className='md:flex md:justify-center min-w-full'>
+						<div className='min-w-full md:flex md:justify-center'>
 							<div className='w-[100%] md:w-[50%]'>
 								<div className="relative my-6 ml-6 mr-6 md:mr-0 w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
 										

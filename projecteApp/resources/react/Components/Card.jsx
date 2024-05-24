@@ -176,13 +176,15 @@ export const Card = ({cursa, reload})=> {
 									</div>
 									: null}
 
-									{cursa.cur_est_id == 5 ?
+									{cursa.cur_est_id == 5 || cursa.cur_est_id == 6 ?
 									<div className="grid grid-cols-2 gap-2 pt-3" id="botones">
 										<NavLink to={show}>
 											<Button contenido={'Mostrar '} icono={<Icon icon="zondicons:view-show" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
 									</div>
 									: null}
+
+
 								</div>
 
 						</div>

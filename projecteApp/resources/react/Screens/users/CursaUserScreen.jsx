@@ -155,7 +155,13 @@ export const CursaUserScreen = () =>
 						<div className='relative flex-col items-center lg:w-[50%] sm:w-[100%] p-0 py-4 sm:p-4'>
 							<div className="relative flex w-full max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
 									
-								<h1 className='mt-4 text-2xl text-center text-blue1'>Cursa</h1>
+								<div>
+                  <div className='px-5 my-3'>
+                    <p className='font-bold underline text-blue1'>Estado: <span className="font-normal text-darkmetal">{cursa.estat.est_nom}</span></p>
+                    
+                  </div>
+                  <h1 className='mt-4 text-2xl text-center text-blue1'>Cursa</h1>
+                </div>
 								<div className=' flex w-[100%]'>
 								
 									<div className="mx-5 mb-5 w-[100%] flex flex-col gap-2">
@@ -303,9 +309,12 @@ export const CursaUserScreen = () =>
 						</div>
 					</div>
 				</div>
+        {cursa.cur_est_id != 2 ? ''
+        :
 				<div className='w-[100%] flex justify-center'>
 					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 w-[50%] mb-4' type="submit" onClick={inscripcio}/>
         </div>
+        }
 			</div>
 			}
     </>
