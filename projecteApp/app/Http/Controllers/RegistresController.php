@@ -18,6 +18,6 @@ class RegistresController extends Controller
 
         $registre = RegistresModel::create($data);
 
-        return response()->json(['registre' => $registre]);
+        return response()->json(['registre' => RegistresModel::getWithRelations(['reg_id' => $registre->reg_id])]);
     }
 }
