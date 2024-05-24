@@ -61,7 +61,7 @@ export const Card = ({cursa})=> {
                         </p>
                         <p>
                             <Icon icon="mdi:web" className="inline-block text-2xl text-blue1" />
-                            <a href={cursa.cur_web} target="_blank" className="underline transition duration-150 hover:text-blue1">Sitio web</a>
+                            <a href={cursa.cur_web} target="_blank" className="underline transition duration-150 hover:text-blue1">Lloc web</a>
                         </p>
 
                     </div>
@@ -73,7 +73,7 @@ export const Card = ({cursa})=> {
 
                 <div className="gap-1 p-6 pt-3 columns-2" id="botones">
                     <NavLink to={mod}>
-                        <Button contenido={'Mostrar Detalles'}></Button>
+                        <Button contenido={'Mostrar Detalls'}></Button>
                     </NavLink>
 
                     <NavLink to={"/inscripcio/" + cursa.cur_id}>

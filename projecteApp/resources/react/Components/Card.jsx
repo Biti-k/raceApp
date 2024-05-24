@@ -119,7 +119,7 @@ export const Card = ({cursa, reload})=> {
 									</p>
 									<p>
 										<Icon icon="mdi:web" className="inline-block text-2xl text-blue1" />
-										<a href={cursa.cur_web} target="_blank" className="underline transition duration-150 hover:text-blue1">Sitio web</a>
+										<a href={cursa.cur_web} target="_blank" className="underline transition duration-150 hover:text-blue1">Lloc web</a>
 									</p>
 
 								</div>
