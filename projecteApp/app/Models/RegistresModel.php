@@ -28,6 +28,9 @@ class RegistresModel extends Model
 
         if(isset($params['reg_ins_id'])){
             $registres = self::where('reg_ins_id', $params['reg_ins_id'])->with(['inscripcio', 'checkpoint'])->get();
+        }else if(isset($params['reg_id'])){
+            $registres = self::with(['inscripcio.participant', 'checkpoint'])->find($params['reg_ins_id']);
+            return $registres;
         }else{
             $registres = self::with(['inscripcio', 'checkpoint'])->get();
         }
