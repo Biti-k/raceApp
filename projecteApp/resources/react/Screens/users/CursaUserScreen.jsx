@@ -309,7 +309,7 @@ export const CursaUserScreen = () =>
 						</div>
 					</div>
 				</div>
-        {cursa.cur_est_id == 6 ? ''
+        {cursa.cur_est_id != 2 ? ''
         :
 				<div className='w-[100%] flex justify-center'>
 					<input value="Fer inscripció" className='p-3 mx-auto text-white cursor-pointer d-block rounded-xl bg-blue1 hover:bg-cyan-600 active:bg-cyan-800 w-[50%] mb-4' type="submit" onClick={inscripcio}/>
