@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { useParams  } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import axios from 'axios';
-import { validarRequired } from '../../validators/script';
+import { validarRequired, validarMaxLength } from '../../validators/script';
 import { CheckPointsList } from '../Components/CheckPointsList';
 
 
@@ -236,9 +236,10 @@ export const CursaScreen = () =>
 		}
 
 		const validar = ()=>{
-
+			console.log('a');
 			validarRequired($('#cur_nom'))
 			validarRequired($('#cur_lloc'))
+			validarMaxLength($('#cur_lloc'),50)
 			validarRequired($('#cur_data_inici'))
 			validarRequired($('#cur_data_fi'))
 			validarRequired($('#cur_limit_inscr'))
@@ -270,6 +271,7 @@ export const CursaScreen = () =>
 				valid &&
 				validarRequired($('#cur_nom')) &&
 				validarRequired($('#cur_lloc')) &&
+				validarMaxLength($('#cur_lloc'),50) &&
 				validarRequired($('#cur_data_inici')) &&
 				validarRequired($('#cur_data_fi')) &&
 				validarRequired($('#cur_limit_inscr')) &&

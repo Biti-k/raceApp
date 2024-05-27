@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cur_nom');
             $table->dateTime('cur_data_inici');
             $table->dateTime('cur_data_fi');
-            $table->string('cur_lloc', 20);
+            $table->string('cur_lloc', 50);
             $table->unsignedBigInteger('cur_esp_id');
             $table->unsignedBigInteger('cur_est_id');
             $table->text('cur_desc')->nullable();
