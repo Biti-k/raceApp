@@ -34,3 +34,6 @@ SELECT count(*) FROM `inscripcions` where `ins_ccc_id` in(
         (SELECT `cir_id` FROM `circuits` WHERE `cir_cur_id` = 1)
     ))
 );
+
+php artisan db:seed --class=InscripcionsSeeder
+php artisan db:seed --class=RegistresSeeder
