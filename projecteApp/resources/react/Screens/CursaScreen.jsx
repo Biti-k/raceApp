@@ -68,7 +68,7 @@ export const CursaScreen = () =>
         cur.cur_data_inici = cur.cur_data_inici != null ? cur.cur_data_inici.substring(0,10): '';
         cur.cur_data_fi = cur.cur_data_fi != null ? cur.cur_data_fi.substring(0,10): '';
         
-        if(cur.cur_foto != null){
+        if(cur.cur_foto != null && cur.cur_foto != ''){
             setImg(window.location.origin+'/api/img/'+cur.cur_foto);
         }
         
@@ -348,7 +348,7 @@ export const CursaScreen = () =>
 										{img != '' ?
 											<div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-[90%]' src={img} /></div>
 											:
-											null
+											<Icon icon="material-symbols:image-not-supported" className='text-5xl text-blue1'/>
 										}
 										<div className='w-full px-5 mt-0 mb-5'>
 											<br/><label>Foto: </label>

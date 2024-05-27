@@ -55,7 +55,7 @@ export const CursaUserScreen = () =>
         cur.cur_data_inici = cur.cur_data_inici != null ? cur.cur_data_inici.substring(0,10): '';
         cur.cur_data_fi = cur.cur_data_fi != null ? cur.cur_data_fi.substring(0,10): '';
         
-        if(cur.cur_foto != null){
+        if(cur.cur_foto != null && cur.cur_foto != ''){
             setImg(window.location.origin+'/api/img/'+cur.cur_foto);
         }
         
@@ -299,11 +299,11 @@ export const CursaUserScreen = () =>
 								
 							<div className="relative flex w-auto max-w-[100%] h-fit flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal">
 								<div className='flex flex-col items-center w-auto p-2 h-fit'>
-									{img != '' ?
-										<div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-auto h-[500px] object-cover' src={img} /></div>
-										:
-										null
-									}
+                  {img != '' && img != null ?
+                    <div className='my-6 flex justify-center w-[100%]'><img className=' shadow-xl rounded-xl mx-4 w-[90%]' src={img} /></div>
+                    :
+                    <Icon icon="material-symbols:image-not-supported" className='text-5xl text-blue1'/>
+                  }
 								</div>
 							</div>
 						</div>
