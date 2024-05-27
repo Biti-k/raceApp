@@ -133,6 +133,24 @@ export function validarRequired(value){
     }
 }
 
+
+function validarDNI(dni){
+    let lletres = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+    
+    // Abans de fer la operació es comprova que el numero de dni es realment un numero y no es 0 
+    let dniNumber = Number(dni.val().trim().substr(0, dni.val().length-1))
+    let lletraCorrecta = !isNaN(dniNumber) && dniNumber != 0 ? lletres[dniNumber % 23] : null ;
+    if(lletraCorrecta != dni.val().substr(dni.val().length-1)){
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
+function validarNIE(nie){
+    return nie.val().match(/^[XYZ]\d{7,8}[A-Z]$/);
+}
+
 export function validarNif(value){
     
 
@@ -144,13 +162,6 @@ export function validarNif(value){
     }
     
     
-    let lletres = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
-    
-    // Abans de fer la operació es comprova que el numero de dni es realment un numero y no es 0 
-    let dniNumber = Number($(value).val().trim().substr(0, $(value).val().length-1))
-    let lletraCorrecta = !isNaN(dniNumber) && dniNumber != 0 ? lletres[dniNumber % 23] : null ;
-
-    
     if($(value).val().length == 0){
         
         $(value).addClass('border-red')
@@ -161,16 +172,15 @@ export function validarNif(value){
 
         $(value).addClass('border-red')
         $(value).after($(error).text('Ha de tenir 9 caracters').clone());
-        
+
         return 0;
 
-    }else if(lletraCorrecta != $(value).val().substr($(value).val().length-1)){
-
-        $(value).addClass('border-red')
-        $(value).after($(error).text('La lletra no correspon amb el numero').clone());
-
-    }else{
+    }else if(validarDNI($(value)) || validarNIE($(value))){
         return 1;
+    }else{
+        $(value).addClass('border-red')
+        $(value).after($(error).text('Format incorrecte').clone());
+        return 0;
     }
 }
 
