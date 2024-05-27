@@ -114,6 +114,8 @@ class CursesController extends Controller
                 }
             }
             if($delete){
+                CheckpointsModel::where('chk_cir_id', $cir_old->cir_id)->delete();
+                CircuitsCategoriesModel::where('ccc_cir_id', $cir_old->cir_id)->delete();
                 CircuitsModel::where('cir_id', $cir_old->cir_id)->delete();
             }
         }

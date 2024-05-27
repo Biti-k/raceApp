@@ -10,4 +10,6 @@ en el arxivo .env (si no esta crearlo a partir del .env.exemple) cambiar el DB_D
 
 Para usar la API todas las urls estan en el archivo api.php
 http://localhost/ruta_hasta_xampp_htdocs_app/public/api/urls_para_de_la_api
+Si la primara no funcion: 
+http://localhost/ruta_hasta_xampp_htdocs_app/public/index.php/api/urls_para_de_la_api
 

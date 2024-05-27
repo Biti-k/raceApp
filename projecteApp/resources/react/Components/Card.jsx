@@ -136,7 +136,10 @@ export const Card = ({cursa, reload})=> {
 										<NavLink to={mod} >
 											<Button contenido={'Modificar '} icono={<Icon icon="material-symbols:edit-document-rounded" className="inline text-2xl align-middle text-blue2"/>}></Button>
 										</NavLink>
-										<Button contenido={'Obrir Ins. '} handleClick={handleOpenIns} icono={<Icon icon="clarity:export-solid" className="inline text-2xl align-middle text-blue2"/>}></Button>
+										{cursa.circuits.length > 0 ?
+											<Button contenido={'Obrir Ins. '} handleClick={handleOpenIns} icono={<Icon icon="clarity:export-solid" className="inline text-2xl align-middle text-blue2"/>}></Button>
+											: <></>
+										}
 										<ModalDelete isOpen={isModalOpen} closeModal={closeModal} object={cursa} id="cur_id" url={delete_cursa}/>
 										<ButtonDelete handleClick={openModal} ></ButtonDelete>
 									</div>
