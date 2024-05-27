@@ -41,22 +41,22 @@ export const LoginScreen = () =>
           
             <div className="flex flex-col items-center justify-center px-6 py-8 lg:py-0 w-[550px]">
                 
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div className="w-full font-bold border rounded-lg shadow bg-mint dark:border text-blue1 md:mt-0 xl:p-0 border-blue2/25">
                     <div className="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-center md:text-2xl text-blue1">
                             Log In
                         </h1>
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="admin@milaifontanals.org" required={true} value={loginValues.email} onChange={(evt) => handleChange(evt)}/>
+                                <label htmlFor="email" className="block mb-2 text-sm font-bold text-blue1">Your email</label>
+                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-darkmetal sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 font-normal" placeholder="admin@milaifontanals.org" required={true} value={loginValues.email} onChange={(evt) => handleChange(evt)}/>
                             </div>
                             <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required={true} value={loginValues.password} onChange={(evt) => handleChange(evt)} />
+                                <label htmlFor="password" className="block mb-2 text-sm font-bold text-blue1">Password</label>
+                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-darkmetal sm:text-sm rounded-lg focus:ring-primary-600 font-normal focus:border-primary-600 block w-full p-2.5 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required={true} value={loginValues.password} onChange={(evt) => handleChange(evt)} />
                             </div>
                             
-                            <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={login}>Sign in</button>
+                            <button type="submit" className="w-full text-white hover:shadow hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:hover:bg-primary-700 dark:focus:ring-primary-800 transition duration-200 bg-blue1 hover:bg-blue1/90" onClick={login}>Sign in</button>
                             <p className='text-center'>{mensajeError}</p>
                         </form>
                     </div>
