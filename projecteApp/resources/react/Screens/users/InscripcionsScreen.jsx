@@ -229,10 +229,10 @@ export const InscripcionScreen = () => {
                 <label>Email del participant</label>
                 <input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="par_email" name="par_email" onChange={handleChange} value={participant.par_email}/>
               </div>
-              <div className="flex gap-2 mt-3">
+              {/* <div className="flex gap-2 mt-3">
                 <input className='' type="checkbox" name="par_es_federat" id="par_es_federat" onChange={handleFederat}/>
                 <label htmlFor="par_es_federat" value={participant.par_es_federat}>Federat</label>
-              </div>
+              </div> */}
 
             </div>
             <div className="relative flex w-[100%] lg:w-[50%] h-auto p-4 flex-col rounded-xl bg-mint bg-clip-border text-darkmetal shadow-md shadow-darkmetal mt-6 text-base mx-0 lg:mx-6 my-6">

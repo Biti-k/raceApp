@@ -236,7 +236,6 @@ export const CursaScreen = () =>
 		}
 
 		const validar = ()=>{
-			console.log('a');
 			validarRequired($('#cur_nom'))
 			validarRequired($('#cur_lloc'))
 			validarMaxLength($('#cur_lloc'),50)

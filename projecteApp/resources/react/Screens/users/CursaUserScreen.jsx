@@ -265,17 +265,17 @@ export const CursaUserScreen = () =>
 											
                       <div>
                         <label className='text-lg font-bold text-blue1'>Distancia: </label>
-                        <span>{cir.cir_distancia}</span>
+                        <span>{cir.cir_distancia} km</span>
                       </div>
 
 											<div>
-                        <label className='text-lg font-bold text-blue1'>Temps estimat (minuts): </label>
-                        <span>{cir.cir_temps_estimat}</span>
+                        <label className='text-lg font-bold text-blue1'>Temps estimat: </label>
+                        <span>{cir.cir_temps_estimat} m</span>
                       </div>
 
                       <div>
                         <label className='text-lg font-bold text-blue1'>Preu: </label>
-                        <span>{cir.cir_preu}</span>
+                        <span>{cir.cir_preu} €</span>
                       </div>
 
                       {index == circuits.length - 1 ?
