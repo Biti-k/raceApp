@@ -27,14 +27,13 @@ export const MainProvider = ({children})=>{
             }
 
             if(state == null){
-                console.log('changeToken', state);
+               
                 localStorage.removeItem('sessiontoken');
             }else{
                 localStorage.setItem('sessiontoken', state);
             }
             
             dispatch(action)
-            console.log('token: ', token);
         }
 
 
