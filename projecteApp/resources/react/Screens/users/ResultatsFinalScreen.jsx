@@ -121,7 +121,22 @@ export const ResultatsFinalScreen = () =>
       }
   }
 
+  const listaActive = (value, type)=>{
+    let elements = [];
 
+    if(type){
+      for (let i = 0; i < value; i++) {
+        elements.push(<div key={i} className='check-active'></div>);
+      }
+    }else{
+      for (let i = 0; i < value; i++) {
+        elements.push(<div key={i} className='check-inactive'></div>);
+      }
+    }
+
+    return elements;
+    
+  }
 
 
   return(
@@ -205,7 +220,14 @@ export const ResultatsFinalScreen = () =>
                         {
                           inscripcionsShow.map(i => 
                               <tr key={i.ins_id} className='transition duration-200 cursor-pointer' onClick={() => openModal(i.ins_id)}>
-                                <td className='text-center'>{i.ins_checkpoints}/{circuito.cir_checkpoints}</td>
+                                <td className='text-center'>
+                                  <div className='flex justify-evenly'>
+                                    
+                                    {listaActive(i.ins_checkpoints, true)}
+                                    {listaActive(circuito.cir_checkpoints - i.ins_checkpoints, false)}
+                                    
+                                  </div>
+                                </td>
                                 <td className='text-center'>{i.registres[i.registres.length - 1] ? i.registres[i.registres.length - 1].reg_temps : ''}</td>
                                 <td className='text-center'>{i.ins_dorsal}</td>
                                 <td className='text-center'>{i.participant.par_nom} {i.participant.par_cognoms}</td>

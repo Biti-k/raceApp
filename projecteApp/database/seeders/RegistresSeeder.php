@@ -40,7 +40,7 @@ class RegistresSeeder extends Seeder
         ]);
         RegistresModel::create([
             "reg_ins_id" => 2,
-            "reg_chk_id" => 3,
+            "reg_chk_id" => 4,
             "reg_temps" => "2024-05-25 19:50:12"
         ]);
 
