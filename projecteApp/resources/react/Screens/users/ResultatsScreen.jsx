@@ -125,21 +125,22 @@ export const ResultatsScreen = () =>
       }
   }
 
-  const listaActive = (value, type)=>{
+  const listaActive = (inscripcio, circuit)=>{
     let elements = [];
-
-    if(type){
-      for (let i = 0; i < value; i++) {
-        elements.push(<div key={i} className='check-active'></div>);
+    let arrRegistros = [];
+    let checkpoints = Array.from({ length: circuit.cir_checkpoints }, (v, i) => i + 1);
+    inscripcio.registres.forEach(e => {
+      arrRegistros.push(e.checkpoint.chk_pk);
+    })
+    checkpoints.forEach(c => {
+      if(arrRegistros.includes(c)){
+        elements.push(<div key={c} className='check-active'></div>);
+      }else{
+        elements.push(<div key={c} className='check-inactive'></div>);
       }
-    }else{
-      for (let i = 0; i < value; i++) {
-        elements.push(<div key={i} className='check-inactive'></div>);
-      }
-    }
+    })
 
-    return elements;
-    
+    return elements;    
   }
 
 
@@ -226,10 +227,7 @@ export const ResultatsScreen = () =>
                               <tr key={i.ins_id} className='transition duration-200 cursor-pointer' onClick={() => openModal(i.ins_id)}>
                                 <td className='text-center'>
                                   <div className='flex justify-evenly'>
-                                    
-                                    {listaActive(i.ins_checkpoints, true)}
-                                    {listaActive(circuito.cir_checkpoints - i.ins_checkpoints, false)}
-                                    
+                                    {listaActive(i, circuito)}
                                   </div>
                                 </td>
                                 <td className='text-center'>{i.registres[i.registres.length - 1] ? i.registres[i.registres.length - 1].reg_temps : ''}</td>
