@@ -18,14 +18,14 @@ class InscripcionsSeeder extends Seeder
         InscripcionsModel::create([
           "ins_par_id" => 1,
           "ins_data" => "2024-05-25",
-          "ins_dorsal" => 1,
+          "ins_dorsal" => 2,
           'ins_bea_id' => 1,
           "ins_ccc_id" => 1
         ]);
         InscripcionsModel::create([
           "ins_par_id" => 2,
           "ins_data" => "2024-05-25",
-          "ins_dorsal" => 2,
+          "ins_dorsal" => 3,
           'ins_bea_id' => 2,
           "ins_ccc_id" => 1
         ]);
