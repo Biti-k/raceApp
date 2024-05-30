@@ -166,11 +166,10 @@ export const CursaUserScreen = () =>
 								
 									<div className="mx-5 mb-5 w-[100%] flex flex-col gap-2">
                     <div>
-                      <label className="text-lg font-bold text-blue1">Nom: </label>
-                      <span className='text-black w-[100%]' >{cursa.cur_nom} </span>
+                      <span className='font-bold w-[100%] text-blue1 text-xl' >{cursa.cur_nom} </span>
                     </div>
                     <div>
-                      <label className="text-lg font-bold text-blue1">Descripció: </label>
+                      
 										  <p className='text-black w-[100%]' >{cursa.cur_desc}</p>
                     </div>
 
@@ -226,7 +225,7 @@ export const CursaUserScreen = () =>
                         <div className='flex justify-between w-full'><label  className='text-lg font-bold text-blue1'>Numero de circuit: <span className='font-normal text-darkmetal'>{cir.cir_num}</span></label></div>
                       
                       <div>
-                        <label className='text-lg font-bold text-blue1'>Nom: </label>
+                        <label className='text-lg font-bold text-blue1'>Circuit: </label>
                         <span>{cir.cir_nom}</span>
                       </div>
 
