@@ -318,7 +318,7 @@ export const CursaScreen = () =>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="date" id="cur_data_fi" name="cur_data_fi" value={cursa.cur_data_fi} onChange={handleChange} disabled={data_fi_disabled} min={data_fi_min}/>
 
 											<br/><label>Limit inscrits: </label>
-											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" id="cur_limit_inscr" name="cur_limit_inscr" value={cursa.cur_limit_inscr} onChange={handleChange}/>
+											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="number" min="1" id="cur_limit_inscr" name="cur_limit_inscr" value={cursa.cur_limit_inscr} max="190" onChange={handleChange}/>
 
 											<br/><label>Web: </label>
 											<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" id="cur_web" name="cur_web" value={cursa.cur_web} onChange={handleChange}/>
@@ -375,7 +375,9 @@ export const CursaScreen = () =>
 										<div className="mx-5 md:w-[50%] ">    
 											
 												<br/>
-													<div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label><Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/></div>
+													<div className='flex justify-between w-full'><label >Numero de circuit: {cir.cir_num}</label>
+													
+													{ circuits.length > 1 ? <Icon icon="mdi:trash-can" onClick={()=>handleDeleteCircuit(index)} className='text-2xl transition duration-200 cursor-pointer text-blue1 hover:scale-110 active:text-red-700'/> : <></>} </div>
 
 												<label >Nom: </label>
 												<br/><input className='border rounded-xl p-3 text-black w-[100%]' type="text" name="cir_nom" value={cir.cir_nom} onChange={(evt)=> handleChangeCir(evt, index) }/>
