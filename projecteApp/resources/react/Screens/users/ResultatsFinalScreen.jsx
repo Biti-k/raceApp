@@ -224,7 +224,7 @@ export const ResultatsFinalScreen = () =>
                                 <td className='text-center'>
                                   <div className='flex justify-evenly'>
                                     
-                                    {listaActive(i.ins_checkpoints, circuito)}
+                                    {listaActive(i, circuito)}
                                     
                                   </div>
                                 </td>
